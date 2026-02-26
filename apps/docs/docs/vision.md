@@ -3,7 +3,7 @@ id: vision
 title: Vision & Philosophy
 ---
 
-# Vision & Philosophy
+# Portfolio v2 - Vision & Philosophy
 
 This project is built with a documentation-first mindset.
 
