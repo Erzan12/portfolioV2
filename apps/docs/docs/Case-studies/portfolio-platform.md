@@ -1,0 +1,57 @@
+---
+id: portfolio-platform
+title: Portfolio Platform
+---
+
+# Portfolio v2 - Portfolio Platform
+
+## Overview
+
+Portfolio v2 is a personal developer platform designed to showcase projects, engineering practices, and technical documentation.
+
+The platform is structured as a monorepo containing multiple applications.
+
+## Objectives
+
+The project aims to:
+
+- showcase development projects
+- demonstrate engineering practices
+- provide technical documentation
+- serve as a learning and experimentation environment
+
+## Architecture
+
+The project uses a monorepo architecture with separate applications.
+
+```
+portfolio-v2
+│
+├── apps
+│ ├── web
+│ └── docs
+```
+
+
+The web application serves as the developer portfolio, while the documentation platform provides engineering documentation.
+
+## Technologies
+
+The platform is built using modern web technologies including:
+
+- Next.js
+- Tailwind CSS
+- Docusaurus
+
+## Deployment
+
+Each application is deployed independently, allowing updates without affecting the other system.
+
+## Lessons Learned
+
+This project explores:
+
+- monorepo architecture
+- documentation-driven development
+- automated deployments
+- scalable frontend architecture

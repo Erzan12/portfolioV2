@@ -91,6 +91,12 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
+          // {
+          //   type: 'docSideBar',
+          //   sidebarId: 'caseStudiesSidebar',
+          //   position: 'left',
+          //   label: 'Case Studies',
+          // },
           {
             to: '/blog', 
             label: 'Blog', 

@@ -1,0 +1,19 @@
+---
+id: intro
+title: Intro
+---
+
+# Portfolio v2 - Intro
+
+This section documents real projects and engineering work.
+
+The purpose of these case studies is to provide deeper insight into how systems were designed, the challenges encountered, and the solutions implemented.
+
+Each case study focuses on:
+
+- the problem being solved
+- the architecture used
+- the technologies involved
+- lessons learned during development
+
+These case studies demonstrate practical experience with real-world software development.
