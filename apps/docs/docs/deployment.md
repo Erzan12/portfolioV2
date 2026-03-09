@@ -1,7 +1,6 @@
 ---
 id: deployment
 title: Deployment
-slug: /
 ---
 
 # Portfolio v2 - Deployment
