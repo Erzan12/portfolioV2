@@ -1,47 +1,75 @@
 ---
-sidebar_position: 1
+id: intro
+title: Portfolio v2 — Engineering Documentation
+slug: /
 ---
 
-# Tutorial Intro
+# Portfolio v2 — Engineering Documentation
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the engineering documentation for my personal developer platform.
 
-## Getting Started
+This repository contains both the application source code and the architectural documentation behind it. The project is intentionally structured as a **monorepo**, reflecting real-world software team practices.
 
-Get started by **creating a new site**.
+---
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Project Structure
 
-### What you'll need
+This repository contains two independent applications:
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- **Web Application** — A public-facing portfolio built with Next.js
+- **Documentation Platform** — A structured knowledge base built with Docusaurus
 
-## Generate a new site
+Both applications are deployed independently and follow modern CI/CD workflows.
 
-Generate a new Docusaurus site using the **classic template**.
+---
 
-The classic template will automatically be added to your project after you run the command:
+## Project Purpose
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+This platform is designed to demonstrate more than front-end capability.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+It showcases:
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+- System architecture thinking  
+- Backend integration patterns  
+- Clean project structure  
+- CI/CD automation  
+- Scalable design decisions  
+- Documentation discipline  
 
-## Start your site
+The goal is to build software the way professional engineering teams build software.
 
-Run the development server:
+---
 
-```bash
-cd my-website
-npm run start
-```
+## What This Platform Represents
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+This project serves as:
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+- A professional portfolio  
+- A technical case study archive  
+- A public engineering knowledge base  
+- A continuous learning and experimentation environment  
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Every architectural decision is intentional and documented.
+
+---
+
+## Target Audience
+
+This documentation is written for:
+
+- Recruiters evaluating technical depth  
+- Engineering managers reviewing system design capability  
+- Technical collaborators  
+- Developers interested in architecture and scalability  
+
+---
+
+## Engineering Philosophy
+
+Before writing features, I design systems.
+
+Before scaling code, I define structure.
+
+Before deploying software, I define automation.
+
+This documentation exists to make those decisions transparent.
