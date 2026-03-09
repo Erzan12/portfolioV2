@@ -5,8 +5,7 @@ title: Project Roadmap
 
 # Portfolio v2 — Project Roadmap
 
-This roadmap outlines the planned development phases for Portfolio v2.  
-The goal is to continuously evolve the platform while experimenting with modern web technologies and engineering practices.
+This roadmap outlines the planned development phases for Portfolio v2, the goal is to continuously evolve the platform while experimenting with modern web technologies and engineering practices.
 
 ---
 
@@ -77,9 +76,9 @@ Features:
 
 Possible future additions:
 
-analytics
-github contributions graph
-building automation stages 
-project case studies
-interactive architecture diagrams
-experimental projects
+- analytics
+- github contributions graph
+- building automation stages 
+- project case studies
+- interactive architecture diagrams
+- experimental projects
