@@ -10,24 +10,26 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-semibold text-lg tracking-tight text-black dark:text-white"
+          className="font-semibold text-lg tracking-tight text-black dark:text-white "
         >
           erzan.dev
         </Link>
 
         {/* Links */}
-        <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+        <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300 ">
           
           <Link
             href="/projects"
-            className="hover:text-black dark:hover:text-white transition"
+            className="hover:text-black dark:hover:text-white transition relative after:absolute after:left-0 after:-bottom-1 
+            after:h-[1px] after:w-0 after:bg-current after:transition-all hover:after:w-full"
           >
             Projects
           </Link>
 
           <Link
             href="/system-design"
-            className="hover:text-black dark:hover:text-white transition"
+            className="hover:text-black dark:hover:text-white transition relative after:absolute after:left-0 after:-bottom-1 
+            after:h-[1px] after:w-0 after:bg-current after:transition-all hover:after:w-full"
           >
             System Design
           </Link>
@@ -35,7 +37,8 @@ export default function Navbar() {
           <a
             href="https://docs.erzan.dev"
             target="_blank"
-            className="flex items-center gap-1 hover:text-black dark:hover:text-white transition"
+            className="flex items-center gap-1 hover:text-black dark:hover:text-white transition relative after:absolute 
+            after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-current after:transition-all hover:after:w-full"
           >
             <BookOpen size={16} />
             Docs
@@ -44,7 +47,8 @@ export default function Navbar() {
           <a
             href="https://github.com/Erzan12"
             target="_blank"
-            className="flex items-center gap-1 hover:text-black dark:hover:text-white transition"
+            className="flex items-center gap-1 hover:text-black dark:hover:text-white transition relative after:absolute 
+            after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-current after:transition-all hover:after:w-full"
           >
             <Github size={16} />
             GitHub
