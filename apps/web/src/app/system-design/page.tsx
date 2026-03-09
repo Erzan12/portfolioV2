@@ -48,12 +48,12 @@ export default function SystemDesign() {
                             {systems.description}
                         </p>
 
-                        <link
+                        <Link
                             href={systems.link}
                             className="inline-block mt-4 underline"
                         >
                             Read Architecture
-                        </link>
+                        </Link>
                     </div>
                 ))}
             </div>

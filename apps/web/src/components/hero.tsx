@@ -6,7 +6,8 @@ export default function Hero() {
             </h1>
 
             <p className="mt-4 text-lg text-gray-500">
-                Building scalable systems, ERP systems, APIs, and modern web applications.
+                I build scalable systems, ERP systems, APIs, and modern web applications,
+                and well-documented developer platforms.
             </p>
 
             <div className="mt-6 flex justify-center gap-4">
