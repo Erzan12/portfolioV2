@@ -17,11 +17,13 @@ The project is hosted on:
 
 Monorepo structure:
 
+```
 portfolio-v2
 │
 ├── apps
 │   ├── web
 │   └── docs
+```
 
 --- 
 
@@ -41,11 +43,13 @@ Both applications are deployed as separate projects on Vercel.
 
 ## Deployment Flow
 
+```
 GitHub push
     ↓
 Vercel build
     ↓
 Automatic deployment
+```
 
 --- 
 
@@ -53,10 +57,14 @@ Automatic deployment
 
 Portfolio build:
 
-- root directory: apps/web
-- framework: Next.js
+```
+ - root directory: apps/web
+ - framework: Next.js
+```
 
 Documentation build:
 
-- root directory: apps/docs
-- framework: Docusaurus
+```
+ - root directory: apps/docs
+ - framework: Docusaurus
+```

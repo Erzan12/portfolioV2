@@ -8,6 +8,7 @@ title: Web Application Structure
 
 ## Directory Layout
 
+```
 apps/web
 │
 ├── app
@@ -15,6 +16,7 @@ apps/web
 ├── lib
 ├── public
 └── styles
+```
 
 ### app/
 
@@ -22,8 +24,10 @@ Contains page routes and layouts.
 
 Example:
 
+```
 - app/page.tsx
 - app/projects/page.tsx
+```
 
 ### components/
 
@@ -45,4 +49,4 @@ Examples:
 
 - GitHub API functions
 
-- helper utilities
+- Helper utilities

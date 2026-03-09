@@ -7,26 +7,52 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+// function HomepageHeader() {
+//   const {siteConfig} = useDocusaurusContext();
+//   return (
+//     <header className={clsx('hero hero--primary', styles.heroBanner)}>
+//       <div className="container">
+//         <Heading as="h1" className="hero__title">
+//           {siteConfig.title}
+//         </Heading>
+//         <p className="hero__subtitle">{siteConfig.tagline}</p>
+//         <div className={styles.buttons}>
+//           <Link
+//             className="button button--secondary button--lg"
+//             to="/docs/intro">
+//             Project Tutorial - 5min ⏱️
+//           </Link>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+const HomepageHeader = () => {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className="hero hero--primary">
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+        <h1 className="hero__title">
+          Erzan Engineering Documentation
+        </h1>
+
+        <p className="hero__subtitle">
+          Architecture, design decisions, and development process
+          behind my projects and developer platform.
+        </p>
+
+        <div>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Project Tutorial - 5min ⏱️
+            to="/docs/intro"
+          >
+            Explore Documentation
           </Link>
         </div>
       </div>
     </header>
   );
-}
+};
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();

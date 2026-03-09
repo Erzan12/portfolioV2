@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Erzan Engineering Docs',
+  tagline: 'Architecture, systems, and engineering behind my projects',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -20,7 +20,7 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://docs.erzan.dev',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -72,30 +72,45 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/social-card.jpg',
       colorMode: {
+        defaultMode: "dark",
+        disableSwitch: false,
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'Erzan Docs',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Erzan Logo',
           src: 'img/logo.svg',
         },
         items: [
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'tutorialSidebar',
-          //   position: 'left',
-          //   label: 'Tutorial',
-          // },
-          {to: '/docs/intro', label: 'Documentation', position: 'left'},
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/Erzan12/portfolio-v2/tree/master/apps/docs',
-            label: 'GitHub',
-            position: 'right',
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Documentation',
           },
+          {
+            to: '/blog', 
+            label: 'Blog', 
+            position: 'left'
+          },
+          {
+            href: "https://erzan.dev",
+            label: "Portfolio",
+            position: "right",
+          },
+          {
+            href: "https://github.com/Erzan12",
+            label: "GitHub",
+            position: "right",
+          },
+          // {
+          //   href: 'https://github.com/Erzan12/portfolio-v2/tree/master/apps/docs',
+          //   label: 'GitHub',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {
@@ -105,13 +120,17 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Get to know this project',
-                to: '/docs/intro',
+                label: "Architecture",
+                to: "/docs/architecture",
+              },
+              {
+                label: "Engineering",
+                to: "/docs/engineering/decisions",
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Socials',
             items: [
               {
                 label: 'Stack Overflow',
@@ -124,6 +143,19 @@ const config = {
               {
                 label: 'X',
                 href: 'https://x.com/docusaurus',
+              },
+            ],
+          },
+          {
+            title: "Projects",
+            items: [
+              {
+                label: "Portfolio",
+                href: "https://erzan.dev",
+              },
+              {
+                label: "GitHub",
+                href: "https://github.com/Erzan12",
               },
             ],
           },
@@ -141,7 +173,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Portfolio v2, Inc. Built with Docusaurus.❤️`,
+        copyright: `Copyright © ${new Date().getFullYear()} Erzan Engineering Docs, Inc. Built with Docusaurus.❤️`,
       },
       prism: {
         theme: prismThemes.github,
