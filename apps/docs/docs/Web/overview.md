@@ -50,11 +50,13 @@ This documentation is intended for developers, recruiters, and anyone interested
 
 The project follows a monorepo architecture to manage both applications within a single repository.
 
+```
 portfolio-v2
 │
 ├── apps
 │ ├── web
 │ └── docs
+```
 
 --- 
 
