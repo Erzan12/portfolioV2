@@ -43,12 +43,14 @@ export default function ProjectCard({ title, description, stack, github }: Props
         {/* Stack badges */}
         <div className="mt-4 flex flex-wrap gap-2">
             {stack.map((tech) => (
-            <span
-                key={tech}
-                className={`text-xs font-medium px-2 py-1 rounded-full ${techColors[tech] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"}`}
-            >
-                {tech}
-            </span>
+                <span
+                    key={tech}
+                        className={`text-xs font-medium px-2 py-1 rounded-full ${
+                                techColors[tech] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
+                            } transform transition-transform duration-200 hover:scale-105 hover:shadow-sm`}
+                        >
+                    {tech}
+                </span>
             ))}
         </div>
 
