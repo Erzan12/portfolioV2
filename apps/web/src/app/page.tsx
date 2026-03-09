@@ -1,5 +1,6 @@
 import Hero from "@/components/hero";
 import ProjectCard from "@/components/project-card";
+import Skills from "@/components/skills";
 import { projects } from "@/data/projects";
 
 export default function Home() {
@@ -19,6 +20,8 @@ export default function Home() {
               <ProjectCard key={projects.title} {...projects} />
             ))}
         </div>
+
+        <Skills />
       </section>
     </main>
   )

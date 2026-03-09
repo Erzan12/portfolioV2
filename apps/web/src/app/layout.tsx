@@ -1,5 +1,11 @@
 import "./globals.css"
 import Navbar from "@/components/navbar"
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+import Footer from "@/components/footer";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
 
 export default function RootLayout({
   children,
@@ -7,10 +13,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body className="bg-white text-gray-900">
         <Navbar />
-        {children}
+          {children}
+        <Footer />
       </body>
     </html>
   )

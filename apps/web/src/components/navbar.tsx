@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./theme-toggle";
 
 export default function Navbar() {
     return (
@@ -7,8 +8,9 @@ export default function Navbar() {
                 <Link href="/" className="font-semibold text-lg">
                     erzan.dev
                 </Link>
-
+                <ThemeToggle />
                 <div className="flex gap-6 text-sm">
+                    
                     <Link href="/projects">Project</Link>
                     <Link href="/system-design">System Design</Link>
                     <a href="https://docs.erzan.dev" target="blank">Docs</a>
