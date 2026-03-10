@@ -1,5 +1,5 @@
 import Hero from "@/components/core/hero";
-import ProjectCard from "@/components/core/projects-section/project-card";
+import ProjectCard from "@/components/core/project-card/project-card";
 import Skills from "@/components/core/skills";
 import { projects } from "@/data/projects";
 
@@ -12,7 +12,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {projects
-            .filter((p) => p.featured) // now this works
+            .filter((p) => p.featured)
             .map((project) => (
               <ProjectCard key={project.title} {...project} />
             ))}
