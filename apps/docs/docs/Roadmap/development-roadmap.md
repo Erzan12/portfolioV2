@@ -14,122 +14,124 @@ Each phase introduces new capabilities and builds upon the previous one.
 
 Goal: Establish a strong project structure and documentation system.
 
-Completed work:
+### Completed work:
 
-Monorepo project structure
+- Monorepo project structure
 
-Documentation platform using docs framework
+- Documentation platform using docs framework
 
-Clear repository organization
+- Clear repository organization
 
-Initial architecture documentation
+- Initial architecture documentation
 
-Core engineering philosophy
+- Core engineering philosophy
 
-Key components:
+### Key components:
 
+```
 docs/
 apps/
+```
 
-Focus areas:
+### Focus areas:
 
-maintainability
+- maintainability
 
-documentation-first workflow
+- documentation-first workflow
 
-structured development process
+- structured development process
 
-Outcome:
+### Outcome:
 
-A well-documented project foundation ready for application development.
+- A well-documented project foundation ready for application development.
 
-Status: Completed
+#### Status: Completed
 
 ## Phase 2 — Portfolio Application Core
 
 Goal: Build the main portfolio application.
 
-Features introduced:
+### Features introduced:
 
-Application framework setup
+- Application framework setup
 
-UI component system
+- UI component system
 
-Navigation structure
+- Navigation structure
 
-Hero section
+- Hero section
 
-Responsive layout
+- Responsive layout
 
-Modern UI styling
+- Modern UI styling
 
-Dark mode support
+- Dark mode support
 
-Key technologies:
+### Key technologies:
 
-Next.js
+- Next.js
 
-TailwindCSS
+- TailwindCSS
 
-component-based architecture
+- component-based architecture
 
-Outcome:
+### Outcome:
 
 A clean, modern portfolio interface that serves as the entry point for the platform.
 
-Status: Mostly completed
+#### Status: Mostly completed
 
 ## Phase 3 — Projects Showcase
 
 Goal: Display engineering projects with meaningful information.
 
-Features introduced:
+### Features introduced:
 
-Featured projects section
+- Featured projects section
 
-Interactive project carousel
+- Interactive project carousel
 
-Project cards with technology tags
+- Project cards with technology tags
 
-GitHub repository integration
+- GitHub repository integration
 
-Dynamic repository statistics
+- Dynamic repository statistics
 
-Links to source code
+- Links to source code
 
-Technical highlights:
+### Technical highlights:
 
-GitHub API integration
+- GitHub API integration
 
-client-side data fetching
+- client-side data fetching
 
-animated project transitions
+- animated project transitions
 
-responsive project layout
+- responsive project layout
 
-Future improvements:
+### Future improvements:
 
-individual project detail pages
+- individual project detail pages
 
-project case studies
+- project case studies
 
-architecture breakdowns
+- architecture breakdowns
 
-Outcome:
+### Outcome:
 
 Projects become engineering artifacts, not just portfolio items.
 
-Status: In progress
+#### Status: In progress
 
 ## Phase 4 — System Design Showcase
 
 Goal: Demonstrate architectural thinking.
 
-New section:
+### New section:
 
 /system-design
 
-Content examples:
+### Content examples:
 
 ERP architecture overview
 
@@ -139,7 +141,7 @@ monorepo architecture
 
 API platform design
 
-Possible additions:
+### Possible additions:
 
 architecture diagrams
 
@@ -149,128 +151,128 @@ database design strategies
 
 service communication patterns
 
-Outcome:
+### Outcome:
 
 This section demonstrates system-level thinking, which is valuable for engineering roles.
 
-Status: Planned
+#### Status: Planned
 
 ## Phase 5 — Engineering Blog
 
 Goal: Share technical knowledge and development insights.
 
-Planned structure:
+### Planned structure:
 
 /blog
 
-Example topics:
+### Example topics:
 
-building a scalable API
+- building a scalable API
 
-Next.js architecture decisions
+- Next.js architecture decisions
 
-designing ERP systems
+- designing ERP systems
 
-lessons learned in backend development
+- lessons learned in backend development
 
-developer documentation strategies
+- developer documentation strategies
 
-Purpose:
+### Purpose:
 
-demonstrate communication skills
+- demonstrate communication skills
 
-document engineering decisions
+- document engineering decisions
 
-build technical credibility
+- build technical credibility
 
-Outcome:
+### Outcome:
 
 The platform becomes a technical knowledge hub.
 
-Status: Planned
+#### Status: Planned
 
 ## Phase 6 — Developer Labs & Tools
 
 Goal: Add interactive engineering tools and experiments.
 
-New sections:
+### New sections:
 
 /labs
 /tools
 
 Examples:
 
-Labs:
+### Labs:
 
-authentication flow visualization
+- authentication flow visualization
 
-API caching demonstration
+- API caching demonstration
 
-system architecture simulation
+- system architecture simulation
 
-Tools:
+### Tools:
 
-JSON formatter
+- JSON formatter
 
-JWT decoder
+- JWT decoder
 
-Base64 encoder/decoder
+- Base64 encoder/decoder
 
-simple API testing tool
+- simple API testing tool
 
-Purpose:
+### Purpose:
 
-showcase engineering experimentation
+- showcase engineering experimentation
 
-provide useful utilities
+- provide useful utilities
 
-attract developer traffic
+- attract developer traffic
 
-Outcome:
+### Outcome:
 
-The portfolio evolves into a developer playground.
+- The portfolio evolves into a developer playground.
 
-Status: Future expansion
+#### Status: Future expansion
 
 ## Phase 6.5 — Platform Enhancements
 
 This extension focuses on improving the platform experience and scalability.
 
-Potential improvements:
+### Potential improvements:
 
-Performance:
+### Performance:
 
-optimized data fetching
+- optimized data fetching
 
-caching strategies
+- caching strategies
 
-static generation where possible
+- static generation where possible
 
-Developer experience:
+- Developer experience:
 
-better project metadata structure
+- better project metadata structure
 
-reusable UI components
+- reusable UI components
 
-improved API integrations
+- improved API integrations
 
-SEO improvements:
+### SEO improvements:
 
-metadata optimization
+- metadata optimization
 
-OpenGraph tags
+- OpenGraph tags
 
-sitemap generation
+- sitemap generation
 
-Accessibility improvements:
+### Accessibility improvements:
 
-semantic HTML
+- semantic HTML
 
-keyboard navigation
+- keyboard navigation
 
-screen reader compatibility
+- screen reader compatibility
 
-Outcome:
+### Outcome:
 
 The platform becomes production-quality and highly polished.
 
@@ -328,7 +330,7 @@ The long-term goal of this project is to create a platform that combines:
 
 - interactive developer tools
 
-Final structure may look like:
+### Final structure may look like:
 
 ```
 erzan.dev
@@ -343,7 +345,7 @@ erzan.dev
 └── about
 ```
 
-This structure demonstrates both technical skill and engineering thinking, which is valuable for modern software development roles.
+#### This structure demonstrates both technical skill and engineering thinking, which is valuable for modern software development roles.
 
 ### Release Strategy
 
