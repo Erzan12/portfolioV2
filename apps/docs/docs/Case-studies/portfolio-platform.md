@@ -3,7 +3,7 @@ id: portfolio-platform
 title: Portfolio Platform
 ---
 
-# Portfolio v2 - Portfolio Platform
+# Portfolio Platform
 
 ## Overview
 

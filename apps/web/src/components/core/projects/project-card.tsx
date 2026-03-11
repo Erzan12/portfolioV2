@@ -1,18 +1,30 @@
 "use client";
 
-import { useGithubStars } from "@/components/hooks/github-stars";
 import { Github } from "lucide-react";
 import { motion } from "framer-motion";
+import { useGithubRepos } from "@/components/hooks/useGithubRepos";
 
 type Props = {
   title: string;
   description: string;
   stack: string[];
   github: string;
+  repo: string;
+  repos: any;
 };
 
-export default function ProjectCard({ title, description, stack, github }: Props) {
-  const stars = useGithubStars(github);
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 6 },
+  visible: { opacity: 1, y: 0 },
+};
+
+export default function ProjectCard({ title, description, stack, repo, github }: Props) {
+  const repos = useGithubRepos();
 
   const techColors: Record<string, string> = {
     React: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
@@ -31,34 +43,47 @@ export default function ProjectCard({ title, description, stack, github }: Props
 
   return (
     <motion.div
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className="border border-gray-200 dark:border-gray-700 rounded-xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg transition-shadow duration-300"
+      className="border border-gray-200 dark:border-gray-700 rounded-xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg transition-shadow duration-300
+                 w-[360px] h-[420px] flex flex-col justify-between overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={container}
     >
-      {/* Project Title with gradient underline */}
+      {/* Title */}
       <h3 className="text-xl font-semibold text-black dark:text-white relative after:block after:h-0.5 after:w-0 after:bg-gradient-to-r 
           after:from-blue-400 after:to-purple-500 after:absolute after:-bottom-1 after:left-0 after:transition-all hover:after:w-full">
         {title}
       </h3>
 
       {/* Description */}
-      <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+      <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed overflow-hidden line-clamp-5">
         {description}
       </p>
 
-      {/* Stack badges */}
-      <div className="mt-4 flex flex-wrap gap-2">
+      {/* Tech Stack */}
+      <motion.div
+        className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={container}
+      >
         {stack.map((tech) => (
-          <span
+          <motion.span
             key={tech}
-            className={`text-xs font-medium px-2 py-1 rounded-full ${techColors[tech] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"}`}
+            variants={item}
+            className={`text-xs font-medium px-2 py-1 rounded-full ${
+              techColors[tech] ||
+              "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
+            }`}
           >
             {tech}
-          </span>
+          </motion.span>
         ))}
-      </div>
+      </motion.div>
 
-      {/* GitHub link with stars */}
+      {/* GitHub link */}
       <a
         href={`https://github.com/${github}`}
         target="_blank"
@@ -66,7 +91,12 @@ export default function ProjectCard({ title, description, stack, github }: Props
       >
         <Github size={16} />
         View Repository
-        {stars !== null && <span className="ml-1 text-gray-600 dark:text-gray-300">⭐ {stars}</span>}
+        {repos && repos[repo] && (
+          <>
+            <span>⭐ {repos[repo].stars}</span>
+            <span>🍴 {repos[repo].forks}</span>
+          </>
+        )}
       </a>
     </motion.div>
   );

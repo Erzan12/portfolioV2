@@ -1,10 +1,9 @@
 ---
 id: overview
 title: Overview
-# slug: /docs/Web/overview
 ---
 
-# Portfolio v2 - Overview
+# Overview
 
 Portfolio v2 is a developer platform designed to showcase projects, engineering practices, and technical experience. The platform serves as both a professional portfolio and a public knowledge base documenting the development process behind it.
 

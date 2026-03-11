@@ -3,7 +3,7 @@ id: erp-backend-api
 title: ERP Backend API
 ---
 
-# Portfolio v2 - ERP Backend API
+# ERP Backend API
 
 ## Overview
 

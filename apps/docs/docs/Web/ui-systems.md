@@ -1,10 +1,9 @@
 ---
 id: ui-systems
 title: UI-System
-# slug: /Web/ui-systems
 ---
 
-# Portfolio v2 - UI System
+# UI System
 
 ## Design Principles
 

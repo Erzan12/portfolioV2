@@ -3,7 +3,7 @@ id: architecture
 title: System Architecture
 ---
 
-# Portfolio v2 - System Architecture
+# System Architecture
 
 This project follows a monorepo architecture containing two independently deployed applications:
 

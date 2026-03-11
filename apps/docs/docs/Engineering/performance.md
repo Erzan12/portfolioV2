@@ -3,7 +3,7 @@ id: performance
 title: Performance
 ---
 
-# Portfolio v2 - Performance
+# Performance
 
 ## Optimization Strategies
 

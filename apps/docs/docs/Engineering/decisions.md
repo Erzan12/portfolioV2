@@ -3,7 +3,7 @@ id: engineering-decisions
 title: Engineering Decisions
 ---
 
-# Portfolio v2 - Engineering Decisions
+# Engineering Decisions
 
 ## Monorepo Architecture
 

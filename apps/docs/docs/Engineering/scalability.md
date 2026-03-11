@@ -3,7 +3,7 @@ id: scalability
 title: Scalability
 ---
 
-# Portfolio v2 - Scalability
+# Scalability
 
 ## Project Structure
 
@@ -22,6 +22,8 @@ Possible additions:
 - blog
 
 - developer labs and tools
+
+- in projects footer planning to add documentation per repo projects
 
 ---
 

@@ -3,7 +3,7 @@ id: roadmap
 title: Project Roadmap
 ---
 
-# Portfolio v2 — Project Roadmap
+# Project Roadmap
 
 This roadmap outlines the planned development phases for Portfolio v2, the goal is to continuously evolve the platform while experimenting with modern web technologies and engineering practices.
 

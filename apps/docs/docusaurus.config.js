@@ -79,7 +79,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Erzan Docs',
+        title: 'docs.erzan',
         logo: {
           alt: 'Erzan Logo',
           src: 'img/logo.svg',
@@ -134,6 +134,10 @@ const config = {
               {
                 label: "Engineering",
                 to: "/docs/engineering/decisions",
+              },
+              {
+                label: "Development Roadmap",
+                to: "/docs/roadmap/development-roadmap",
               },
             ],
           },

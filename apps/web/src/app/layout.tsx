@@ -25,3 +25,8 @@ export default function RootLayout({
     </html>
   )
 }
+
+export const metadata = {
+  title: "Erzan | Full Stack Developer",
+  description: "Backend-focused developer building scalable systems",
+}

@@ -8,8 +8,14 @@ export function useGithubStars(repo: string) {
   useEffect(() => {
     fetch(`/api/github-stars?repo=${repo}`)
       .then((res) => res.json())
-      .then((data) => setStars(data.stars))
-      .catch(() => setStars(null));
+      .then((data) => {
+        if (typeof data.stars === "number") {
+          setStars(data.stars);
+        } else {
+          setStars(0);
+        }
+      })
+      .catch((error) => setStars(error));
   }, [repo]);
 
   return stars;

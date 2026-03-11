@@ -1,9 +1,9 @@
 ---
-id: intro
+id: introduction
 title: Introduction 
 ---
 
-# Portfolio v2 — Engineering Documentation
+# Engineering Documentation
 
 Welcome to the engineering documentation for my personal developer platform.
 

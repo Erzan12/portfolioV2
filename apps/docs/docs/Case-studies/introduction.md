@@ -1,9 +1,9 @@
 ---
-id: intro
-title: Intro
+id: introduction
+title: Introduction
 ---
 
-# Portfolio v2 - Intro
+# Case Studies Introduciton
 
 This section documents real projects and engineering work.
 

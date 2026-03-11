@@ -1,10 +1,9 @@
 ---
 id: github-integration
 title: GitHub Integration
-# slug: /Web/github-integration
 ---
 
-# Portfolio v2 - GitHub Integration
+# GitHub Integration
 
 - The portfolio automatically retrieves project data using the GitHub API.
 

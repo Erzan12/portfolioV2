@@ -1,9 +1,9 @@
 ---
-id: deployment
-title: Deployment
+id: installation
+title: Installation
 ---
 
-# Portfolio v2 - Deployment
+# Installation
 
 - This project uses a monorepo deployment strategy with separate deployments for the portfolio application and documentation platform.
 

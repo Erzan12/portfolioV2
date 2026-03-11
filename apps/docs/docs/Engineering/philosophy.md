@@ -3,7 +3,7 @@ id: philosophy
 title: Philosophy
 ---
 
-# Portfolio v2 - Engineering Philosophy
+# Engineering Philosophy
 
 This document outlines the engineering principles that guide the development of this platform and my personal approach to software development.
 

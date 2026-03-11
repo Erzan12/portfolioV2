@@ -3,7 +3,7 @@ id: tech-stack
 title: Technology Stack
 ---
 
-# Portfolio v2 - Technology Stack
+# Technology Stack
 
 This project intentionally uses modern, production-ready tools that reflect current industry standards.
 
