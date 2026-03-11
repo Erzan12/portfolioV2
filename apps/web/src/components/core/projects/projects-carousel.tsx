@@ -14,14 +14,17 @@ type Props = {
 export default function ProjectsCoverflowCarousel({ projects, repos }: Props) {
   const [index, setIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(360); // default desktop
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % projects.length); // auto-next
     }, 5000); // 5000ms = 5 seconds per card
 
     return () => clearInterval(interval); // cleanup on unmount
-  }, [projects.length]);
+  }, [projects.length, isPaused]);
 
   //update card width on client only
   useEffect(() => {
@@ -58,7 +61,11 @@ export default function ProjectsCoverflowCarousel({ projects, repos }: Props) {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center">
-      <div className="relative w-full h-[440px] flex items-center justify-center perspective-[1200px] overflow-visible md:overflow-hidden">
+      <div 
+        className="relative w-full h-[440px] flex items-center justify-center perspective-[1200px] overflow-visible md:overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         {/* Arrows */}
         <button
           onClick={prev}
