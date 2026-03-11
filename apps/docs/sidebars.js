@@ -42,6 +42,7 @@ const sidebars = {
       items: [
         'introduction',
         'vision',
+        'demo',
       ],
     },
 

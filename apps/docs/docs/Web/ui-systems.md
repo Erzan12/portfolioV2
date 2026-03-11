@@ -3,7 +3,7 @@ id: ui-systems
 title: UI-System
 ---
 
-# Portfolio v2 - UI System
+# UI System
 
 ## Design Principles
 

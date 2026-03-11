@@ -3,7 +3,7 @@ id: structure
 title: Web Application Structure
 ---
 
-# Portfolio v2 - Web Application Structure
+# Web Application Structure
 
 ## Directory Layout
 
