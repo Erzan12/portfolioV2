@@ -23,6 +23,8 @@ Possible additions:
 
 - developer labs and tools
 
+- in projects footer planning to add documentation per repo projects
+
 ---
 
 ## Component Reusability
