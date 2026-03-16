@@ -21,13 +21,15 @@ export async function GET() {
     //     };
     //     return acc;
     // }, {});
+    
     const repos = data.map((repo: any) => ({
         id: repo.id,
         name: repo.name,
         description: repo.description,
         stars: repo.stargazers_count,
         forks: repo.forks_count,
-        updated_at: repo.updated_at,
+        language: repo.language,
+        pushed_at: repo.pushed_at,
         html_url: repo.html_url,
     }));
 

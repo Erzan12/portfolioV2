@@ -7,9 +7,13 @@ import { useGithubRepos } from "@/components/hooks/useGithubRepos";
 type GithubRepo = {
   id: number;
   name: string;
-  description: string;
-  updated_at: string;
-}
+  description: string | null;
+  stars: number;
+  forks: number;
+  language: string | null;
+  pushed_at: string;
+  html_url: string;
+};
 
 export default function ProjectsPage() {
   const { repos } = useGithubRepos();
@@ -30,6 +34,10 @@ export default function ProjectsPage() {
       Laravel: "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100",
       CodeIgniter: "bg-red-50 text-red-900 dark:bg-red-900 dark:text-red-50",
   };
+
+  const sortedRepos = [...repos].sort((a, b) => {
+    return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
+  });
 
   const systems = [
       {
@@ -65,14 +73,18 @@ export default function ProjectsPage() {
         </p>
 
         <motion.div className="grid md:grid-cols-2 gap-6">
-          {repos.map((repo: GithubRepo) => (
+          {sortedRepos.map((repo: GithubRepo) => (
             <SystemCard
               key={repo.id}
               title={repo.name}
               description={repo.description ?? "No description provided"}
-              last_update={repo.updated_at}
-              link={`https://github.com/Erzan12/${repo.name}`}
+              stars={repo.stars}
+              forks={repo.forks}
+              language={repo.language}
+              last_update={repo.pushed_at}
+              link={repo.html_url}
               showArchitectureLink={false}
+              showRepositoryLink={true}
               techColors={techColors}
             />
           ))}
