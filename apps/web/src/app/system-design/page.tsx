@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { motion } from "framer-motion";
+import SystemCard from "@/components/core/system-design/System-Card";
 
 const container = {
   hidden: {},
@@ -68,72 +69,13 @@ export default function SystemDesign() {
                 systems, and platform infrastructure.
             </p>
 
-            <motion.div
-                className="grid md:grid-cols-2 gap-6"
-                variants={container}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-            >
+            <motion.div className="grid md:grid-cols-2 gap-6">
                 {systems.map((system) => (
-                    <div
+                    <SystemCard
                         key={system.title}
-                        className="border rounded-lg p-6"
-                    >
-                        <h3 className="text-xl font-semibold">
-                            {system.title}
-                        </h3>
-
-                        <p className="mt-2 text-sm text-gray-500">
-                            {system.description}
-                        </p>
-
-                        <motion.div
-                            className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
-                            variants={container}
-                        >
-                            {system.stack?.map((tech) => (
-                                <motion.span
-                                key={tech}
-                                variants={item}
-                                whileHover={{ scale: 1.05 }}
-                                className={`text-xs font-medium px-2 py-1 rounded-full ${
-                                    techColors[tech] ||
-                                    "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                                }`}
-                                >
-                                {tech}
-                                </motion.span>
-                            ))}
-                        </motion.div>
-
-                        <motion.div
-                            className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
-                            variants={container}
-                        >
-                            {system.topics?.map((tech) => (
-                                <motion.span
-                                key={tech}
-                                variants={item}
-                                whileHover={{ scale: 1.05 }}
-                                className={`text-xs font-medium px-2 py-1 rounded-full ${
-                                    techColors[tech] ||
-                                    "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                                }`}
-                                >
-                                {tech}
-                                </motion.span>
-                            ))}
-                        </motion.div>
-
-                        <Link
-                            href={system.link}
-                            className="inline-block mt-4 underline"
-                            target="_blank"
-                        >
-                            Read Architecture
-                        </Link>
-                    </div>
+                        {...system}
+                        techColors={techColors}
+                    />
                 ))}
             </motion.div>
         </main>
