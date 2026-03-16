@@ -6,7 +6,9 @@ export default function SystemDesign() {
             title: "ERP Backend Architecture",
             description:
                 "Architecture behind the ERP backend API including modules, database design, and role-based access control.",
-            link: "http://localhost:3000/docs/Case-studies/erp-backend-api",
+            stack: ["NestJS", "PostgreSQL", "Prisma", "JWT"],
+            topics: ["RBAC", "REST APIs", "Modular Architecture"],
+            link: "/docs/Case-studies/erp-backend-api",
         },
         {
             title: "Authentication System",
@@ -24,7 +26,7 @@ export default function SystemDesign() {
 
     return (
         <main className="container mx-auto px-6 py-20">
-            <h1 className="text-3x1 font-bold mb-8">
+            <h1 className="text-3xl font-bold mb-8">
                 System Design
             </h1>
             
@@ -34,23 +36,32 @@ export default function SystemDesign() {
                 systems, and platform infrastructure.
             </p>
 
-            <div className="grid md:grid-colds-2 gap-6">
-                {systems.map((systems) => (
+            <div className="grid md:grid-cols-2 gap-6">
+                {systems.map((system) => (
                     <div
-                        key={systems.title}
+                        key={system.title}
                         className="border rounded-lg p-6"
                     >
-                        <h3 className="text-x1 fond-semibold">
-                            {systems.title}
+                        <h3 className="text-xl font-semibold">
+                            {system.title}
                         </h3>
 
                         <p className="mt-2 text-sm text-gray-500">
-                            {systems.description}
+                            {system.description}
+                        </p>
+
+                        <p className="mt-2 text-sm text-gray-500">
+                            {system.stack}
+                        </p>
+
+                        <p className="mt-2 text-sm text-gray-500">
+                            {system.topics}
                         </p>
 
                         <Link
-                            href={systems.link}
+                            href={system.link}
                             className="inline-block mt-4 underline"
+                            target="_blank"
                         >
                             Read Architecture
                         </Link>
