@@ -22,8 +22,10 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6 text-sm">
-          <NavLink href="/projects" onClick={() => setOpen(false)}>Projects</NavLink>
-          <NavLink href="/system-design" onClick={() => setOpen(false)}>System Design</NavLink>
+          <NavLink href="/projects" onClick={() => setOpen(false)}> Projects </NavLink>
+          <NavLink href="/system-design" onClick={() => setOpen(false)}> System Design </NavLink>
+          <NavLink href="/about" onClick={() => setOpen(false)}> About </NavLink>
+          <NavLink href="/contact" onClick={() => setOpen(false)}> Contact </NavLink>
           <a
             href="https://docs.erzan.dev"
             target="_blank"
@@ -63,11 +65,19 @@ export default function Navbar() {
         >
         <div className="border-t px-6 py-4 flex flex-col gap-4 text-sm">
             <NavLink href="/projects" onClick={() => setOpen(false)}>
-                Projects
+              Projects
             </NavLink>
 
             <NavLink href="/system-design" onClick={() => setOpen(false)}>
-                System Design
+              System Design
+            </NavLink>
+
+            <NavLink href="/about" onClick={() => setOpen(false)}>
+              About
+            </NavLink>
+
+            <NavLink href="/contact" onClick={() => setOpen(false)}>
+              Contact
             </NavLink>
 
             <a
