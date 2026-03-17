@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Github, BookOpen } from "lucide-react";
-import ThemeToggle from "../../dark-mode-toggle/theme-toggle";
 import { NavLink } from "@/components/core/navbar/nav-link";
 import { useState } from "react";
+import ThemeToggle from "@/components/dark-mode-toggle/theme-toggle";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);

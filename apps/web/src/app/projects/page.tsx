@@ -40,7 +40,7 @@ export default function ProjectsPage() {
   );
 
   return (
-    <main className="container mx-auto px-6 py-20">
+    <main className="container mx-auto px-6 py-20 ">
         <h1 className="text-3xl font-bold mb-8">
           Projects
         </h1>

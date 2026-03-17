@@ -50,7 +50,7 @@ export default function SystemCard({
     techColors,
 }: Props) {
     return (
-        <div className="border rounded-lg p-6">
+        <div className="border rounded-lg p-6 bg-card">
             <h3 className="text-xl font-semibold">{title}</h3>
 
             <p className="mt-2 text-sm text-gray-500">{description}</p>

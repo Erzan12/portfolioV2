@@ -4,7 +4,7 @@ import { Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-20 bg-gray-50 dark:bg-gray-900">
+    <footer className="border-t mt-5 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
         
         {/* Branding / copyright */}
