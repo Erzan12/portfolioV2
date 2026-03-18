@@ -19,6 +19,10 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  stylesheets: [
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
+  ],
+
   // Set the production url of your site here
   url: 'https://docs.erzan.dev',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -89,7 +93,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: '📖 Documentation',
           },
           // {
           //   type: 'docSideBar',
@@ -99,13 +103,13 @@ const config = {
           // },
           {
             to: '/blog', 
-            label: 'Blog', 
+            label: '📝 Blog', 
             position: 'left'
           },
           {
-            // href: "https://erzan.dev",
+            href: "https://erzan.dev",
             //local dev
-            href: "http://localhost:3001",
+            // href: "http://localhost:3001",
             label: "Portfolio",
             position: "right",
           },
@@ -133,7 +137,7 @@ const config = {
               },
               {
                 label: "Engineering",
-                to: "/docs/engineering/decisions",
+                to: "/docs/Engineering/engineering-decisions",
               },
               {
                 label: "Development Roadmap",
@@ -145,12 +149,12 @@ const config = {
             title: 'Socials',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Facebook',
+                href: 'https://www.facebook.com/erjan.do.7',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/in/ej-do/',
               },
               {
                 label: 'X',
@@ -185,7 +189,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Erzan Engineering Docs, Inc. Built with Docusaurus.❤️`,
+        copyright: `© ${new Date().getFullYear()} Erzan Engineering Docs. Built with Docusaurus.❤️`,
       },
       prism: {
         theme: prismThemes.github,

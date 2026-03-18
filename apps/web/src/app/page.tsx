@@ -4,15 +4,16 @@ import Hero from "@/components/core/hero";
 import ProjectCard from "@/components/core/projects/project-card";
 import ProjectsCarousel from "@/components/core/projects/projects-carousel";
 import Skills from "@/components/core/skills";
-import { useGithubRepos } from "@/components/hooks/useGithubRepos";
+import { useGithubRepos } from "@/hooks/useGithubRepos";
 import { projects } from "@/data/projects";
+
+import Faq02 from "../components/core/faq/faq-02"
 
 export default function Home() {
   const repos = useGithubRepos();
   return (
     <main className="container mx-auto px-6">
       <Hero />
-
       <section className="py-16">
         <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
         {/* <div className="grid md:grid-cols-2 gap-6">
@@ -28,9 +29,8 @@ export default function Home() {
           repos={repos}
         />
       </section>
-
-      
-       <Skills />
+      <Skills />
+      <Faq02 />
     </main>
   )
 }

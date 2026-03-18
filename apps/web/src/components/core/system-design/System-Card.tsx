@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { div } from "framer-motion/client";
 import { getRelativeTime } from "@/lib/helper/date-format.helper";
+import { formatCommitDate } from "@/lib/helper/format-commit-date.helper";
 
 const container = {
     hidden: {},
@@ -49,7 +50,7 @@ export default function SystemCard({
     techColors,
 }: Props) {
     return (
-        <div className="border rounded-lg p-6">
+        <div className="border rounded-lg p-6 bg-card">
             <h3 className="text-xl font-semibold">{title}</h3>
 
             <p className="mt-2 text-sm text-gray-500">{description}</p>
@@ -104,8 +105,19 @@ export default function SystemCard({
                 {forks !== undefined && (
                     <span>🍴 {forks}</span>
                 )}
-                {last_update && ( 
+                {/* {last_update && ( 
                     <span> Updated {getRelativeTime(last_update)} </span> 
+                )} */}
+                {last_update && (
+                    <div className="flex flex-col">
+                        <span>Updated {getRelativeTime(last_update)}</span>
+                        <span className="text-xs text-gray-400">
+                        Last commit: {formatCommitDate(last_update)}
+                        </span>
+                        {/* <span title={new Date(last_update).toLocaleString()}>
+                            Updated {getRelativeTime(last_update)}
+                        </span> */}
+                    </div>
                 )}
                 
             </div>

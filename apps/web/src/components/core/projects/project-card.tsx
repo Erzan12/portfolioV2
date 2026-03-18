@@ -2,7 +2,7 @@
 
 import { Github } from "lucide-react";
 import { motion } from "framer-motion";
-import { useGithubRepos } from "@/components/hooks/useGithubRepos";
+import { useGithubRepos } from "@/hooks/useGithubRepos";
 
 type Props = {
   title: string;

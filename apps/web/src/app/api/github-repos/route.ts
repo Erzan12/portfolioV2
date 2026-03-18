@@ -6,23 +6,17 @@ export async function GET() {
         headers: {
             Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         },
-        next: { revalidate: 3600 } // cache for 1 hour
+        next: { revalidate: 60, tags: ["github-repos"] }, // tag it cache for 1 hour -> 3600
     });
 
     const data = await res.json();
 
-    console.log("GitHub response:", data); // DEBUG
-
-    // const repos = data.reduce((acc: any, repo: any) => {
-    //     acc[repo.name] = {
-    //         stars: repo.stargazers_count,
-    //         forks: repo.forks_count,
-    //         updated: repo.updated_at,
-    //     };
-    //     return acc;
-    // }, {});
+    // console.log("GitHub response:", data); // DEBUG
     
-    const repos = data.map((repo: any) => ({
+    //to not include fork repos
+    const repos = data
+       .filter((repo: any) => !repo.fork)
+       .map((repo: any) => ({
         id: repo.id,
         name: repo.name,
         description: repo.description,
@@ -32,6 +26,7 @@ export async function GET() {
         pushed_at: repo.pushed_at,
         html_url: repo.html_url,
     }));
+
 
     return NextResponse.json({ repos });
 }

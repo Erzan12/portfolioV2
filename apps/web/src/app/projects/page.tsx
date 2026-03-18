@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SystemCard from "@/components/core/system-design/System-Card";
-import { useGithubRepos } from "@/components/hooks/useGithubRepos";
+import { useGithubRepos } from "@/hooks/useGithubRepos";
 
 type GithubRepo = {
   id: number;
@@ -18,7 +18,7 @@ type GithubRepo = {
 export default function ProjectsPage() {
   const { repos } = useGithubRepos();
 
-  console.log(repos);
+  // console.log(repos);
 
   const techColors: Record<string, string> = {
       React: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
@@ -35,35 +35,12 @@ export default function ProjectsPage() {
       CodeIgniter: "bg-red-50 text-red-900 dark:bg-red-900 dark:text-red-50",
   };
 
-  const sortedRepos = [...repos].sort((a, b) => {
-    return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
-  });
-
-  const systems = [
-      {
-          title: "ERP Backend Architecture",
-          description:
-              "Architecture behind the ERP backend API including modules, database design, and role-based access control.",
-          stack: ["NestJS", "PostgreSQL", "Prisma", "JWT"],
-          topics: ["RBAC", "REST APIs", "Modular Architecture"],
-          link: "/docs/Case-studies/erp-backend-api",
-      },
-      {
-          title: "Authentication System",
-          description:
-              "JWT authentication flow and role-based permission model used in enterprise backend systems.",
-          link: "http://localhost:3000/docs/Case-studies/erp-backend-api",
-      },
-      {
-          title: "Portfolio Monorepo Architecture",
-          description:
-              "Design of the monorepo platform powering this portfolio and documentation system.",
-          link: "http://localhost:3000/docs/Case-studies/portfolio-platform",
-      },
-  ];
+  const sortedRepos = repos.sort(
+    (a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
+  );
 
   return (
-    <main className="container mx-auto px-6 py-20">
+    <main className="container mx-auto px-6 py-20 ">
         <h1 className="text-3xl font-bold mb-8">
           Projects
         </h1>

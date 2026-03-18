@@ -38,7 +38,7 @@ const sidebars = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'Introduction',
+      label: '📘 Introduction',
       items: [
         'introduction',
         'vision',
@@ -48,7 +48,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Getting Started',
+      label: '🚀 Getting Started',
       items: [
         'installation',
         'tech-stack',
@@ -57,11 +57,11 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Guides',
+      label: '🧭 Guides',
       items: [
         {
           type: 'category',
-          label: 'Platform',
+          label: '🌐 Platform',
           items: [
             'Web/overview',
             'Web/structure',
@@ -74,7 +74,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Engineering',
+      label: '⚙️ Engineering',
       items: [
         'architecture',
         'Engineering/engineering-decisions',
@@ -86,7 +86,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Case Studies',
+      label: '📊 Case Studies',
       items: [
         'Case-studies/introduction',
         'Case-studies/portfolio-platform',
@@ -96,7 +96,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Roadmap',
+      label: '🗺️ Roadmap',
       items: [
         'roadmap',
         'Roadmap/development-roadmap',
