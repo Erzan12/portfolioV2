@@ -50,10 +50,10 @@ export default function SystemCard({
     techColors,
 }: Props) {
     return (
-        <div className="border rounded-lg p-6 bg-card">
+        <div className="border rounded-lg p-6 dark:bg-neutral-900">
             <h3 className="text-xl font-semibold">{title}</h3>
 
-            <p className="mt-2 text-sm text-gray-500">{description}</p>
+            <p className="mt-2 text-sm text-muted-foreground font-sans">{description}</p>
 
             <motion.div
                 className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
