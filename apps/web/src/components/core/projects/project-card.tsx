@@ -10,7 +10,6 @@ type Props = {
   stack: string[];
   github: string;
   repo: string;
-  repos: any;
 };
 
 const container = {
@@ -24,7 +23,9 @@ const item = {
 };
 
 export default function ProjectCard({ title, description, stack, repo, github }: Props) {
-  const repos = useGithubRepos();
+  const { repos } = useGithubRepos();
+
+  const currentRepo = repos?.find((r) => r.name === repo);
 
   const techColors: Record<string, string> = {
     React: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
@@ -91,10 +92,16 @@ export default function ProjectCard({ title, description, stack, repo, github }:
       >
         <Github size={16} />
         View Repository
-        {repos && repos[repo] && (
+        {/* {repos && repos[repo] && (
           <>
             <span>⭐ {repos[repo].stars}</span>
             <span>🍴 {repos[repo].forks}</span>
+          </>
+        )} */}
+        {currentRepo && (
+          <>
+            <span>⭐ {currentRepo.stars}</span>
+            <span>🍴 {currentRepo.forks}</span>
           </>
         )}
       </a>
