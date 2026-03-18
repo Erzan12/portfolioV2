@@ -1,5 +1,50 @@
 # CHANGELOG
 
+### 🚀 [0.8.0] – 2026-03-18 - Projects, GitHub Integration & UI Expansion
+### ✨ What's Included
+
+### Added
+
+Projects page with GitHub repository synchronization
+
+Repository insights per project:
+
+*Last updated timestamp
+
+*Latest commit reference
+
+*Stars and forks counter
+
+*Direct “View Repository” access
+
+Tech stack reader for each project card
+
+Contact page with bento-style layout
+
+UI icons integration in Docusaurus documentation
+
+### Improved
+
+Reusable card system adapted from system design to project cards
+
+Hover interaction now pauses card animations
+
+System design page with staggered tech stack animations
+
+Consistency across UI components and layouts
+
+Animation smoothness and interaction responsiveness
+
+### Notes
+
+Major step toward a fully dynamic and data-driven portfolio platform
+
+Strengthens GitHub as a single source of truth for project data
+
+Continued progress toward v1.0.0 release
+
+---
+
 ### 🚧 [0.7.0] – 2026-03-11 - Documentation & Interaction Update
 
 ### ✨ What's Included
