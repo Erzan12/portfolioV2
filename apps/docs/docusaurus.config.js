@@ -107,9 +107,9 @@ const config = {
             position: 'left'
           },
           {
-            // href: "https://erzan.dev",
+            href: "https://erzan.dev",
             //local dev
-            href: "http://localhost:3001",
+            // href: "http://localhost:3001",
             label: "Portfolio",
             position: "right",
           },
@@ -137,7 +137,7 @@ const config = {
               },
               {
                 label: "Engineering",
-                to: "/docs/engineering/decisions",
+                to: "/docs/Engineering/engineering-decisions",
               },
               {
                 label: "Development Roadmap",
