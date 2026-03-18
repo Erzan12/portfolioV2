@@ -17,3 +17,19 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+first deployment:
+  label: First Deployment
+  description: Posts about initial deployments
+
+docs:
+  label: Documentation
+  description: Docs-related posts
+
+vercel:
+  label: Vercel
+  description: Deployment platform
+
+versioning:
+  label: Versioning
+  description: Version control and releases

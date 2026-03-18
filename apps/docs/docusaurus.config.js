@@ -24,7 +24,7 @@ const config = {
   ],
 
   // Set the production url of your site here
-  url: 'https://docs.erzan.dev',
+  url: 'https://erzan.docs',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -83,7 +83,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'docs.erzan',
+        title: 'erzan.docs',
         logo: {
           alt: 'Erzan Logo',
           src: 'img/logo.svg',
@@ -141,7 +141,7 @@ const config = {
               },
               {
                 label: "Development Roadmap",
-                to: "/docs/roadmap/development-roadmap",
+                to: "/docs/Roadmap/development-roadmap",
               },
             ],
           },
