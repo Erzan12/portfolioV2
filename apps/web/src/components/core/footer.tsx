@@ -4,7 +4,7 @@ import { Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-5 bg-gray-50 dark:bg-gray-900">
+    <footer className="border-t mt-5 bg-primary/8 dark:bg-gray-900">
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
         
         {/* Branding / copyright */}
@@ -14,29 +14,29 @@ export default function Footer() {
 
         {/* Quick links */}
         <div className="flex flex-wrap justify-center gap-6">
-          <a href="https://github.com/Erzan12" className="hover:text-blue-500 flex items-center gap-1">
+          <a href="https://github.com/Erzan12" className="hover:text-primary flex items-center gap-1">
             <Github size={16} /> GitHub
           </a>
-          <a href="https://docs.erzan.dev" className="hover:text-blue-500">
+          <a href="https://docs.erzan.dev" className="hover:text-primary">
             Docs
           </a>
-          <a href="/blog" className="hover:text-blue-500">
+          <a href="/blog" className="hover:text-primary">
             Blog
           </a>
-          <a href="/contact" className="hover:text-blue-500">
+          <a href="/contact" className="hover:text-primary">
             Contact
           </a>
         </div>
 
         {/* Social icons */}
         <div className="flex gap-4">
-          <a href="https://github.com/Erzan12" className="hover:text-grey-500 dark:hover:text-grey-100">
+          <a href="https://github.com/Erzan12" className="hover:text-primary dark:hover:text-grey-100">
             <Github size={20} />
           </a>
-          <a href="https://twitter.com/yourhandle" className="hover:text-blue-400">
+          <a href="https://twitter.com/yourhandle" className="hover:text-primary">
             <Twitter size={20} />
           </a>
-          <a href="https://www.linkedin.com/in/yourhandle/" className="hover:text-blue-600">
+          <a href="https://www.linkedin.com/in/yourhandle/" className="hover:text-primary">
             <Linkedin size={20} />
           </a>
         </div>
@@ -50,7 +50,7 @@ export default function Footer() {
           />
           <button
             type="submit"
-            className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition"
+            className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition"
           >
             Subscribe
           </button>
