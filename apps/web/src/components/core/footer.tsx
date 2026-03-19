@@ -4,7 +4,7 @@ import { Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-5 bg-primary/8 dark:bg-gray-900">
+    <footer className="border-t mt-5 bg-primary/8 dark:bg-card">
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
         
         {/* Branding / copyright */}
@@ -46,11 +46,11 @@ export default function Footer() {
           <input
             type="email"
             placeholder="Subscribe to newsletter"
-            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="px-4 py-2 rounded-lg border border-primary/10 dark:border-gray-700 bg-white dark:bg-primary/8 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-100"
           />
           <button
             type="submit"
-            className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition"
+            className="px-4 py-2 rounded-lg bg-primary dark:bg-primary/40  text-white hover:dark:bg-primary/60 transition"
           >
             Subscribe
           </button>
