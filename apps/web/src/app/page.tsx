@@ -12,7 +12,7 @@ import Faq02 from "../components/core/faq/faq-02"
 export default function Home() {
   const repos = useGithubRepos();
   return (
-    <main className="container mx-auto px-6">
+    <main className="container mx-auto px-6 overflow-x-hidden">
       <Hero />
       <section className="py-16">
         <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
