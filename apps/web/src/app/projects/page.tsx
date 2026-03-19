@@ -40,16 +40,18 @@ export default function ProjectsPage() {
   );
 
   return (
-    <main className="container mx-auto px-6 py-20 ">
-        <h1 className="text-3xl font-bold mb-8">
-          Projects
-        </h1>
+    <main className="min-h-screen pt-20 pb-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12">
+          <h1 className="text-3xl font-bold text-card-foreground font-sans tracking-tight">
+            Projects
+          </h1>
 
-        <p className="text-gray-500 mb-12">
-          This section highlights all my development projects.
-        </p>
-
-        <motion.div className="grid md:grid-cols-2 gap-6">
+          <p className="text-muted-foreground mt-4 max-w-2xl font-sans leading-relaxed">
+            This section highlights all my development projects.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedRepos.map((repo: GithubRepo) => (
             <SystemCard
               key={repo.id}
@@ -65,7 +67,8 @@ export default function ProjectsPage() {
               techColors={techColors}
             />
           ))}
-        </motion.div>
+        </div>
+      </div>
     </main>
   );
 }

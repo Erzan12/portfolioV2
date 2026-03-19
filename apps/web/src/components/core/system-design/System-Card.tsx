@@ -2,134 +2,133 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { div } from "framer-motion/client";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
 import { getRelativeTime } from "@/lib/helper/date-format.helper";
 import { formatCommitDate } from "@/lib/helper/format-commit-date.helper";
 
 const container = {
-    hidden: {},
-    visible: {
-        transition: { staggerChildren: 0.15 },
-    },
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const item = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
 };
 
 type Props = {
-    title: string;
-    description: string;
-    stack?: string[];
-    topics?: string[];
-    stars?: number;
-    forks?: number;
-    language?: string | null;
-    last_update?: string;
-    link?: string;
-    issues?: boolean;
-    showArchitectureLink: boolean;
-    showRepositoryLink: boolean;
-    techColors: Record<string, string>;
+  title: string;
+  description: string;
+  stack?: string[];
+  topics?: string[];
+  stars?: number;
+  forks?: number;
+  language?: string | null;
+  last_update?: string;
+  link?: string;
+  showArchitectureLink?: boolean;
+  showRepositoryLink?: boolean;
+  techColors?: Record<string, string>;
+  icon?: React.ReactNode; // For the System Design icons
 };
 
 export default function SystemCard({
-    title,
-    description,
-    stack,
-    topics,
-    language,
-    stars,
-    forks,
-    last_update,
-    link,
-    issues,
-    showArchitectureLink = true,
-    showRepositoryLink = true,
-    techColors,
-}: Props) {
-    return (
-        <div className="border rounded-lg p-6 bg-card">
-            <h3 className="text-xl font-bold text-card-foreground font-sans">{title}</h3>
+  title,
+  description,
+  stack,
+  topics,
+  language,
+  stars,
+  forks,
+  last_update,
+  link,
+  showArchitectureLink = true,
+  showRepositoryLink = true,
+  techColors = {},
+  icon,
+}: Props) 
 
-            <p className="text-card-foreground leading-relaxed font-sans flex-1 text-sm space-y-4">{description}</p>
+{
+  return (
+    <Card className="h-[480px] flex flex-col bg-card border-border rounded-2xl overflow-hidden shadow-none transition-all duration-300 hover:border-primary/50 group">
+      <CardHeader className={icon ? "p-6 pb-0" : "p-6 pb-2"}>
+        {/* If an icon is provided (System Design), show the circle icon */}
+        {icon && (
+          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            {icon}
+          </div>
+        )}
+        <CardTitle className="text-xl font-bold font-sans text-card-foreground">
+          {title}
+        </CardTitle>
+        
+        {/* GitHub Stats Row (Optional) */}
+        {(stars !== undefined || language) && (
+          <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground font-sans">
+            {language && <span className="font-bold text-primary">{language}</span>}
+            {stars !== undefined && <span>⭐ {stars}</span>}
+            {forks !== undefined && <span>🍴 {forks}</span>}
+          </div>
+        )}
+      </CardHeader>
 
-            <motion.div
-                className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
-                variants={container}
-            >
-                {stack?.map((tech) => (
-                    <motion.span
-                        key={tech}
-                        variants={item}
-                        whileHover={{ scale: 1.05 }}
-                        className={`text-xs font-medium px-2 py-1 rounded-full ${
-                            techColors[tech] ||
-                            "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                        }`}
-                    >
-                        {tech}
-                    </motion.span>
-                ))}
+      <CardContent className="p-6 flex-1 flex flex-col">
+        <p className="text-sm text-muted-foreground font-sans leading-relaxed line-clamp-4 mb-4">
+          {description}
+        </p>
+
+        {/* Tech Stack Badges */}
+        <motion.div 
+          className="flex flex-wrap gap-2 mt-auto" 
+          variants={container} 
+          initial="hidden" 
+          animate="visible"
+        >
+          {stack?.map((tech) => (
+            <motion.div key={tech} variants={item} whileHover={{ scale: 1.05 }}>
+              <Badge
+                variant="secondary"
+                className={`rounded-full text-[10px] font-sans px-2.5 py-0.5 border-none ${
+                  techColors[tech] || "bg-secondary text-secondary-foreground"
+                }`}
+              >
+                {tech}
+              </Badge>
             </motion.div>
+          ))}
+        </motion.div>
+      </CardContent>
 
-            <motion.div
-                className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
-                variants={container}
-            >
-                {topics?.map((topic) => (
-                    <motion.span
-                        key={topic}
-                        variants={item}
-                        whileHover={{ scale: 1.05 }}
-                        className="text-xs font-medium px-2 py-1 rounded-full bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                    >
-                        {topic}
-                    </motion.span>
-                ))}
-            </motion.div>
-            {showArchitectureLink && link &&(
-                <Link href={link} className="inline-block mt-4 underline" target="_black">
-                    Read Architecture
-                </Link>
-            )}
+      <CardFooter className="p-6 pt-0 flex flex-col gap-3">
+        {/* Date Section */}
+        {last_update && (
+          <div className="w-full text-[10px] text-muted-foreground font-sans flex flex-col mb-1">
+            <span>Updated {getRelativeTime(last_update)}</span>
+            <span className="opacity-70 text-[9px]">Last commit: {formatCommitDate(last_update)}</span>
+          </div>
+        )}
 
-            <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
-                {language && (
-                    <span className="text-xs font-bold text-primary font-sans">{language}</span>
-                )}
-                {stars !== undefined && (
-                    <span>⭐ {stars}</span>
-                )}
-                {forks !== undefined && (
-                    <span>🍴 {forks}</span>
-                )}
-                {/* {last_update && ( 
-                    <span> Updated {getRelativeTime(last_update)} </span> 
-                )} */}
-                {last_update && (
-                    <div className="flex flex-col">
-                        <span>Updated {getRelativeTime(last_update)}</span>
-                        <span className="text-xs text-gray-400">
-                        Last commit: {formatCommitDate(last_update)}
-                        </span>
-                        {/* <span title={new Date(last_update).toLocaleString()}>
-                            Updated {getRelativeTime(last_update)}
-                        </span> */}
-                    </div>
-                )}
-                
-            </div>
-            {showRepositoryLink && link && (
-                <Link
-                    href={link}
-                    target="_blank"
-                    className="inline-block mt-4 text-sm font-medium underline"
-                >
-                    View Repository
-                </Link>
-            )}
+        <div className="flex gap-3 w-full">
+          {showArchitectureLink && link && (
+            <Button asChild variant="outline" size="sm" className="flex-1 rounded-full gap-2 font-sans text-xs">
+              <Link href={link} target="_blank">
+                <ExternalLink className="w-3.5 h-3.5" /> Case Study
+              </Link>
+            </Button>
+          )}
+
+          {showRepositoryLink && link && (
+            <Button asChild size="sm" className="flex-1 rounded-full gap-2 font-sans text-xs">
+              <Link href={link} target="_blank">
+                <Github className="w-3.5 h-3.5" /> Repo
+              </Link>
+            </Button>
+          )}
         </div>
-    );
+      </CardFooter>
+    </Card>
+  );
 }
