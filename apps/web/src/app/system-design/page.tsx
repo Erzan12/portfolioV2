@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Database, ShieldCheck, Box } from "lucide-react";
-import SystemCard from "@/components/core/system-design/System-Card";
+import SystemCard from "@/components/core/system-design/system-card";
 
 export default function SystemDesign() {
     const techColors: Record<string, string> = {
