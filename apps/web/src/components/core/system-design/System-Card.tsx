@@ -50,10 +50,10 @@ export default function SystemCard({
     techColors,
 }: Props) {
     return (
-        <div className="border rounded-lg p-6 dark:bg-neutral-900">
-            <h3 className="text-xl font-semibold">{title}</h3>
+        <div className="border rounded-lg p-6 bg-card">
+            <h3 className="text-xl font-bold text-card-foreground font-sans">{title}</h3>
 
-            <p className="mt-2 text-sm text-muted-foreground font-sans">{description}</p>
+            <p className="text-card-foreground leading-relaxed font-sans flex-1 text-sm space-y-4">{description}</p>
 
             <motion.div
                 className="mt-4 flex flex-wrap gap-2 overflow-auto max-h-16"
@@ -97,7 +97,7 @@ export default function SystemCard({
 
             <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
                 {language && (
-                    <span className="font-medium">{language}</span>
+                    <span className="text-xs font-bold text-primary font-sans">{language}</span>
                 )}
                 {stars !== undefined && (
                     <span>⭐ {stars}</span>
