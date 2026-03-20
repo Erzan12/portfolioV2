@@ -1,77 +1,132 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Server, Layout, Database, Terminal, Code2, Cpu } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const techColors: Record<string, string> = {
-  NestJS: "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100",
-  PHP: "bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100",
-  Laravel: "bg-red-50 text-red-900 dark:bg-red-900 dark:text-red-50",
-  CodeIgniter: "bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50",
-  React: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
-  "Next.js": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100",
-  TypeScript: "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100",
-  PostgreSQL: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
-  MySQL: "bg-blue-50 text-blue-900 dark:bg-blue-900 dark:text-blue-50",
-  Prisma: "bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100",
-  Docker: "bg-teal-100 text-teal-800 dark:bg-teal-800 dark:text-teal-100",
-  Linux: "bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200",
-  Git: "bg-orange-100 text-orange-800 dark:bg-orange-800 dark:text-orange-100",
-  Vercel: "bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50",
+const item: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.5, 
+      ease: "easeOut" //TypeScript now knows this is a valid Easing string
+    } 
+  },
 };
 
+const techColors: Record<string, string> = {
+  NestJS: "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400",
+  PHP: "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400",
+  Laravel: "bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400",
+  React: "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400",
+  "Next.js": "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
+  TypeScript: "bg-sky-50 text-sky-700 dark:bg-sky-900/20 dark:text-sky-400",
+  PostgreSQL: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
+  Docker: "bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-400",
+};
+
+const skillData = [
+  {
+    category: "Backend Development",
+    icon: <Server className="w-6 h-6 text-red-500" />,
+    items: ["NestJS", "PHP", "Laravel", "CodeIgniter", "Node.js", "Express"],
+    description: "Architecting scalable server-side systems and RESTful APIs with a focus on performance and clean code.",
+    className: "lg:col-span-3 lg:row-span-2", // The Hero Card
+  },
+  {
+    category: "Frontend",
+    icon: <Layout className="w-6 h-6 text-blue-500" />,
+    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    description: "Building interactive, high-performance web interfaces.",
+    className: "lg:col-span-2 lg:row-span-1",
+  },
+  {
+    category: "DevOps",
+    icon: <Terminal className="w-6 h-6 text-teal-500" />,
+    items: ["Docker", "Linux", "Git", "Vercel", "CI/CD"],
+    description: "Streamlining deployment workflows.",
+    className: "lg:col-span-1 lg:row-span-1",
+  },
+  {
+    category: "Databases",
+    icon: <Database className="w-6 h-6 text-indigo-500" />,
+    items: ["PostgreSQL", "MySQL", "Prisma", "Redis"],
+    description: "Relational modeling and query optimization.",
+    className: "lg:col-span-1 lg:row-span-1",
+  },
+];
+
 export default function Skills() {
-  const skills = {
-    Backend: ["NestJS", "PHP", "Laravel", "CodeIgniter"],
-    Frontend: ["React", "Next.js", "TypeScript"],
-    Database: ["PostgreSQL", "MySQL", "Prisma"],
-    DevOps: ["Docker", "Linux", "Git", "Vercel"],
-  };
-
-  // Framer Motion variants for staggered fade-up
   const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-  };
+  // const item = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  // };
 
   return (
-    <section className="py-16">
-      <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
-      <div className="grid md:grid-cols-2 gap-8">
-        {Object.entries(skills).map(([category, items]) => (
-          <motion.div
-            key={category}
-            className="border border-gray-200 dark:border-gray-700 rounded-xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow duration-300"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={container}
+    <section className="py-20 max-w-6xl mx-auto px-1">
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold tracking-tight font-sans mb-4">Technical Stack</h2>
+        <div className="h-1 w-20 bg-primary rounded-full" />
+      </div>
+
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 auto-rows-[180px]"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {skillData.map((skill) => (
+          <motion.div 
+            key={skill.category} 
+            variants={item} 
+            className={cn("flex", skill.className)}
           >
-            <h3 className="font-semibold mb-4 text-lg">{category}</h3>
-            <div className="flex flex-wrap gap-2">
-              {items.map((skill) => (
-                <motion.span
-                  key={skill}
-                  className={`text-sm font-medium px-3 py-1 rounded-full transform transition-transform duration-200 hover:scale-105 hover:shadow-sm ${
-                    techColors[skill] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                  }`}
-                  variants={item}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
+            <Card className="group relative w-full h-full overflow-hidden border-border bg-card/50 backdrop-blur-sm rounded-3xl shadow-none hover:border-primary/40 transition-all duration-500">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-xl font-bold font-sans tracking-tight">
+                  {skill.category}
+                </CardTitle>
+                <div className="p-2 rounded-2xl bg-muted group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-500">
+                  {skill.icon}
+                </div>
+              </CardHeader>
+              
+              <CardContent className="flex flex-col justify-between h-[calc(100%-70px)]">
+                <p className="text-sm text-muted-foreground font-sans line-clamp-2 group-hover:line-clamp-none transition-all">
+                  {skill.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {skill.items.map((tech) => (
+                    <Badge
+                      key={tech}
+                      variant="secondary"
+                      className={cn(
+                        "rounded-full px-3 py-0.5 font-sans text-[10px] font-semibold border-none transition-transform hover:scale-105",
+                        techColors[tech] || "bg-muted text-muted-foreground"
+                      )}
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
