@@ -89,7 +89,6 @@ export default function About() {
               </div>
             </Card>
           </motion.div>
-
           <motion.div variants={item} className="md:col-span-2 lg:col-span-2 lg:row-span-1">
             {/* Experience - Medium Card (Top Middle) */}
             <Card
@@ -189,7 +188,7 @@ export default function About() {
               </div>
             </Card>
           </motion.div>
-
+          
           <motion.div variants={item} className="md:col-span-2 lg:col-span-2 lg:row-span-1">
             {/* Selected Projects - Large Card (Bottom Right) */}
             <Card
@@ -251,6 +250,75 @@ export default function About() {
             </Card>
           </motion.div>
 
+          <motion.div variants={item} className="md:col-span-1 lg:col-span-2 lg:row-span-1">
+            <Card
+              id="my-approach"
+              className="h-full w-full p-6 bg-card border border-border relative overflow-hidden rounded-2xl shadow-none"
+            >
+              <div className="relative z-10">
+                <h3 className="font-bold text-card-foreground mb-4 font-sans">My approach</h3>
+                <div className="mt-4 space-y-3">
+                  <div className="flex items-center gap-2 text-sm">
+                    <span>⚡</span>
+                    <span>Performance-focused development</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span>🧱</span>
+                    <span>Scalable system design</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span>🧼</span>
+                    <span>Clean and maintainable architecture</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span>🔍</span>
+                    <span>Continuous optimization mindset</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={item} className="md:col-span-2 lg:col-span-3 lg:row-span-1">
+            {/* Experience - Medium Card (Top Middle) */}
+            <Card
+              id="experience"
+              className="h-full w-full p-6 bg-card border border-border relative overflow-hidden rounded-2xl shadow-none"
+            >
+              <div className="relative z-10">
+                <h3 className="font-bold text-card-foreground mb-4 font-sans">Experience</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-primary font-sans">AV</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-card-foreground text-sm">Full Stack Developer</h4>
+                      <p className="text-xs text-muted-foreground font-sans">Avega Bros. Shipping Integrated Corp • 2025 - Present</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-primary font-sans">MS</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-card-foreground font-sans text-sm">IT Technician</h4>
+                      <p className="text-xs text-muted-foreground font-sans">Municipality of Silago So. Leyte • 2023 - 2025</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-primary font-sans">DW</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-card-foreground font-sans text-sm">Freelance Web Developer</h4>
+                      <p className="text-xs text-muted-foreground font-sans">DevWave • 2022 - Present</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
           
         </motion.div>
       </div>
