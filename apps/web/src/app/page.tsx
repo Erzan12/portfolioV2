@@ -19,7 +19,7 @@ export default function Home() {
     <main className="container mx-auto px-6 overflow-x-hidden">
       <Hero />
       <section className="py-20 max-w-6xl mx-auto px-1">
-        <div className="mb-16">
+        <div className="mt-16">
           <h2 className="text-3xl font-bold tracking-tight font-sans mb-4">Featured Projects</h2>
           <div className="h-1 w-20 bg-primary rounded-full" />
           {/* <div className="grid md:grid-cols-2 gap-6">
