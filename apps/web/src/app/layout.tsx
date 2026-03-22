@@ -3,7 +3,6 @@ import Navbar from "@/components/core/navbar/navbar"
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/core/footer";
-import ThemeToggle from "@/components/dark-mode-toggle/theme-toggle";
 import { ThemeProvider } from "@/components/dark-mode-toggle/theme-provider";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});

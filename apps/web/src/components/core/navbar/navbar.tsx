@@ -15,17 +15,17 @@ export default function Navbar() {
     <nav className="border-b bg-white/80 dark:bg-black/80 backdrop-blur sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
 
-        {/* Logo */}
+        {/* logo */}
         <Link href="/" className="font-semibold text-lg">
           erzan.dev
         </Link>
 
-        {/* Desktop Menu */}
+        {/* desktop menu */}
         <div className="hidden md:flex items-center gap-6 text-sm">
           <NavLink href="/projects" onClick={() => setOpen(false)}> Projects </NavLink>
           <NavLink href="/system-design" onClick={() => setOpen(false)}> System Design </NavLink>
           <NavLink href="/about" onClick={() => setOpen(false)}> About </NavLink>
-          <NavLink href="/contact" onClick={() => setOpen(false)}> Contact </NavLink>
+          <NavLink href="/blog" onClick={() => setOpen(false)}> Blog </NavLink>
           <a
             href="https://erzan-docs.vercel.app"
             target="_blank"
@@ -48,7 +48,7 @@ export default function Navbar() {
           <ThemeToggle />
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* mobile hamburger button */}
         <button
           className="md:hidden"
           onClick={() => setOpen(!open)}
@@ -57,7 +57,7 @@ export default function Navbar() {
         </button>
 
       </div>
-      {/* Mobile Menu */}
+      {/* mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
             open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
@@ -76,8 +76,8 @@ export default function Navbar() {
               About
             </NavLink>
 
-            <NavLink href="/contact" onClick={() => setOpen(false)}>
-              Contact
+            <NavLink href="/blog" onClick={() => setOpen(false)}>
+              Blog
             </NavLink>
 
             <a

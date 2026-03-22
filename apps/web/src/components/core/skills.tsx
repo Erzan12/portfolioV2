@@ -1,75 +1,101 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Variants } from "framer-motion";
+import { Server, Layout, Database, Terminal, } from "lucide-react";
+import { 
+  SiReact, SiNextdotjs, SiTypescript, SiNestjs, SiPrisma, 
+  SiPostgresql, SiDocker, SiTailwindcss, SiPhp, SiLaravel, 
+  SiCodeigniter, SiNodedotjs, SiExpress, SiGit, SiFramer 
+} from "react-icons/si";
+import { ReactNode } from "react";
+import SkillCard from "./skills/skill-card";
 
-const techColors: Record<string, string> = {
-  NestJS: "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100",
-  PHP: "bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100",
-  Laravel: "bg-red-50 text-red-900 dark:bg-red-900 dark:text-red-50",
-  CodeIgniter: "bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50",
-  React: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
-  "Next.js": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100",
-  TypeScript: "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100",
-  PostgreSQL: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
-  MySQL: "bg-blue-50 text-blue-900 dark:bg-blue-900 dark:text-blue-50",
-  Prisma: "bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100",
-  Docker: "bg-teal-100 text-teal-800 dark:bg-teal-800 dark:text-teal-100",
-  Linux: "bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200",
-  Git: "bg-orange-100 text-orange-800 dark:bg-orange-800 dark:text-orange-100",
-  Vercel: "bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50",
+const item: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.5, 
+      ease: "easeOut"
+    } 
+  },
 };
 
+const techIcons: Record<string, { icon: ReactNode, color: string }> = {
+  "React": { icon: <SiReact />, color: "#61DAFB" },
+  "Next.js": { icon: <SiNextdotjs />, color: "#000000" },
+  "NextJS": { icon: <SiNextdotjs />, color: "#000000" },
+  "TypeScript": { icon: <SiTypescript />, color: "#3178C6" },
+  "NestJS": { icon: <SiNestjs />, color: "#E0234E" },
+  "Prisma": { icon: <SiPrisma />, color: "#2D3748" },
+  "PostgreSQL": { icon: <SiPostgresql />, color: "#4169E1" },
+  "Docker": { icon: <SiDocker />, color: "#2496ED" },
+  "Tailwind CSS": { icon: <SiTailwindcss />, color: "#06B6D4" },
+  "PHP": { icon: <SiPhp />, color: "#777BB4" },
+  "Laravel": { icon: <SiLaravel />, color: "#FF2D20" },
+  "CodeIgniter": { icon: <SiCodeigniter />, color: "#EE4323" },
+  "Node.js": { icon: <SiNodedotjs />, color: "#339933" },
+  "Express": { icon: <SiExpress />, color: "#000000" },
+  "Git": { icon: <SiGit />, color: "#F05032" },
+  "Framer Motion": { icon: <SiFramer />, color: "#0055FF" },
+};
+
+const skillData = [
+  {
+    category: "Backend Development",
+    icon: <Server className="w-6 h-6 text-red-500" />,
+    items: ["NestJS", "PHP", "Laravel", "CodeIgniter", "Node.js", "Express"],
+    description: "Architecting scalable server-side systems and RESTful APIs with a focus on performance and clean code.",
+    gridConfig: "md:col-span-7 lg:row-span-2", //large primary card
+  },
+  {
+    category: "Frontend",
+    icon: <Layout className="w-6 h-6 text-blue-500" />,
+    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    description: "Building interactive, high-performance web interfaces.",
+    gridConfig: "md:col-span-5 lg:row-span-1", //compact secondary card
+  },
+  {
+    category: "DevOps",
+    icon: <Terminal className="w-6 h-6 text-teal-500" />,
+    items: ["Docker", "Linux", "Git", "Vercel", "CI/CD"],
+    description: "Streamlining deployment workflows.",
+    gridConfig: "md:col-span-5 lg:row-span-1", //fits under Frontend
+  },
+  {
+    category: "Databases",
+    icon: <Database className="w-6 h-6 text-indigo-500" />,
+    items: ["PostgreSQL", "MySQL", "Prisma", "Redis"],
+    description: "Relational modeling and query optimization.",
+    gridConfig: "md:col-span-12 lg:row-span-1", //full widt footer card
+  },
+];
+
 export default function Skills() {
-  const skills = {
-    Backend: ["NestJS", "PHP", "Laravel", "CodeIgniter"],
-    Frontend: ["React", "Next.js", "TypeScript"],
-    Database: ["PostgreSQL", "MySQL", "Prisma"],
-    DevOps: ["Docker", "Linux", "Git", "Vercel"],
-  };
-
-  // Framer Motion variants for staggered fade-up
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <section className="py-16">
-      <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
-      <div className="grid md:grid-cols-2 gap-8">
-        {Object.entries(skills).map(([category, items]) => (
-          <motion.div
-            key={category}
-            className="border border-gray-200 dark:border-gray-700 rounded-xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow duration-300"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={container}
-          >
-            <h3 className="font-semibold mb-4 text-lg">{category}</h3>
-            <div className="flex flex-wrap gap-2">
-              {items.map((skill) => (
-                <motion.span
-                  key={skill}
-                  className={`text-sm font-medium px-3 py-1 rounded-full transform transition-transform duration-200 hover:scale-105 hover:shadow-sm ${
-                    techColors[skill] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-                  }`}
-                  variants={item}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
+    <section className="py-20 max-w-6xl mx-auto px-4">
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold tracking-tight font-sans mb-4">Technical Stack</h2>
+        <div className="h-1 w-20 bg-primary rounded-full" />
+      </div>
+
+      {/* bento grid 
+         - 12 columns on desktop for maximum layout control.
+         - grid-auto-rows-[minmax(180px,auto)] ensures cards have a base height 
+           but can grow if needed.
+      */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 auto-rows-fr">
+        {skillData.map((skill, index) => (
+          <SkillCard 
+            key={skill.category} 
+            skill={skill} 
+            index={index} 
+            className={skill.gridConfig} // pass the layout config here
+          />
         ))}
       </div>
     </section>

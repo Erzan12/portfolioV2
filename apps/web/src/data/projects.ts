@@ -49,5 +49,4 @@ export const projects: Project[] = [
     github: "Erzan12/slsu-clinic-appointment-system",
     featured: true,
   },
-  // Add more projects as needed
 ];

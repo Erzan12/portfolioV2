@@ -5,42 +5,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.58 0.22 27);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Updated to Claude's light theme colors */
+  --background: #f7f5f3;
+  --foreground: #2d2d2d;
+  --card: #ffffff;
+  --card-foreground: #2d2d2d;
+  --popover: #ffffff;
+  --popover-foreground: #2d2d2d;
+  --primary: #cc785c;
+  --primary-foreground: #ffffff;
+  --secondary: #e5e1dc;
+  --secondary-foreground: #2d2d2d;
+  --muted: #9b9b9b;
+  --muted-foreground: #6b6b6b;
+  --accent: #cc785c;
+  --accent-foreground: #ffffff;
+  --destructive: #e53e3e;
+  --destructive-foreground: #ffffff;
+  --border: #e5e1dc;
+  --input: #ffffff;
+  --ring: rgba(204, 120, 92, 0.3);
+  --chart-1: #cc785c;
+  --chart-2: #d97706;
+  --chart-3: #2d2d2d;
+  --chart-4: #ffffff;
+  --chart-5: #e5e1dc;
+  --radius: 0.5rem;
+  --sidebar: #f7f5f3;
+  --sidebar-foreground: #2d2d2d;
+  --sidebar-primary: #cc785c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e5e1dc;
+  --sidebar-accent-foreground: #2d2d2d;
+  --sidebar-border: #e5e1dc;
+  --sidebar-ring: rgba(204, 120, 92, 0.3);
 }
 
 .dark {
@@ -82,45 +80,172 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
+
+  /* ============================================
+     CREAM FAMILY - Your signature warm neutrals
+     ============================================ */
+  /* Perfect match for your style - main background cards, hover states */
+  --color-cream: #faedcd;
+  /* Subtle overlays, glassmorphism backgrounds */
+  --color-cream-50: #fdfcfb;
+  /* Section dividers, subtle containers */
+  --color-cream-100: #fbf8f0;
+  /* Main content backgrounds, cards */
+  --color-cream-200: #f7f3e5;
+  /* Modal overlays, backdrop-blur containers */
+  --color-cream-300: #f3efda;
+  /* Hover backgrounds, secondary cards */
+  --color-cream-400: #f0ebcf;
+  /* Primary cream (your original) - buttons, accents */
+  --color-cream-500: #ede7c4;  /* #faedcd */
+  /* Borders, focused states */
+  --color-cream-600: #d9d4b3;
+  /* Secondary buttons, muted accents */
+  --color-cream-700: #c5bfa2;
+  /* Darker text on cream, subtle shadows */
+  --color-cream-800: #b1aa91;
+  /* Strong accents, borders in light mode */
+  --color-cream-900: #9d9580;
+  /* Dark text, icons on cream backgrounds */
+  --color-cream-950: #89846f;
+
+  /* ============================================
+     DARK MODE CREAM - Night-friendly variants
+     ============================================ */
+  /* Light accents in dark mode */
+  --color-cream-dark: #5f553d;
+  /* Subtle dark overlays */
+  --color-cream-dark-50: #f8f6f2;
+  /* Main dark cream (your original dark) */
+  --color-cream-dark-500: #5f553d;
+  /* Darker borders, focused states */
+  --color-cream-dark-700: #4a4330;
+  /* Deep shadows, strongest dark accents */
+  --color-cream-dark-900: #362b22;
+  /* with grayish colors so standout */
+  --color-cream-dark-test: #e9edc9;
+  /* Warm near-black (best overall) */
+  --color-cream-dark-system-card-warm: #1f1d18;
+  /* Slightly lifted surface (if you want separation from bg) */
+  --color-cream-dark-system-card-out: #2a2721;
+  /* Olive-tinted dark (to match your sage palette dark mode) */
+  --color-olive-dark-about-card: #2f3028;
+  /* Olive-tinted light (to match your sage palette light mode) */
+  --color-olive-about-card: #e8eadc;
+  /* Olive-tinted stronger dark footer version (to match your sage palette dark mode) */
+  --color-olive-footer: #dde5c3;
+  /* ============================================
+     COMPLEMENTARY COLORS - Perfect with #cc785c
+     ============================================ */
+  /* Warm highlights, gradient stops with primary */
+  --color-almond: #e8d5b7;
+  /* Purest white alternative, luxury feel */
+  --color-ivory: #f8f1e9;
+  /* Sand-textured backgrounds, rustic cards */
+  --color-sand: #d9c2a6;
+  /* Secondary buttons, warm accents */
+  --color-tawny: #b89778;
+  /* earth */
+  --color-earth: #5f553d;
+
+  /* ============================================
+     SHADCN/UI SYSTEM COLORS - Your foundation
+     ============================================ */
+  /* Sidebar shadows & focus rings */
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Sidebar dividers & borders */
   --color-sidebar-border: var(--sidebar-border);
+  /* Sidebar hover text */
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  /* Sidebar hover backgrounds */
   --color-sidebar-accent: var(--sidebar-accent);
+  /* Sidebar buttons text */
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  /* Sidebar buttons & active items */
   --color-sidebar-primary: var(--sidebar-primary);
+  /* Sidebar text */
   --color-sidebar-foreground: var(--sidebar-foreground);
+  /* Sidebar panels */
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+
+  /* ============================================
+   FOOTER PALETTE - Perfect grounded finish
+   ============================================ */
+  --color-footer-bg: #e8dcb5;        /* Cookies & cream - warm footer background */
+  --color-footer-bg-alt: #d5b895;     /* Casual peach - alternate footer sections */
+  --color-footer-text: #9d9580;       /* Cream-900 - readable footer text */
+  --color-footer-text-muted: #c5bfa2; /* Cream-700 - links, secondary info */
+  --color-footer-accent: #a67a5b;     /* Café au lait - footer buttons, social icons */
+  --color-footer-border: #c19770;     /* Camel - subtle section dividers */
+  --color-footer-link-hover: #cc785c; /* Your primary - link hover states */
+
+  /* Dark mode footer variants */
+  --color-footer-dark-bg: #362b22;      /* Cream-dark-900 - deep footer background */
+  --color-footer-dark-text: #f8f6f2;    /* Cream-dark-50 - readable dark text */
+  --color-footer-dark-muted: #5f553d;   /* Your cream-dark - secondary dark text */
+  --color-footer-dark-accent: #b89778;  /* Tawny - dark mode social icons */
+
+  /* ============================================
+     CHART COLORS - Data visualization */
+  --color-chart-1: var(--chart-1);  /* Primary charts */
+  --color-chart-2: var(--chart-2);  /* Secondary charts */
+  --color-chart-3: var(--chart-3);  /* Tertiary charts */
+  --color-chart-4: var(--chart-4);  /* Quaternary charts */
+  --color-chart-5: var(--chart-5);  /* Quinary charts */
+
+  /* ============================================
+     FORM & INTERACTION COLORS */
+  /* Focus rings, selection states */
   --color-ring: var(--ring);
+  /* Input backgrounds */
   --color-input: var(--input);
+  /* All borders & dividers */
   --color-border: var(--border);
+  /* Delete buttons, errors */
   --color-destructive: var(--destructive);
+  /* Hover text on accent backgrounds */
   --color-accent-foreground: var(--accent-foreground);
+  /* Hover states, subtle highlights */
   --color-accent: var(--accent);
+  /* Disabled text */
   --color-muted-foreground: var(--muted-foreground);
+  /* Disabled backgrounds */
   --color-muted: var(--muted);
+  /* Secondary text */
   --color-secondary-foreground: var(--secondary-foreground);
+  /* Secondary backgrounds */
   --color-secondary: var(--secondary);
+  /* Primary buttons text */
   --color-primary-foreground: var(--primary-foreground);
+  /* Primary buttons (your #cc785c) */
   --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
+
+  /* ============================================
+     LAYOUT PRIMITIVES */
+  /* Dropdown menus, tooltips */
   --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+  /* Dropdown/tooltips text */
+  --color-popover-foreground: var(--popover-foreground);
+  /* Cards & main containers */
   --color-card: var(--card);
+  /* Card text */
+  --color-card-foreground: var(--card-foreground);
+  /* Main body text */
   --color-foreground: var(--foreground);
+  /* Page backgrounds */
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ============================================
+     BORDER RADIUS SCALE - Your rounded aesthetic */
+  --radius-sm: calc(var(--radius) * 0.6);     /* micro interactions */
+  --radius-md: calc(var(--radius) * 0.8);     /* buttons, inputs */
+  --radius-lg: var(--radius);                 /* cards (your 0.5rem) */
+  --radius-xl: calc(var(--radius) * 1.4);     /* larger cards */
+  --radius-2xl: calc(var(--radius) * 1.8);    /* modals */
+  --radius-3xl: calc(var(--radius) * 2.2);    /* hero sections */
+  --radius-4xl: calc(var(--radius) * 2.6);    /* showcase elements */
 }
+
 
 @layer base {
   * {
@@ -136,4 +261,10 @@
 
 * {
   @apply transition-colors duration-200;
+}
+
+@media (max-width: 768px) {
+  .grid-cols-4 { grid-template-columns: 1fr; }
+  .col-span-2 { grid-column: span 1 / span 1; }
+  .row-span-2 { grid-row: span 1 / span 1; }
 }

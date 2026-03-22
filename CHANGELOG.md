@@ -1,3 +1,42 @@
+# 🧾 CHANGELOG
+
+### 🚀 [1.0.0] – 2026-03-22 — Personal Platform Launch
+### ✨ What's Included
+
+### Added
+- Full release of the personal portfolio platform as a system-focused engineering hub
+- New platform sections:
+ - How I Think
+ - Project Case Studies
+ - Experimental Lab
+ - Current Learning
+- System Design Showcase for architecture patterns and technical thinking
+- Skeleton loading states for projects and system design pages
+- Integration with live documentation platform
+- Vercel Analytics for usage insights
+
+### Improved
+- Complete UI/UX overhaul with a unified design system
+- Consistent and reusable card components across all sections
+- Enhanced color palette and visual hierarchy
+- Improved responsiveness across mobile and desktop
+- Refactored layout and navigation structure
+- Smoother animations and staggered motion effects
+- Enhanced hover interactions and micro-interactions
+- Improved tech stack filtering and categorization
+- Footer and About page content restructuring
+
+### Fixed
+- Resolved documentation footer link issues
+- Fixed responsiveness inconsistencies on specific screen sizes
+
+### 📌 Notes
+- Official transition from a static portfolio into a dynamic personal platform
+- Establishes a foundation for continuous iteration beyond v1.0.0
+- Marks a milestone toward building a system design–driven developer identity
+
+---
+
 # CHANGELOG
 
 ### 🚀 [0.8.0] – 2026-03-18 - Projects, GitHub Integration & UI Expansion

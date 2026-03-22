@@ -11,6 +11,12 @@ export async function GET() {
 
     const data = await res.json();
 
+    // check: ensure data is an array before processing
+    if (!Array.isArray(data)) {
+        console.error("GitHub API Error:", data); //this will show you the exact error in your terminal
+        return NextResponse.json({ repos: [] }); //return an empty array gracefully
+    }
+
     // console.log("GitHub response:", data); // DEBUG
     
     //to not include fork repos
