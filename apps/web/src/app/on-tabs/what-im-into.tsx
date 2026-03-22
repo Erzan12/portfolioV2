@@ -39,7 +39,7 @@ export default function IntoTab() {
       </p>
 
       {/* large card container */}
-      <div className="bg-gray-900/40 border border-white/10 hover:border-primary/30 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl">
+      <div className="bg-cream dark:bg-cream-dark border border-white/10 hover:border-primary/30 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl">
         <div className="divide-y divide-white/5">
             {items.map((item) => {
                 const Icon = item.icon;
@@ -69,13 +69,13 @@ export default function IntoTab() {
                         </div>
 
                         {/* tech icon */}
-                        <div className={`p-2 rounded-lg ${isHobby ? "bg-gray-800 text-white" : "text-gray-600"}`}>
+                        <div className={`p-2 rounded-lg ${isHobby ? "bg-gray-800 text-white" : "text-gray-400"}`}>
                             <Icon size={20} />
                         </div>
 
                         {/* text content */}
                         <span className={`text-lg font-medium tracking-tight transition-colors
-                            ${isHobby ? "text-gray-100" : "text-gray-500"}`}>
+                            ${isHobby ? "text-gray-900 dark:text-white/90" : "text-gray-400"}`}>
                             {item.text}
                         </span>
 

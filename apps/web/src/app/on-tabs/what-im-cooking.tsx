@@ -1,12 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion";
-import { Check, LayoutDashboard, Lightbulb, Cpu } from "lucide-react";
+import { Check, LayoutDashboard, Lightbulb, Cpu, Book } from "lucide-react";
 
 const items = [
   { id: 1, text: "Portfolio revamp (this one)", icon: LayoutDashboard, status: "cooking" },
-  { id: 2, text: "AI-powered mini tools (experimenting)", icon: Cpu, status: "cooking" },
-  { id: 3, text: "Side project — 'What if this works' phase", icon: Lightbulb, status: "todo" },
+  { id: 2, text: "Personal Docs on Docusaurus (already deployed)", icon: Book, status: "cooking" },
+  { id: 3, text: "Simple dev tools (experimenting)", icon: Cpu, status: "todo" },
+  { id: 4, text: "Side project — Product Inventory System ERP", icon: Lightbulb, status: "todo" },
+  { id: 5, text: "Side project — Laravel Projects", icon: Lightbulb, status: "todo" },
 ];
 
 //stagger container variants
@@ -37,8 +39,8 @@ export default function CookingTab() {
       </p>
 
       {/* large card container */}
-      <div className="bg-gray-900/40 border border-white/10 hover:border-primary/30 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl">
-        <ul className="divide-y divide-white/5">
+      <div className="bg-cream dark:bg-cream-dark border border-white/10 hover:border-primary/30 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl">
+        <ul className="divide-y divide-white/5 ">
           {items.map((item) => {
             const Icon = item.icon;
             const isCooking = item.status === "cooking";
@@ -67,13 +69,13 @@ export default function CookingTab() {
                     </div>
 
                     {/* tech icon */}
-                    <div className={`p-2 rounded-lg ${isCooking ? "bg-gray-800 text-white" : "text-gray-600"}`}>
+                    <div className={`p-2 rounded-lg ${isCooking ? "bg-gray-800 text-white" : "text-gray-400"}`}>
                         <Icon size={20} />
                     </div>
 
                     {/* text content */}
                     <span className={`text-lg font-medium tracking-tight transition-colors
-                        ${isCooking ? "text-gray-100" : "text-gray-500"}`}>
+                        ${isCooking ? "text-gray-900 dark:text-white/90" : "text-gray-400"}`}>
                         {item.text}
                     </span>
 
