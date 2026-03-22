@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, Database, ShieldCheck, Box } from "lucide-react";
-import SystemCard from "@/components/core/system-design/animal";
+import SystemCard from "@/components/core/system-design/system-card";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 import { SystemCardSkeleton } from "@/components/core/system-design/system-card-skeleton";
 import Link from "next/link";

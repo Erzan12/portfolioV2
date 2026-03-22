@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 import { ArrowLeft, Search, X } from "lucide-react"; // for search bar icons
 import { SystemCardSkeleton } from "@/components/core/system-design/system-card-skeleton";
-import SystemCard from "@/components/core/system-design/animal";
+import SystemCard from "@/components/core/system-design/system-card";
 import Link from "next/link";
 
 //define how many items per page (3 columns x 3 rows = 9)
