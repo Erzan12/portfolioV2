@@ -16,32 +16,33 @@ export default function CaseStudy() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="p-6 rounded-xl border bg-cream-200 dark:bg-cream-dark hover:border-primary/40"
+          className="p-6 rounded-xl border bg-olive-about-card/70 dark:bg-olive-dark-about-card dark:hover:bg-olive-dark-about-card/80 
+                       backdrop-blur-xl rounded-3xl shadow-none hover:border-primary/40 hover:bg-olive-about-card/40"
         >
-          <h3 className="text-xl text-primary dark:text-gray-900 font-semibold mb-4">
+          <h3 className="text-xl text-primary dark:text-primary font-semibold mb-4">
             SLSU Clinic Appointment System
           </h3>
 
           <div className="space-y-4 text-sm text-gray-500 dark:text-gray-300">
             <p>
-              <span className="font-semibold text-black dark:text-gray-900">Problem:</span>{" "}
+              <span className="font-semibold text-black dark:text-primary">Problem:</span>{" "}
               Manual appointment handling caused long queues and inefficient
               scheduling.
             </p>
 
             <p>
-              <span className="font-semibold text-black dark:text-gray-900">Solution:</span>{" "}
+              <span className="font-semibold text-black dark:text-primary">Solution:</span>{" "}
               Built a web-based system using Laravel + MySQL to digitize
               booking and streamline clinic operations.
             </p>
 
             <p>
-              <span className="font-semibold text-black dark:text-gray-900">Challenges:</span>{" "}
+              <span className="font-semibold text-black dark:text-primary">Challenges:</span>{" "}
               Handling concurrent bookings and ensuring data consistency.
             </p>
 
             <p>
-              <span className="font-semibold text-black dark:text-gray-900">Outcome:</span>{" "}
+              <span className="font-semibold text-black dark:text-primary">Outcome:</span>{" "}
               Reduced manual workload and improved scheduling efficiency.
             </p>
           </div>

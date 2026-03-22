@@ -55,86 +55,52 @@ const skillData = [
     icon: <Server className="w-6 h-6 text-red-500" />,
     items: ["NestJS", "PHP", "Laravel", "CodeIgniter", "Node.js", "Express"],
     description: "Architecting scalable server-side systems and RESTful APIs with a focus on performance and clean code.",
-    gridConfig: "md:col-span-3 lg:col-span-3 lg:row-span-2",
+    gridConfig: "md:col-span-7 lg:row-span-2", // Large primary card
   },
   {
     category: "Frontend",
     icon: <Layout className="w-6 h-6 text-blue-500" />,
     items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     description: "Building interactive, high-performance web interfaces.",
-    gridConfig: "md:col-span-2 lg:col-span-2 lg:row-span-2 auto-rows",
+    gridConfig: "md:col-span-5 lg:row-span-1", // Compact secondary card
   },
   {
     category: "DevOps",
     icon: <Terminal className="w-6 h-6 text-teal-500" />,
     items: ["Docker", "Linux", "Git", "Vercel", "CI/CD"],
     description: "Streamlining deployment workflows.",
-    gridConfig: "md:col-span-2 lg:col-span-2 lg:row-span-1 auto-rows",
+    gridConfig: "md:col-span-5 lg:row-span-1", // Fits under Frontend
   },
   {
     category: "Databases",
     icon: <Database className="w-6 h-6 text-indigo-500" />,
     items: ["PostgreSQL", "MySQL", "Prisma", "Redis"],
     description: "Relational modeling and query optimization.",
-    gridConfig: "md:col-span-3 lg:col-span-3 lg:row-span-1 auto-rows",
+    gridConfig: "md:col-span-12 lg:row-span-1", // Full-width footer card
   },
 ];
 
-
-  // const skillData = [
-  //   {
-  //     category: "Backend Development",
-  //     icon: <Server className="w-6 h-6 text-red-500" />,
-  //     items: ["NestJS", "PHP", "Laravel", "Node.js"],
-  //     description: "Architecting scalable server-side systems.",
-  //     // CUSTOMIZABLE LAYOUT DATA
-  //     gridConfig: "lg:col-span-3 lg:row-span-2", 
-  //   },
-  //   {
-  //     category: "Frontend",
-  //     icon: <Layout className="w-6 h-6 text-blue-500" />,
-  //     items: ["React", "Next.js", "TypeScript"],
-  //     description: "Building interactive web interfaces.",
-  //     gridConfig: "lg:col-span-2 lg:row-span-1",
-  //   },
-  //   {
-  //     category: "Databases",
-  //     icon: <Database className="w-6 h-6 text-indigo-500" />,
-  //     items: ["PostgreSQL", "MySQL", "Prisma"],
-  //     description: "Relational modeling.",
-  //     gridConfig: "lg:col-span-2 lg:row-span-1", // This will sit under Frontend
-  //   },
-  //   {
-  //     category: "DevOps",
-  //     icon: <Terminal className="w-6 h-6 text-teal-500" />,
-  //     items: ["Docker", "Linux", "Git", "Vercel", "CI/CD"],
-  //     description: "Streamlining deployment workflows.",
-  //     className: "lg:col-span-1 lg:row-span-1",
-  //   },
-  // ];
-
 export default function Skills() {
-  const container = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-
   return (
-    <section className="py-20 max-w-6xl mx-auto px-1">
+    <section className="py-20 max-w-6xl mx-auto px-4">
       <div className="mb-16">
         <h2 className="text-3xl font-bold tracking-tight font-sans mb-4">Technical Stack</h2>
         <div className="h-1 w-20 bg-primary rounded-full" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 auto-rows-[230px]">
-        {skillData.map((skill, i) => (
-          <motion.div 
+      {/* Bento Grid Logic: 
+         - 12 columns on desktop for maximum layout control.
+         - grid-auto-rows-[minmax(180px,auto)] ensures cards have a base height 
+           but can grow if needed.
+      */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 auto-rows-fr">
+        {skillData.map((skill, index) => (
+          <SkillCard 
             key={skill.category} 
-            // This line makes it customizable!
-            className={cn("flex items-stretch", skill.gridConfig)} 
-          >
-            <SkillCard skill={skill} index={i} />
-          </motion.div>
+            skill={skill} 
+            index={index} 
+            className={skill.gridConfig} // Pass the layout config here
+          />
         ))}
       </div>
     </section>
