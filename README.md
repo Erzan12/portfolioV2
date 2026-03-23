@@ -71,7 +71,6 @@ It integrates live repository data and structured documentation to create a **dy
 
 This project follows a **monorepo structure**:
 
-
 ```mermaid
 flowchart TB
     portfolio-v2
@@ -81,7 +80,6 @@ flowchart TB
     portfolio-v2 --> packages
     portfolio-v2 --> README.md
 ```
-
 
 ---
 
@@ -137,46 +135,63 @@ This project is built with the following principles:
 
 git clone https://github.com/Erzan12/portfolio-v2.git
 cd portfolio-v2
-2. Install dependencies
+
+### 2. Install dependencies
 npm install
-3. Run the apps
-Web App
-cd apps/web
-npm run dev
-Docs
-cd apps/docs
-npm run start
-🔐 Environment Variables
+
+### 3. Run the apps
+## Web App
+- cd apps/web
+- npm run dev
+### Docs
+- cd apps/docs
+- npm run start
+
+---
+
+### 🔐 Environment Variables
 
 Create a .env.local file in apps/web:
-
 GITHUB_TOKEN=your_github_token_here
-🚀 Roadmap
-Completed
-Documentation platform
-System design section
-Interactive UI system
-GitHub integration
-Project showcase
-Contact and About sections
-Upcoming
+
+---
+
+### 🚀 Roadmap
+
+## Completed
+- Documentation platform
+- System design section
+- Interactive UI system
+- GitHub integration
+- Project showcase
+- Contact and About sections
+
+## Upcoming
 Advanced project detail pages
 Developer activity tracking
 Blog / devlog system
 Platform analytics
-📦 Releases
+Assitant Chatbot
+CMS
+Supabase
+Schedule call
+More quality of life changes UI/UX and content
+
+---
+
+### 📦 Releases
 v0.7.0 – Documentation & UI Interaction Update
 v0.8.0 – Dynamic Projects & GitHub Integration
 v1.0.0 – Public Portfolio Platform Release 🎉
-📄 License
 
-This project is open-source and available under the MIT License.
+### 📄 License
 
-👤 Author
+- This project is open-source and available under the MIT License.
+
+### 👤 Author
 
 Erzan
-
-GitHub: https://github.com/Erzan12
-Portfolio: https://erzan-dev.vercel.app/
+- GitHub: https://github.com/Erzan12
+- Portfolio: https://erzan-dev.vercel.app/
 
 ```bash
