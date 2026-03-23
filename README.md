@@ -4,14 +4,11 @@ A modern, data-driven **developer portfolio platform** built with a focus on **s
 
 This project is more than a personal website — it is a **full-stack platform** that integrates live data, documentation, and system design thinking into a single developer experience.
 
----
 
 ## 🌐 Live
 
 - 🧠 Documentation: https://erzan-docs.vercel.app  
 - 💻 Portfolio App: https://erzan-dev.vercel.app/
-
----
 
 ## 📖 Overview
 
@@ -23,8 +20,6 @@ Portfolio Platform v2 is designed to showcase:
 - Continuous development activity
 
 It integrates live repository data and structured documentation to create a **dynamic and evolving portfolio**.
-
----
 
 ## ✨ Features
 
@@ -65,8 +60,6 @@ It integrates live repository data and structured documentation to create a **dy
 - Visual demos (GIF-based)
 - Guides, architecture, and case studies
 
----
-
 ## 🏗️ Architecture
 
 This project follows a **monorepo structure**:
@@ -80,8 +73,6 @@ flowchart TB
     portfolio-v2 --> packages
     portfolio-v2 --> README.md
 ```
-
----
 
 ## ⚙️ Tech Stack
 
@@ -102,8 +93,6 @@ flowchart TB
 ### Deployment
 - Vercel
 
----
-
 ## 🔌 GitHub Integration
 
 The platform uses GitHub as a **single source of truth** for project data.
@@ -115,8 +104,6 @@ Features include:
 - Displaying repository metadata
 - Linking directly to source code
 
----
-
 ## 🎯 Philosophy
 
 This project is built with the following principles:
@@ -126,8 +113,6 @@ This project is built with the following principles:
 - **Reusable Systems**
 - **Automation Over Manual Work**
 - **Clean and Maintainable Code**
-
----
 
 ## 🛠️ Getting Started
 
@@ -143,18 +128,14 @@ npm install
 ## Web App
 - cd apps/web
 - npm run dev
-### Docs
+## Docs
 - cd apps/docs
 - npm run start
 
----
-
-### 🔐 Environment Variables
+## 🔐 Environment Variables
 
 Create a .env.local file in apps/web:
 GITHUB_TOKEN=your_github_token_here
-
----
 
 ### 🚀 Roadmap
 
@@ -176,8 +157,6 @@ CMS
 Supabase
 Schedule call
 More quality of life changes UI/UX and content
-
----
 
 ### 📦 Releases
 v0.7.0 – Documentation & UI Interaction Update
