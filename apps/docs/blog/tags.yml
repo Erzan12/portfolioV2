@@ -33,3 +33,35 @@ vercel:
 versioning:
   label: Versioning
   description: Version control and releases
+
+monorepo:
+  label: Monorepo
+  description: Converting to mono repo approach
+
+fullstack:
+  label: Fullstack
+  description: This is a Fullstack system
+
+nestjs:
+  label: NestJS
+  description: NestJS for backend
+
+nextjs:
+  label: NextJS
+  description: NextJS for frontend
+
+supase:
+  label: Supabase
+  description: Database management
+
+drizzle: 
+  label: Drizzle
+  description: I will use this for object relational mapping
+
+cms: 
+  label: Content Management system
+  description: I will be in full control with my Portfolio and will be reducing the use of static pages
+
+devops: 
+  label: DevOps Architecture
+  description: This fits my DevOps Architect persona perfectly because it will give me the total control over my data without the heave CMS like WordPress
