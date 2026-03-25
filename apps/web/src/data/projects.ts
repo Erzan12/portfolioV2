@@ -16,7 +16,7 @@ export const projects: Project[] = [
     stack: ["NestJS", "Prisma", "PostgreSQL", "Docker"],
     repo: "Product-Inventory-System",
     github: "Erzan12/Product-Inventory-System",
-    demoLink: "/",
+    demoLink: "",
     featured: true,
   },
   {
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     stack: ["Laravel", "PHP", "Blade", "Vite", "SaaS"],
     repo: "ltpms-web",
     github: "Erzan12/ltpms-web",
-    demoLink: "/",
+    demoLink: "",
     featured: true,
   },
   {
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     stack: ["Laravel", "PHP", "Blade", "Vite"],
     repo: "qr-code-attendance-management-system",
     github: "Erzan12/qr-code-attendance-management-system",
-    demoLink: "/",
+    demoLink: "",
     featured: true,
   },
   {
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     stack: ["Laravel", "PHP", "Blade", "Vite"],
     repo: "slsu-clinic-appointment-system",
     github: "Erzan12/slsu-clinic-appointment-system",
-    demoLink: "/",
+    demoLink: "",
     featured: true,
   },
 ];

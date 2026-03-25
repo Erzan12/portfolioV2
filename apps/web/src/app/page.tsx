@@ -23,7 +23,7 @@ export default function Home() {
           <div className="h-1 w-20 bg-primary rounded-full" />
           <ProjectsCarousel
             projects={projects.filter((p) => p.featured)}
-            repos={repos}
+            // repos={repos}
           />
         </div>
       </section>

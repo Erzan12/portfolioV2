@@ -86,11 +86,17 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
                       <Github className="w-4 h-4" /> Code
                     </a>
                   </Button>
-                  <Button size="sm" className="flex-1 rounded-full gap-2" asChild>
-                    <a href={project.demoLink} target="_blank" rel="noreferrer">
-                      <ExternalLink className="w-4 h-4" /> Demo
-                    </a>
-                  </Button>
+                  {project.demoLink ? (
+                    <Button size="sm" className="flex-1 rounded-full gap-2" asChild>
+                      <a href={project.demoLink} target="_blank" rel="noreferrer">
+                        <ExternalLink className="w-4 h-4" /> Demo
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button size="sm" variant="ghost" className="flex-1 rounded-full gap-2 cursor-not-allowed opacity-50" disabled>
+                      <ExternalLink className="w-4 h-4" /> Coming Soon
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             </CarouselItem>
