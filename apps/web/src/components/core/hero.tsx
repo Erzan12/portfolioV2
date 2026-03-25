@@ -145,30 +145,39 @@ export default function Hero() {
                     </div>
 
                     {/* terminal body */}
-                    <div className="bg-zinc-950 border border-t-0 border-zinc-700 rounded-b-lg px-5 py-3 text-left font-mono text-sm overflow-hidden">
+                    <div className="bg-zinc-950 border border-t-0 border-zinc-700 rounded-b-lg px-5 py-6 text-left font-mono text-sm overflow-hidden">
                       {/* prompt line */}
-                      <div className="flex items-start gap-2">
+                      <div className="flex items-start gap-2 relative">
                         <span className="text-emerald-500 shrink-0">❯</span>
-                        <div className="flex flex-wrap items-center">
-                          <span className="text-sky-400 mr-2">echo</span>
-                          <span className="text-zinc-400">&quot;</span>
-                          
-                          {/* using break-all or whitespace-pre-wrap that ensures text stays inside */}
-                          <span className="text-zinc-100 break-words">
-                            {renderBadgeText().map((seg, i) => (
-                              <span key={i} className={colorMap[seg.className]}>
-                                {seg.text}
-                              </span>
-                            ))}
-                          </span>
 
-                          {/* blinking cursor */}
-                          <motion.span
-                            animate={{ opacity: [1, 0, 1] }}
-                            transition={{ duration: 0.7, repeat: Infinity, ease: "linear" }}
-                            className="inline-block w-[7px] h-[14px] bg-emerald-400 ml-1 translate-y-[2px]"
-                          />
-                          <span className="text-zinc-400">&quot;</span>
+                        {/* <div className="flex flex-wrap items-center"> */}
+                        <div className="relative w-full">
+                          <div className="opacity-0 select-none pointer-events-none break-words whitespace-pre-wrap">
+                            <span className="text-sky-400 mr-2">echo</span>
+                            &quot;{fullText}&quot;
+                          </div>
+
+                          <div className="absolute top-0 left-0 w-full flex flex-wrap items-center">
+                            <span className="text-sky-400 mr-2">echo</span>
+                            <span className="text-zinc-400">&quot;</span>
+                            
+                            {/* using break-all or whitespace-pre-wrap that ensures text stays inside */}
+                            <span className="text-zinc-100 break-words">
+                              {renderBadgeText().map((seg, i) => (
+                                <span key={i} className={colorMap[seg.className]}>
+                                  {seg.text}
+                                </span>
+                              ))}
+                            </span>
+
+                            {/* blinking cursor */}
+                            <motion.span
+                              animate={{ opacity: [1, 0, 1] }}
+                              transition={{ duration: 0.7, repeat: Infinity, ease: "linear" }}
+                              className="inline-block w-[7px] h-[14px] bg-emerald-400 ml-1 translate-y-[2px]"
+                            />
+                            <span className="text-zinc-400">&quot;</span>
+                          </div>
                         </div>
                       </div>
                     </div>
