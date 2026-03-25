@@ -87,7 +87,7 @@ export default function IntoTab() {
                                     Active
                                 </span>
                             ) : (
-                                <span className="text-[10px] uppercase tracking-wider font-bold text-gray-300 bg-gray-800/50 px-3 py-1 rounded-full border border-white/5">
+                                <span className="whitespace-nowrap text-[10px] uppercase tracking-wider font-bold text-gray-300 bg-gray-800/50 px-3 py-1 rounded-full border border-white/5">
                                     On break
                                 </span>
                             )}
