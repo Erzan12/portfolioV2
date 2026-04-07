@@ -47,6 +47,15 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: "ERP API",
+    description: "This project is a NestJS Enterprise API Project with subsystems inside a company, it highlights my understanding and experience on Scalablity, Prisma ORM, Security/JWT/COOKIES, and utilizing Swagger UI API. Deployments via Render and Supabase.",
+    stack: ["NestJS", "PostgreSQL", "Swagger", "Supabase", "Render"],
+    repo: "erp-api",
+    github: "Erzan12/erp-api",
+    demoLink: "https://erp-api-rp7t.onrender.com/",
+    featured: true,
+  },
+  {
     title: "SLSU Clinic Appointment System",
     description: "This project is intended for the uninersity clinic to be paperless and all the appointments will be made online",
     stack: ["Laravel", "PHP", "Blade", "Vite"],

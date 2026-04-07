@@ -10,6 +10,7 @@ const items = [
   { id: 4, text: "Simple dev tools (experimenting)", icon: Cpu, status: "todo" },
   { id: 5, text: "Side project — Product Inventory System ERP", icon: Lightbulb, status: "cooking" },
   { id: 6, text: "Side project — Laravel Projects", icon: Lightbulb, status: "todo" },
+  { id: 7, text: "Side project — ERP API", icon: Lightbulb, status: "deployed" },
 ];
 
 //stagger container variants
@@ -81,7 +82,7 @@ export default function CookingTab() {
                   </span>
 
                   {/* status badge */}
-                  <div className="ml-auto">
+                  {/* <div className="ml-auto">
                       {isCooking ? (
                           <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
@@ -92,6 +93,26 @@ export default function CookingTab() {
                               Queue
                           </span>
                       )}
+                  </div> */}
+                  {/* status badge */}
+                  <div className="ml-auto">
+                    {item.status === "cooking" && (
+                      <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                        Ongoing
+                      </span>
+                    )}
+                    {item.status === "deployed" && (
+                      <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full border border-green-200">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                        Live
+                      </span>
+                    )}
+                    {item.status === "todo" && (
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-gray-300 bg-gray-800/50 px-3 py-1 rounded-full border border-white/5">
+                        Queue
+                      </span>
+                    )}
                   </div>
               </motion.div>
             )
