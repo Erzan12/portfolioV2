@@ -65,3 +65,11 @@ cms:
 devops: 
   label: DevOps Architecture
   description: This fits my DevOps Architect persona perfectly because it will give me the total control over my data without the heave CMS like WordPress
+
+erp-api: 
+  label: ERP-API
+  description: This is my first journey working with an Enterprise API
+
+render: 
+  label: Render
+  description: This is my first deployment using Render and it was quite an experience
