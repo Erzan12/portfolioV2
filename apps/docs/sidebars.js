@@ -69,6 +69,8 @@ const sidebars = {
             'Web/github-integration',
           ],
         },
+        'semantic-versioning-strat',
+        'git-workflow'
       ],
     },
 
@@ -94,7 +96,6 @@ const sidebars = {
           items: [
             'Projects/Inventory-System/development-plan',
             'Projects/Inventory-System/database-migration',
-            'Projects/Inventory-System/semantic-versioning-strat',
           ]
         }
       ],
