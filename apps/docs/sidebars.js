@@ -99,6 +99,13 @@ const sidebars = {
             'Projects/Inventory-System/development-plan',
             'Projects/Inventory-System/database-migration',
           ]
+        },
+        {
+          type: 'category',
+          label: '📝 Documentation Guides',
+          items: [
+            'Projects/Documentation-Guides/user-management-access-control-flow',
+          ]
         }
       ],
     },
