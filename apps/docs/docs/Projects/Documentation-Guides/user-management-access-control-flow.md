@@ -588,5 +588,3 @@ For the standard flow described above, use **role_name** at user creation time.
 | Action / submodule constants | `src/utils/constants/ability.constant.ts` |
 
 ---
-<!-- 
-*Last updated: June 2026 — ABAS API V2* -->
