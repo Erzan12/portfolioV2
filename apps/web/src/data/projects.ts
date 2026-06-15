@@ -38,8 +38,8 @@ export const projects: Project[] = [
     stack: ["Laravel", "PHP", "Blade", "Vite"],
     repo: "qr-code-attendance-management-system",
     github: "Erzan12/qr-code-attendance-management-system",
-    demoLink: "",
-    image: "",
+    demoLink: "https://qr-code-attendance-management-system-1kwx.onrender.com",
+    image: "/images/qcams.png",
     featured: true,
   },
   {
