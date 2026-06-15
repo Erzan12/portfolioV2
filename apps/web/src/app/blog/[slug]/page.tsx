@@ -32,9 +32,9 @@ export default async function BlogPostPage({
           </aside>
 
           {/* --- CENTER CONTENT --- */}
-          <article className="lg:col-span-6">
+          <article className="lg:col-span-6 flex flex-col">
             <header className="mb-10">
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-balance">
                 {post.title}
               </h1>
               <div className="flex items-center gap-4 text-muted-foreground border-b border-border pb-8">
@@ -52,15 +52,23 @@ export default async function BlogPostPage({
             </header>
 
             {/* The Prose layer with your Olive accents */}
-            <div 
+            {/* <div 
               className="prose dark:prose-invert prose-olive max-w-none 
                          prose-headings:font-bold prose-a:text-primary"
+              dangerouslySetInnerHTML={{ __html: post.content }} 
+            /> */}
+            <div 
+              className="prose dark:prose-invert prose-olive 
+                        max-w-none 
+                        prose-headings:scroll-mt-20 
+                        prose-img:rounded-xl 
+                        prose-pre:bg-zinc-900"
               dangerouslySetInnerHTML={{ __html: post.content }} 
             />
           </article>
 
           {/* --- RIGHT SIDEBAR (Table of Contents) --- */}
-          <aside className="hidden xl:block xl:col-span-3">
+          <aside className="hidden lg:block lg:col-span-3">
             <div className="sticky top-32 border-l border-border pl-6">
               <TableOfContents content={post.content} />
             </div>
