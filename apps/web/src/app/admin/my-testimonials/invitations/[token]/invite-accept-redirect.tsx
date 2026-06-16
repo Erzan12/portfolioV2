@@ -21,7 +21,7 @@ export default function InviteAcceptRedirect({
 
   return (
     <div className="mx-auto max-w-md p-10 text-center text-slate-600 dark:text-slate-400">
-      <p className="text-sm">Taking you to the testimonial form…</p>
+      <p className="text-sm">Taking you to testimonial form…</p>
     </div>
   );
 }
