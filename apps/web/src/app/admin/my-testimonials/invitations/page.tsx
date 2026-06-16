@@ -36,6 +36,19 @@ export default async function TestimonialInvitationsAdminPage({
     );
   }
 
+  // Update expired invitations first
+  await prisma.testimonialInvitation.updateMany({
+    where: {
+      status: "PENDING",
+      expires_at: {
+        lt: new Date(),
+      },
+    },
+    data: {
+      status: "EXPIRED",
+    },
+  });
+
   const currentStatus = params.status;
 
   // const currentStatus =
@@ -45,7 +58,7 @@ export default async function TestimonialInvitationsAdminPage({
   const invitations =
     await prisma.testimonialInvitation.findMany({
       where: {
-        status: currentStatus as any,
+        status: currentStatus as InvitationStatus,
       },
       orderBy: {
         created_at: "desc",
