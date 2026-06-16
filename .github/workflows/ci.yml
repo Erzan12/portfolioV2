@@ -3,6 +3,9 @@ name: Monorepo CI
 on:
   pull_request:
     branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
 
 jobs:
   frontend:
