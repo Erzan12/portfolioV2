@@ -7,6 +7,19 @@ interface TestimonialsProps {
   token?: string;
 }
 
+function getRelativeTime(date: string | Date) {
+  const now = new Date();
+  const past = new Date(date);
+
+  const diffInMonths =
+    (now.getFullYear() - past.getFullYear()) * 12 +
+    (now.getMonth() - past.getMonth());
+
+  if (diffInMonths < 1) return "Recently";
+  if (diffInMonths === 1) return "1 month ago";
+  return `${diffInMonths} months ago`;
+}
+
 function TestimonialCard({ t }: { t: any }) {
   // Determine size dynamically: content > 100 chars gets 'wide'
   const size = t.content.length > 100 ? 'wide' : 'normal';
@@ -40,7 +53,7 @@ function TestimonialCard({ t }: { t: any }) {
         />
         <div>
           <h4 className="font-medium text-sm text-slate-900 dark:text-white">{t.name}</h4>
-          <p className="text-[11px] uppercase tracking-wider text-slate-500">{t.role} • {new Date(t.created_at).toLocaleDateString()}</p>
+          <p className="text-[11px] uppercase tracking-wider text-slate-500">{t.role} • {getRelativeTime(t.created_at)}</p>
         </div>
       </div>
     </div>
