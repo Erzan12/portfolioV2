@@ -62,7 +62,7 @@ export async function moderateTestimonial(
 
     const testimonialInvitationStatus = data.approve 
       ? "ACCEPTED"
-      : "DECLINED"
+      : "DECLINED";
 
     const session = await getServerSession(authOptions);
 
@@ -103,7 +103,6 @@ export async function moderateTestimonial(
           id: testimonial.invitation_id,
         },
         data: {
-          expires_at: undefined,
           status: testimonialInvitationStatus ? "ACCEPTED" : "DECLINED",
           accepted_at: data.approve ? new Date() : null,
         },
