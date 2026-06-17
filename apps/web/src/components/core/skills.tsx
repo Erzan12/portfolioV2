@@ -5,13 +5,8 @@ import {
   Layout,
   Database,
   Terminal,
-  Sparkles,
-  Cpu,
-  Globe,
-  Workflow,
 } from "lucide-react";
 
-import { ReactNode } from "react";
 import SkillCard from "./skills/skill-card";
 
 const skillData = [
@@ -25,6 +20,7 @@ const skillData = [
       "CodeIgniter",
       "Node.js",
       "Express",
+      "Spring Boot"
     ],
     description:
       "Designing scalable APIs, authentication systems, and maintainable backend architectures focused on reliability and performance.",
@@ -51,7 +47,7 @@ const skillData = [
   {
     category: "Infrastructure & DevOps",
     icon: <Terminal className="w-5 h-5 text-emerald-400" />,
-    items: ["Docker", "Linux", "Git", "Vercel", "CI/CD"],
+    items: ["Docker", "Netlify", "Git", "Vercel", "CI/CD", "Render"],
     description:
       "Managing deployments, automation pipelines, and modern cloud-native development workflows.",
     badge: "Deployment Workflow",
@@ -61,7 +57,7 @@ const skillData = [
   {
     category: "Data & Persistence",
     icon: <Database className="w-5 h-5 text-violet-400" />,
-    items: ["PostgreSQL", "MySQL", "Prisma", "Redis"],
+    items: ["PostgreSQL", "MySQL", "Prisma", "Redis", "Supabase"],
     description:
       "Designing relational data models, query optimization, caching, and persistence strategies.",
     badge: "Data Modeling",
