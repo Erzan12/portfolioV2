@@ -60,16 +60,6 @@ export async function moderateTestimonial(
       ? "APPROVED"
       : "REJECTED";
 
-    const testimonialInvitationStatus = data.approve 
-      ? "ACCEPTED"
-      : "DECLINED"
-
-    const session = await getServerSession(authOptions);
-
-    if (session?.user?.role !== "ADMINISTRATOR") {
-      throw new Error("Unauthorized");
-    }
-
     // Update the Testimonial & include the user email to send the notification
     await tx.testimonials.update({
       where: { id: testimonialId },
@@ -95,7 +85,7 @@ export async function moderateTestimonial(
         user: true, // Assuming relation is named 'user'
       }
     });
-
+    
     // Update invitation status
     if (testimonial.invitation_id) {
       await tx.testimonialInvitation.update({
@@ -103,7 +93,6 @@ export async function moderateTestimonial(
           id: testimonial.invitation_id,
         },
         data: {
-          expires_at: undefined,
           status: testimonialInvitationStatus ? "ACCEPTED" : "DECLINED",
           accepted_at: data.approve ? new Date() : null,
         },

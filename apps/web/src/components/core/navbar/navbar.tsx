@@ -21,14 +21,14 @@ export default function Navbar() {
 
   const pathname = usePathname();
 
-  // 1. Find which route we are currently on to get the background color
+  // Find which route we are currently on to get the background color
   const activeKey = Object.keys(routeThemes).find(
     (key) => key !== "default" && pathname.startsWith(key)
   ) || "default";
 
   const currentTheme = routeThemes[activeKey];
 
-  // 2. Extract only the background class (e.g., "bg-blue-500/10") 
+  // Extract only the background class (e.g., "bg-blue-500/10") 
   // so the whole navbar doesn't get the text/border colors
   const navBgClass = currentTheme.split(" ")[0];
 
