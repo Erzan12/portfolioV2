@@ -11,7 +11,7 @@ import {
   Mail,
 } from "lucide-react";
 
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, isPast } from "date-fns";
 
 import { Button } from "@/components/ui/button";
 
@@ -72,6 +72,9 @@ export function InvitationCard({
 
   const StatusIcon = config.icon;
 
+  const isExpired =
+    !item.accepted_at && isPast(new Date(item.expires_at));
+
   return (
     <div className="group rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-6 shadow-sm hover:shadow-xl transition-all duration-300">
       <div className="flex items-start justify-between gap-4">
@@ -103,32 +106,34 @@ export function InvitationCard({
 
           {/* Dates */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-
-              <span>
-                Expires{" "}
-                {formatDistanceToNow(
-                  new Date(item.expires_at),
-                  {
-                    addSuffix: true,
-                  }
-                )}
-              </span>
-            </div>
-
-            {item.accepted_at && (
+            {item.accepted_at ? (
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-green-500" />
-
                 <span>
                   Accepted{" "}
-                  {formatDistanceToNow(
-                    new Date(item.accepted_at),
-                    {
-                      addSuffix: true,
-                    }
-                  )}
+                  {formatDistanceToNow(new Date(item.accepted_at), {
+                    addSuffix: true,
+                  })}
+                </span>
+              </div>
+            ) : isExpired ? (
+              <div className="flex items-center gap-2">
+                <XCircle className="w-4 h-4 text-red-500" />
+                <span>
+                  Expired{" "}
+                  {formatDistanceToNow(new Date(item.expires_at), {
+                    addSuffix: true,
+                  })}
+                </span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                <span>
+                  Expires{" "}
+                  {formatDistanceToNow(new Date(item.expires_at), {
+                    addSuffix: true,
+                  })}
                 </span>
               </div>
             )}

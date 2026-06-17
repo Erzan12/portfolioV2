@@ -89,29 +89,12 @@ export default async function Home({
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Leave a Note</h2>
           <p className="text-slate-500 text-sm mt-2">I value your feedback on our collaborations or projects.</p>
         </div>
-        
-        {/* {session?.user ? (
-          <TestimonialForm userId={session.user.id} />
-        ) : token ? (
-          // Invited guest — show form without login
-          <TestimonialForm userId={token} isInvited />
-        ) : (
-          <div className="text-center p-12 border border-dashed border-slate-500/30 rounded-[2.5rem] flex flex-col items-center justify-center bg-white/20 backdrop-blur-sm">
-            <p className="text-slate-600 dark:text-slate-400 font-medium">
-              Want to share your thoughts?
-            </p>
-            <p className="text-slate-500 text-xs mt-1">
-              Sign in to verify your identity and leave a testimonial.
-            </p>
-            
-            <GuestLoginButton />
-          </div>
-        )} */}
         {validToken ? (
           session?.user ? (
             <TestimonialForm
               userId={session.user.id}
               invitationToken={validToken}
+              invitation_id={invitation!.id}
               isInvited
             />
           ) : (
