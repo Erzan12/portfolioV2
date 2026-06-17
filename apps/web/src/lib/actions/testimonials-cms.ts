@@ -4,8 +4,6 @@ import { prisma } from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
-import { randomUUID } from "crypto";
-import { Resend } from "resend";
 import { sendModerationEmail } from "../mail/internal-mailer/mailer";
 
 /**
@@ -47,7 +45,7 @@ export async function moderateTestimonial(
     throw new Error("Unauthorized");
   }
 
-  // 1. Update the Testimonial & include the user email to send the notification
+  // Update the Testimonial & include the user email to send the notification
   const testimonial = await prisma.testimonials.update({
     where: { id },
     data: {
@@ -72,7 +70,7 @@ export async function moderateTestimonial(
     }
   });
 
-  // 2. Handle Feedback
+  // Handle Feedback
   if (data.feedback) {
     await prisma.testimonialFeedback.upsert({
       where: { testimonial_id: id },
@@ -88,7 +86,7 @@ export async function moderateTestimonial(
     });
   }
 
-  // 3. TRIGGER EMAIL (The "Confirm & Email" part)
+  // TRIGGER EMAIL (The "Confirm & Email" part)
   // We only send if we have a user email
   const userEmail = testimonial.user?.email;
   if (userEmail) {
