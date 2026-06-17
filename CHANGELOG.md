@@ -1,6 +1,58 @@
 # 🧾 CHANGELOG
 
 ### 📓 Changelog for PortfolioV2
+### 🏷️ [1.5.0] – 2026-06-17 — Blog CMS, Authentication & Platform Modernization
+
+### ✨ Added / Enhanced
+
+* Blog CMS foundation with post management dashboard (#94, #199, #200)
+* Supabase PostgreSQL integration with Prisma ORM (#95, #96, #112)
+* GitHub and Google OAuth authentication (#113, #149, #152)
+* Role-based access control and protected administrator routes (#151, #156)
+* Rich text blog editing with Tiptap support (#215)
+* CMS-powered Testimonials system with moderation workflow (#159–169)
+* Testimonial invitation and email notification system (#154, #155, #196–209)
+* User avatar upload support via Supabase Storage (#165–170)
+* Dynamic GitHub profile integration and author card enhancements (#126–128)
+* New project showcases, demos, preview images, and updated portfolio content (#106, #120, #124, #215)
+* Enhanced layouts and visual consistency across Home, Skills, Projects, Blog, and Testimonials sections (#182–189)
+
+### 🔒 Security
+
+* JWT session management with refresh token support (#176)
+* Secure production cookie configuration (#176)
+* Improved role validation and authorization middleware (#151, #156)
+
+### 🐛 Fixed
+
+* Projects page GitHub API synchronization issues (#115, #116)
+* Footer styling issues in dark mode (#129, #130)
+* Navbar favicon SSR errors during theme switching (#131, #132)
+* GitHub avatar loading and profile image fallback handling (#136, #145)
+* Administrator role assignment and access control issues (#173, #174)
+* Supabase storage bucket configuration problems (#175, #178)
+* Administrator panel redirect loops and session handling issues (#203, #204)
+* Testimonial invitation, expiration, and redirection bugs (#207–209, #216, #217)
+* Production caching issues affecting testimonial updates (#211)
+
+### ⚙️ Developer Experience
+
+* GitHub Actions workflow support for monorepo deployments (#219–222)
+* Improved documentation, guides, and CMS administration resources (#117, #119, #214)
+* Resend mail service integration for transactional emails (#154, #181)
+
+### 📝 Documentation
+
+* Added User Management Control Guide (#214)
+* Added Bootstrap Documentation Guide (#119)
+* Added Mermaid Graph Editor Guide (#117)
+* Expanded project and platform documentation drafts (#123)
+
+### 🚀 Highlights
+This release transforms PortfolioV2 into a CMS-driven platform with integrated authentication, content management, testimonial moderation, blog publishing capabilities, and a scalable Supabase + Prisma backend architecture.
+
+
+### 📓 Changelog for PortfolioV2
 ### 🏷️ [1.0.1] – 2026-03-25 — Personal Platform improvements and bug fixes
 
 ### 🐛 Fixed
