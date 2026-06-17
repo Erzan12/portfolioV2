@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { motion, Variants } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Facebook, ArrowLeft } from "lucide-react"
+import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Facebook, ArrowLeft, FileText } from "lucide-react"
 import Link from "next/link";
 import Image from "next/image";
 // import ThemeToggle from "@/components/dark-mode-toggle/theme-toggle"
@@ -26,6 +26,9 @@ const item: Variants = {
 };
 
 export default function AboutClient({ avatar }: { avatar?: string | null }) {
+  // Update this URL with your exact Supabase bucket link once you upload the PDF file!
+  const resumeUrl = "https://orgfmizyhreotvshajda.supabase.co/storage/v1/object/public/my_documents/Earl_Jan_Do_Resume.pdf";
+
   return (
     <div className="min-h-screen pt-10 md:pt-20 pb-10">
       {/*added px-4 sm:px-6 to give breathing room on mobile devices */}
@@ -50,7 +53,7 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
         >
 
           <motion.div variants={item} className="md:col-span-2 lg:col-span-2 lg:row-span-2">
-            {/* Abbout Me - tall card (top left) */}
+            {/* About Me - tall card (top left) */}
             <Card
               id="about"
               className="h-full w-full p-6 bg-olive-about-card/70 dark:bg-olive-dark-about-card hover:bg-olive-about-card/40 dark:hover:bg-olive-dark-about-card/80 border border-border relative overflow-hidden rounded-2xl shadow-none"
@@ -58,7 +61,6 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
               <div className="flex flex-col h-full relative z-10">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    {/* <span className="text-2xl font-bold text-primary font-sans">EJD</span> */}
                     {avatar && (
                       <Image
                         src={avatar}
@@ -77,7 +79,7 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
                     </div>
                   </div>
                 </div>
-                <p className="text-card-foreground leading-relaxed font-sans flex-1 text-sm space-y-4">
+                <div className="text-card-foreground leading-relaxed font-sans flex-1 text-sm space-y-4">
                   <span className="block mb-3">
                     I&apos;m Earl Jan Do, a passionate web developer from the Philippines with over 4 years of experience
                     building scalable web applications, systems, and API solutions. I specialize in both backend and frontend development,
@@ -97,7 +99,7 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
                     Outside of coding, I enjoy exploring new web technologies and diving to open-source projects, continuously learning and
                     continuosly growing and giving back to the developer community.
                   </span>
-                </p>
+                </div>
                 <div className="flex flex-wrap gap-2 mt-6">
                   <Badge variant="secondary" className="font-sans text-xs rounded-full">Laravel</Badge>
                   <Badge variant="secondary" className="font-sans text-xs rounded-full">NestJS</Badge>
@@ -108,6 +110,7 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
               </div>
             </Card>
           </motion.div>
+          
           <motion.div variants={item} className="md:col-span-2 lg:col-span-2 lg:row-span-1">
             {/* Experience - medium card (top middle) */}
             <Card
@@ -228,7 +231,6 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
                         <Badge variant="outline" className="text-xs font-sans rounded-full">Vite</Badge>
                       </div>
                     </div>
-                    {/* fixed external link implementation */}
                     <a href="https://github.com/Erzan12/slsu-clinic-appointment-system" target="_blank" rel="noopener noreferrer">
                       <Button
                         size="sm"
@@ -252,7 +254,6 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
                         <Badge variant="outline" className="text-xs font-sans rounded-full">PHP</Badge>
                       </div>
                     </div>
-                    {/* fixed External link implementation */}
                     <a href="https://github.com/Erzan12/qr-code-attendance-management-system" target="_blank" rel="noopener noreferrer">
                       <Button
                         size="sm"
@@ -298,22 +299,29 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
           </motion.div>
 
           <motion.div variants={item} className="md:col-span-2 lg:col-span-3 lg:row-span-1">
-            {/* Other Information - medium card (top middle) */}
+            {/* Other Information Card */}
             <Card
-              id="experience"
+              id="other-info"
               className="h-full w-full p-6 bg-olive-about-card/70 dark:bg-olive-dark-about-card hover:bg-olive-about-card/40 dark:hover:bg-olive-dark-about-card/80 border border-border relative overflow-hidden rounded-2xl shadow-none"
             >
-              <div className="relative z-10">
-                <h3 className="font-bold text-card-foreground mb-4 font-sans">Other Information</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex items-center gap-2 text-sm">
-                      <span>🕒 Resume</span>
-                      <span>Coming soon...</span>
-                    </div>
-                    <div className="flex-1">
-                    </div>
-                  </div>
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <h3 className="font-bold text-card-foreground mb-2 font-sans">Other Information</h3>
+                  <p className="text-sm text-muted-foreground font-sans mb-4">
+                    View or download my professional background and complete project timeline.
+                  </p>
+                </div>
+                
+                <div>
+                  <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-block w-full sm:w-auto">
+                    <Button 
+                      className="w-full sm:w-auto font-sans flex items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-all duration-200 shadow-sm"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>View Resume</span>
+                      <ExternalLink className="w-3 h-3 opacity-70" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </Card>

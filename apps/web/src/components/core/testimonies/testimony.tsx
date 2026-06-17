@@ -40,7 +40,7 @@ function TestimonialCard({ t }: { t: any }) {
         />
         <div>
           <h4 className="font-medium text-sm text-slate-900 dark:text-white">{t.name}</h4>
-          <p className="text-[11px] uppercase tracking-wider text-slate-500">{t.role}</p>
+          <p className="text-[11px] uppercase tracking-wider text-slate-500">{t.role} • {new Date(t.created_at).toLocaleDateString()}</p>
         </div>
       </div>
     </div>
