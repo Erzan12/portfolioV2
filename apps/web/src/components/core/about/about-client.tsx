@@ -26,8 +26,8 @@ const item: Variants = {
 };
 
 export default function AboutClient({ avatar }: { avatar?: string | null }) {
-  // Update this URL with your exact Supabase bucket link once you upload the PDF file!
-  const resumeUrl = "https://orgfmizyhreotvshajda.supabase.co/storage/v1/object/public/my_documents/Earl_Jan_Do_Resume.pdf";
+  
+  const resumeUrl = "https://orgfmizyhreotvshajda.supabase.co/storage/v1/object/public/my_documents/Earl-Jan-Do-CV.pdf";
 
   return (
     <div className="min-h-screen pt-10 md:pt-20 pb-10">
