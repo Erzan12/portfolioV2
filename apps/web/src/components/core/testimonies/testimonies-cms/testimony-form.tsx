@@ -7,10 +7,12 @@ import { submitTestimonial } from "@/lib/actions/testimonials-cms";
 export default function TestimonialForm({ 
   userId, 
   invitationToken,
+  invitation_id,
   isInvited = false 
 }: { 
   userId: string;
   invitationToken?: string;
+  invitation_id: string;
   isInvited?: boolean;
 }) {
     const [ isPending, startTransition ] = useTransition();
@@ -23,6 +25,7 @@ export default function TestimonialForm({
             role: formData.get("role") as string,
             content: formData.get("content") as string,
             userId: userId,
+            invitation_id: invitation_id,
             invitationToken: invitationToken,
         };
 
