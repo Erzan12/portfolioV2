@@ -1,0 +1,436 @@
+# Understanding TypeScript Errors in AI SDKs
+
+## The Problem
+
+I wrote:
+
+```ts
+const builtInAgent = new BuiltInAgent({
+  model: "openai:gpt-5.4-mini",
+  instructions: `
+    You are Erzan's personal AI assistant.
+  `,
+});
+```
+
+And TypeScript showed:
+
+```txt
+Object literal may only specify known properties,
+and 'instructions' does not exist in type 'BuiltInAgentConfiguration'.
+```
+
+---
+
+## Why This Error Happens
+
+TypeScript validates object literals against the expected type.
+
+Imagine we have:
+
+```ts
+type User = {
+  name: string;
+};
+```
+
+This is valid:
+
+```ts
+const user: User = {
+  name: "Erzan",
+};
+```
+
+This is invalid:
+
+```ts
+const user: User = {
+  name: "Erzan",
+  age: 25,
+};
+```
+
+Error:
+
+```txt
+Property 'age' does not exist on type 'User'
+```
+
+The exact same thing happened with `BuiltInAgent`.
+
+TypeScript expected:
+
+```ts
+type BuiltInAgentConfiguration = {
+  model: string;
+  prompt?: string;
+};
+```
+
+But I provided:
+
+```ts
+{
+  model: "...",
+  instructions: "..."
+}
+```
+
+Since `instructions` wasn't part of the type definition, TypeScript rejected it.
+
+---
+
+# The Important Lesson
+
+Never assume a property exists just because it exists in another AI framework.
+
+Different frameworks often use different names for the same concept.
+
+| Concept       | Possible Property Names |
+| ------------- | ----------------------- |
+| System Prompt | `prompt`                |
+| System Prompt | `instructions`          |
+| System Prompt | `system`                |
+| System Prompt | `systemPrompt`          |
+| System Prompt | `context`               |
+
+They all mean roughly:
+
+> "Tell the AI how it should behave."
+
+The name depends entirely on the library.
+
+---
+
+# The Golden Rule
+
+When using TypeScript:
+
+**Trust the types more than the documentation.**
+
+Documentation can be:
+
+* outdated
+* written for another version
+* written for another package
+
+Your installed types are always the source of truth.
+
+---
+
+# Fast Debugging Technique #1
+
+Use IntelliSense.
+
+```ts
+new BuiltInAgent({
+  model: "",
+  // press Ctrl+Space here
+});
+```
+
+VS Code will show every valid property.
+
+This is often faster than searching docs.
+
+---
+
+# Fast Debugging Technique #2
+
+Inspect the Type
+
+```ts
+type Config = ConstructorParameters<
+  typeof BuiltInAgent
+>[0];
+```
+
+Hover over `Config`.
+
+You'll immediately see the expected structure.
+
+---
+
+# Fast Debugging Technique #3
+
+Read the Error Literally
+
+Many developers try random fixes.
+
+Instead, read the error exactly.
+
+Example:
+
+```txt
+'instructions' does not exist in type
+'BuiltInAgentConfiguration'
+```
+
+Translation:
+
+> "The object type does not contain a property named `instructions`."
+
+That's all the error is saying.
+
+---
+
+# AI Development Pattern:
+
+# Prompt as Configuration
+
+Think of prompts as configuration files.
+
+Bad:
+
+```ts
+prompt: "You are helpful."
+```
+
+Better:
+
+```ts
+prompt: `
+You are Erzan's personal AI assistant.
+
+You can answer questions about projects.
+
+Be concise.
+Recommend projects when relevant.
+`
+```
+
+Best:
+
+```ts
+prompt: `
+You are Erzan's personal AI assistant.
+
+Responsibilities:
+- Answer project questions
+- Recommend projects
+- Explain technologies
+- Share demo links when available
+
+Communication Style:
+- concise
+- technical
+- professional
+
+Project Knowledge:
+
+${projectContext}
+`
+```
+
+Structure usually beats raw text.
+
+---
+
+# AI Development Pattern:
+
+# Label Everything
+
+LLMs understand structure extremely well.
+
+Weak:
+
+```txt
+Title: Portfolio
+Description: ...
+Stack: React
+```
+
+Strong:
+
+```txt
+Project Name:
+Portfolio
+
+Description:
+...
+
+Technologies:
+React
+Next.js
+TypeScript
+
+Github:
+...
+
+Demo:
+...
+```
+
+Clear labels improve retrieval accuracy.
+
+---
+
+# AI Development Pattern:
+
+# Give the AI a Job
+
+Weak Prompt:
+
+```txt
+You know about Erzan.
+```
+
+Strong Prompt:
+
+```txt
+You are Erzan's portfolio assistant.
+
+Your goals:
+
+1. Recommend relevant projects.
+2. Explain technologies.
+3. Share demo links.
+4. Keep responses concise.
+```
+
+The more explicit the role, the more predictable the behavior.
+
+---
+
+# TypeScript Pattern:
+
+# Let the Compiler Teach You
+
+Most developers fight TypeScript.
+
+Advanced developers use TypeScript as documentation.
+
+Examples:
+
+```ts
+type User = ...
+```
+
+```ts
+type Config = ...
+```
+
+```ts
+type Props = ...
+```
+
+When you're unsure:
+
+```ts
+type X = SomeLibraryType;
+```
+
+Hover.
+
+Read.
+
+Learn.
+
+The compiler often knows more than the docs.
+
+---
+
+# Debugging Mindset
+
+When something fails:
+
+## Step 1
+
+Read the error.
+
+## Step 2
+
+Identify the type involved.
+
+Example:
+
+```txt
+BuiltInAgentConfiguration
+```
+
+## Step 3
+
+Inspect that type.
+
+## Step 4
+
+Compare what you passed vs what it expects.
+
+This solves a huge percentage of TypeScript issues.
+
+---
+
+# A Mental Model for Modern Development
+
+Think of modern development as three layers.
+
+## Layer 1: Runtime
+
+What actually executes.
+
+Example:
+
+```ts
+new BuiltInAgent(...)
+```
+
+---
+
+## Layer 2: Types
+
+What TypeScript expects.
+
+Example:
+
+```ts
+BuiltInAgentConfiguration
+```
+
+---
+
+## Layer 3: Documentation
+
+What humans wrote.
+
+Example:
+
+* blog posts
+* tutorials
+* docs
+
+When they disagree:
+
+```txt
+Types > Documentation
+```
+
+because the compiler is checking the actual installed package.
+
+---
+
+# My Personal Checklist When Integrating Any SDK
+
+1. Install package.
+2. Check version.
+3. Inspect types.
+4. Use IntelliSense.
+5. Read docs.
+6. Build small prototype.
+7. Expand gradually.
+
+Never jump directly into large implementations.
+
+---
+
+# Key Takeaway
+
+The bug wasn't really about `instructions` vs `prompt`.
+
+The real lesson was:
+
+> TypeScript was already telling me exactly what was wrong.
+
+Instead of guessing, inspect the type definition and let the compiler guide you.
+
+That's one of the fastest ways to become effective with modern TypeScript and AI SDKs.
