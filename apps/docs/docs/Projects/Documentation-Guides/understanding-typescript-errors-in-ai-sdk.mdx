@@ -1,4 +1,4 @@
-# Understanding TypeScript Errors in AI SDKs
+# 🤖 Understanding TypeScript Errors in AI SDKs
 
 ## The Problem
 
@@ -97,9 +97,32 @@ Different frameworks often use different names for the same concept.
 
 They all mean roughly:
 
-> "Tell the AI how it should behave."
+> **"Tell the AI how it should behave."**
 
 The name depends entirely on the library.
+
+---
+
+# Why do docs sometimes use instructions?
+
+This is one of the most common sources of confusion in JavaScript/TypeScript ecosystems.
+
+Different libraries and even different versions of the same library often use different names for the same concept:
+
+|          Library            |          Property             |
+| --------------------------- | ----------------------------- |
+| OpenAI Responses API        | `instructions`                |
+| OpenAI Agents SDK           | `instructions`                |
+| LangChain                   | `systemPrompt`                |
+| CopilotKit v1.x             | `prompt`                      |
+| Some CopilotKit v2 examples | `system message in a factory` |
+| Other AI SDKs               | `system`                      |
+
+They're all trying to accomplish the same thing:
+
+> **"Tell the AI how it should behave."**
+
+The property name depends entirely on the library author.
 
 ---
 
