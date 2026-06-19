@@ -54,10 +54,6 @@ export default async function Home({
       ? token
       : undefined;
 
-  console.log('valid token value:', validToken)
-
-  console.log("search params token:", token);
-
   return (
     <main className="container mx-auto px-6 overflow-x-hidden">
       <Hero token={validToken}/>

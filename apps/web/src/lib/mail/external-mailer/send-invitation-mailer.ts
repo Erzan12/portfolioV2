@@ -89,7 +89,6 @@ export async function sendInvitationEmail(toEmail: string, token: string): Promi
   } catch (error) {
     // Return the error string for better debugging context up the chain
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    console.error("Nodemailer Error:", errorMessage);
     return { success: false, error: errorMessage };
   }
 }

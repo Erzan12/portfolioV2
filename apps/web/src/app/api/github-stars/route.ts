@@ -4,7 +4,6 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const repo = searchParams.get("repo");
 
-  // console.log("Repo received:", repo); // DEBUG
   if (!repo) {
     return NextResponse.json({ stars: 0});
   }
@@ -16,8 +15,6 @@ export async function GET(req: Request) {
     next: { revalidate: 3600 }, // cache for 1 hour
   });
   const data = await res.json();
-
-  // console.log("GitHub response:", data); // DEBUG
 
   return NextResponse.json({
     stars: data.stargazers_count ?? 0,
