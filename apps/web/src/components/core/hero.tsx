@@ -118,8 +118,6 @@ export default function Hero({ token }: HeroProps) {
     return () => clearTimeout(id);
   }, [token]);
 
-  console.log("Hero token:", token);
-
   return (
     <main>
       <div className="pt-20 pb-10">

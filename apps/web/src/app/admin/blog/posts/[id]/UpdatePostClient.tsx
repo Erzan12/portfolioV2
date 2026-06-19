@@ -44,10 +44,6 @@ export default function UpdatePostClient({
 
       const result = await updatePost(blogId, formData);
 
-      console.log(title);
-      console.log(excerpt);
-      console.log(content);
-
       if (result?.success) {
         toast({
           title: "Success",
