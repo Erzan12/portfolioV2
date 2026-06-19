@@ -17,6 +17,9 @@ Portfolio Platform v2 is designed to showcase:
 - System design thinking
 - Engineering decisions
 - Continuous development activity
+- Testimonials
+- Agentic AI integration
+- CMS Portfolio
 
 It integrates live repository data and structured documentation to create a **dynamic and evolving portfolio**.
 
@@ -85,6 +88,8 @@ flowchart TB
 ### Backend / Data Layer
 - GitHub API integration
 - Serverless API routes
+- Prisma ORM
+- Supabase PostgreSQL
 
 ### Documentation
 - Docusaurus
@@ -155,23 +160,28 @@ GITHUB_TOKEN=your_github_token_here
 - GitHub integration
 - Project showcase
 - Contact and About sections
-
-## Upcoming
+- Blog / devlog system
+- CMS - Admin controlled content management
+- 0Auth authentication - Github/Google
+- Supabase
 - Advanced project detail pages
 - Developer activity tracking
-- Blog / devlog system
-- Platform analytics
-- Assitant Chatbot
-- CMS
-- Supabase
-- Schedule call
-- More quality of life changes UI/UX and content
+- Testimonials from colleagues/clients
 
-## New additions/features
+## New additions/features v1.5.0
 - CMS Transition
 - Blog post CMS Type Admin Controlled
 - Testimonies section CMS Type, invites peers for testimonials working with me or as my colleague, Added workflow approve and reject, Admin Control for moderation
 - Updated and enhanced color hue's and layout design per module
+- Supabase PostgreSQL - 0Auth with GitHub and Google
+- Resume added in about page
+
+## Upcoming
+### v2.0.0 - Agentic AI integration - Project Persona
+- Agentic AI Integration - Project Persona - Personal AI assistant
+- Platform analytics
+- Schedule call/interview
+- More quality of life changes UI/UX and content
 
 ### 📦 Releases
 ```bash
@@ -180,6 +190,7 @@ v0.8.0 – Dynamic Projects & GitHub Integration
 v1.0.0 – Public Portfolio Platform Release 🎉
 v1.0.1 - Patch bug fixes and typo errors (Upcoming)
 v1.5.0 - Transition to CMS Type Portfolio,
+       - Major update with new features and updates 
        - Minor update in the blog page in Portfolio to make CMS to easily control and manage my data (Upcoming)
        - Added blog and testimonial section, admin moderated
 ```
