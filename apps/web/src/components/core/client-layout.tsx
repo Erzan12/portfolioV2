@@ -5,24 +5,24 @@ import Footer from "@/components/core/footer";
 import { ThemeProvider } from "@/components/dark-mode-toggle/theme-provider";
 import Providers from "@/components/providers";
 import { usePathname } from "next/navigation";
-import { routeThemes } from "@/lib/constants/themes";
+import { accentStyles, routeThemeConfig } from "@/lib/constants/themes";
 import { cn } from "@/lib/utils";
+import { useRouteTheme } from "@/hooks/useRouteTheme";
+import { getRouteTheme } from "@/lib/helper/get-route-theme";
 
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
 
-  const activeKey =
-    Object.keys(routeThemes).find((route) => pathname.startsWith(route)) ||
-    "default";
+  const theme = useRouteTheme();
+  const styles = accentStyles[theme.accent];
 
-  const themeClass = routeThemes[activeKey].split(" ")[0];
+  // const themeClass = routeThemeConfig[activeKey].split(" ")[0];
 
   return (
-    <div className={cn("transition-colors duration-500 min-h-screen", themeClass)}>
+    <div className={cn("transition-colors duration-500 min-h-screen", styles.bg)}>
       <ThemeProvider>
         <Providers>
           <Navbar />
