@@ -9,8 +9,10 @@ import ThemeToggle from "@/components/dark-mode-toggle/theme-toggle";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { routeThemes } from "@/lib/constants/themes";
 import { SiGithub } from "react-icons/si";
+import { useRouteTheme } from "@/hooks/useRouteTheme";
+import { accentStyles } from "@/lib/constants/themes";
+import { getRouteTheme } from "@/lib/helper/get-route-theme";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -21,16 +23,10 @@ export default function Navbar() {
 
   const pathname = usePathname();
 
-  // Find which route we are currently on to get the background color
-  const activeKey = Object.keys(routeThemes).find(
-    (key) => key !== "default" && pathname.startsWith(key)
-  ) || "default";
-
-  const currentTheme = routeThemes[activeKey];
-
   // Extract only the background class (e.g., "bg-blue-500/10") 
   // so the whole navbar doesn't get the text/border colors
-  const navBgClass = currentTheme.split(" ")[0];
+  // const navBgClass = currentTheme.split(" ")[0];
+  const { theme, styles } = getRouteTheme(pathname);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -45,7 +41,7 @@ export default function Navbar() {
 
   return (
     // <nav className=" bg-white/80 dark:bg-black/80 backdrop-blur sticky top-0 z-50">
-    <nav className={`${navBgClass} backdrop-blur sticky top-0 z-50 transition-colors duration-300`}>
+    <nav className={`${styles.bg} backdrop-blur sticky top-0 z-50 transition-colors duration-300`}>
       {/* CRITICAL: Changed 'items-center' to 'items-stretch' 
          This allows NavLink (h-full) to actually touch the bottom 
       */}
