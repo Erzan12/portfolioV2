@@ -4,7 +4,6 @@ import { projects } from "@/data/projects";
 import ProjectsCarousel from "@/components/core/projects/projects-carousel";
 import HowIThink from "@/components/core/how-i-think";
 import CaseStudy from "@/components/core/project-case";
-import Lab from "@/components/core/experimental-lab";
 import Tabs from "@/components/core/tabs";
 import Testimonials from "@/components/core/testimonies/testimony";
 import { getServerSession } from "next-auth";
@@ -13,7 +12,6 @@ import TestimonialForm from "@/components/core/testimonies/testimonies-cms/testi
 import GuestLoginButton from "@/components/login/guest-login";
 import { prisma } from "@/lib/prisma/prisma";
 import { Suspense } from "react";
-import { PersonaChat } from "@/components/core/personal_chat/ai";
 
 // type Props = {
 //   searchParams: {
@@ -120,7 +118,6 @@ export default async function Home({
           </div>
         )}
       </section>
-      <PersonaChat />
     </main>
   )
 }
