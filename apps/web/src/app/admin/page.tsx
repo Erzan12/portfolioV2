@@ -8,6 +8,16 @@ export default async function AdminDashboard() {
     orderBy: { createdAt: "desc" },
   });
 
+  const mostViewedPosts = await prisma.post.findMany({
+    where: {
+      status: "PUBLISHED",
+    },
+    orderBy: {
+      views: "desc",
+    },
+    take: 5,
+  });
+
   const published = posts.filter((p) => p.status === "PUBLISHED");
   const drafts = posts.filter((p) => p.status === "DRAFT");
 
@@ -33,6 +43,37 @@ export default async function AdminDashboard() {
         <Card title="Published" value={published.length} />
         <Card title="Drafts" value={drafts.length} />
         <Card title="Total Views" value={totalViews} />
+      </div>
+
+      <div>
+        <h2 className="font-semibold mb-4">
+          Most Viewed Posts
+        </h2>
+
+        <div className="space-y-3">
+            {mostViewedPosts.map((post, index) => (
+              <div
+                key={post.id}
+                className="flex justify-between border p-3 rounded-md"
+              >
+                <div>
+                  <p className="font-medium">
+                    #{index + 1} {post.title}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {post.views} views
+                  </p>
+                </div>
+
+                <a
+                  href={`/admin/blog/posts/${post.id}`}
+                  className="text-blue-500 text-sm"
+                >
+                  View
+                </a>
+              </div>
+            ))}
+        </div>
       </div>
 
       {/* SMART INSIGHTS */}

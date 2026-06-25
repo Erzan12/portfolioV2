@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma/prisma";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tag } from "lucide-react";
+import { EyeIcon, Tag } from "lucide-react";
 import Link from "next/link";
 import { BlogListAnimation } from "@/components/core/blog/blog-cms/blog-animations";
 import { AuthorCard } from "@/components/core/blog/blog-cms/author-card";
@@ -9,19 +9,20 @@ import RecentPostsSidebar from "@/components/core/blog/blog-cms/recent-posts-sid
 import { BlogClientProps } from "@/lib/interface/global.interface";
 import { unstable_cache } from "next/cache"
 
-const getPosts = unstable_cache(
-  async () => {
-    return prisma.post.findMany({
-      where: { status: "PUBLISHED" },
-      orderBy: { createdAt: "desc" },
-      include: { author: true, tags: true }
-    })
-  },
-  ["blog-posts"], // cache key
-  { revalidate: 60 } // seconds — revalidate every 60s
-)
-
 export default async function BlogPage({ avatar, profile }: BlogClientProps) {
+  
+  const getPosts = unstable_cache(
+    async () => {
+      return prisma.post.findMany({
+        where: { status: "PUBLISHED" },
+        orderBy: { createdAt: "desc" },
+        include: { author: true, tags: true }
+      })
+    },
+    ["blog-posts"], // cache key
+    { revalidate: 60 } // seconds — revalidate every 60s
+  )
+
   const posts = await getPosts()
 
   const enrichedPosts = posts.map(post => ({
@@ -80,6 +81,10 @@ export default async function BlogPage({ avatar, profile }: BlogClientProps) {
                     <div className="flex items-center gap-4 text-xs font-mono text-primary uppercase tracking-widest">
                       <Badge className="bg-primary/10 text-primary border-primary/20">Featured Entry</Badge>
                       <span>{new Date(featuredPost.createdAt).toLocaleDateString()}</span>
+                      <p className="flex items-center gap-1">
+                        <EyeIcon className="h-4 w-4" />
+                        <span>{featuredPost.views} views</span>
+                      </p>
                     </div>
                     <h2 className="text-4xl font-bold group-hover:text-primary transition-colors leading-tight">
                       {featuredPost.title}
