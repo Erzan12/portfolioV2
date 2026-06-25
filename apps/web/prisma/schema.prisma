@@ -177,3 +177,32 @@ model TestimonialFeedback {
 
   created_at      DateTime  @default(now())
 }
+
+model Visitor {
+  id            String     @id @default(cuid())
+  createdAt     DateTime   @default(now())
+  lastSeenAt    DateTime   @updatedAt
+  memorySummary String?    @db.Text
+  conversations Conversation[]
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  visitorId String
+  visitor Visitor  @relation(fields: [visitorId], references: [id])
+  createdAt DateTime @default(now())
+  messages  Message[]
+
+  @@index([visitorId])
+}
+
+model Message {
+  id              String  @id @default(cuid())
+  conversationId  String
+  conversation    Conversation  @relation(fields: [conversationId], references: [id])
+  role            String  // "user" | "assistant"
+  content         String  @db.Text
+  createdAt       DateTime  @default(now())
+
+  @@index([conversationId])
+}

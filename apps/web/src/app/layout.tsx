@@ -2,6 +2,7 @@ import ClientLayout from "@/components/core/client-layout";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { PersonaChat } from "@/components/core/personal_chat/persona-chat";
  
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
  
@@ -22,6 +23,8 @@ export default function RootLayout({
     <html lang="en" className={`font-sans ${geist.variable}`} suppressHydrationWarning>
       <body className="bg-white dark:bg-black text-black dark:text-white">
         <ClientLayout>{children}</ClientLayout>
+        {/* Global floating assistant */}
+        <PersonaChat />
       </body>
     </html>
   );
