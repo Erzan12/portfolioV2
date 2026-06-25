@@ -176,6 +176,11 @@ GITHUB_TOKEN=your_github_token_here
 - Supabase PostgreSQL - 0Auth with GitHub and Google
 - Resume added in about page
 
+## New addtions/features v2.0.0
+- Successfully integrated my first Agentic AI Personal Assistant (Project Persona) with my Portfolio
+- Persona answers are quick, reliable and will explained, it can even recall past conversations from visitors
+- Several bugs I have encountered though implementing Persona, but it will be taken action in no time
+
 ## Upcoming
 ### v2.0.0 - Agentic AI integration - Project Persona
 - Agentic AI Integration - Project Persona - Personal AI assistant
