@@ -78,9 +78,10 @@ export function PersonaChat() {
               "absolute bottom-20 right-0",
 
               "overflow-hidden",
+              "flex flex-col",
 
               "w-[390px]",
-              "max-h-[700px]",
+              "h-[700px]",
 
               "rounded-[2.5rem]",
 
@@ -106,7 +107,8 @@ export function PersonaChat() {
                 theme.gradient
               )}
             />
-            <div className="relative z-10 flex items-center justify-between px-5 py-4 border-b border-slate-200/20">
+            {/* <div className="relative z-10 flex items-center justify-between px-5 py-4 border-b border-slate-200/20"> */}
+            <div className="relative z-10 shrink-0 flex items-center justify-between px-5 py-4 border-b border-slate-200/20">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   {/* <div className="h-10 w-10 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center text-white">
@@ -151,7 +153,7 @@ export function PersonaChat() {
                 <X size={18} />
               </button>
             </div>
-            <div className="relative z-10 h-full">
+            <div className="relative z-10 flex-1 min-h-0">
               <PersonaAi theme={theme} />
             </div>
           </motion.div>
