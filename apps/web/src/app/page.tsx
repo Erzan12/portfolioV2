@@ -13,6 +13,7 @@ import TestimonialForm from "@/components/core/testimonies/testimonies-cms/testi
 import GuestLoginButton from "@/components/login/guest-login";
 import { prisma } from "@/lib/prisma/prisma";
 import { Suspense } from "react";
+import { PersonaChat } from "@/components/core/personal_chat/ai";
 
 // type Props = {
 //   searchParams: {
@@ -119,6 +120,7 @@ export default async function Home({
           </div>
         )}
       </section>
+      <PersonaChat />
     </main>
   )
 }
