@@ -1,5 +1,5 @@
-import { prisma } from "@/app/lib/prisma";
-import { getOrCreateConversation, getOrCreateVisitor } from "@/app/lib/visitor";
+import { prisma } from "@/lib/prisma/prisma";
+import { getOrCreateConversation, getOrCreateVisitor } from "@/lib/actions/visitor";
 
 export async function GET() {
     const visitor = await getOrCreateVisitor()
