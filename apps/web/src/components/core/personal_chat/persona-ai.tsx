@@ -4,8 +4,16 @@ import { useChat } from "@ai-sdk/react";
 import { useEffect, useState } from "react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { ArrowUp, Sparkles } from "lucide-react";
+import clsx from "clsx";
+import { routeThemeConfig } from "@/lib/constants/themes";
 
-export function PersonaAi() {
+type RouteTheme = typeof routeThemeConfig[keyof typeof routeThemeConfig];
+
+interface PersonaAiProps {
+  theme: RouteTheme;
+}
+
+export function PersonaAi({ theme }: PersonaAiProps) {
   const [initialMessages, setInitialMessages] = useState<
     UIMessage[] | undefined
   >(undefined);
@@ -28,15 +36,36 @@ export function PersonaAi() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!input.trim()) return;
-
-    sendMessage({
-      text: input,
-    });
-
+    sendMessage({ text: input });
     setInput("");
   };
+
+  const aiBubbleClass = clsx(
+    "max-w-[85%]",
+    "rounded-2xl",
+    "rounded-tl-md",
+    "border",
+    "border-slate-500/10",
+    "bg-slate-500/[0.03]",
+    "dark:bg-white/[0.02]",
+    "backdrop-blur-sm",
+    "px-4",
+    "py-3"
+  );
+
+  const userBubbleClass = clsx(
+    "max-w-[80%]",
+    "rounded-2xl",
+    "rounded-br-md",
+    "px-4",
+    "py-3",
+    "border border-slate-500/10",
+    "bg-white/70",
+    "dark:bg-slate-900/60",
+    "backdrop-blur-md",
+    theme.userBubble
+  );
 
   const suggestions = [
     "What tech stack do you use?",
@@ -47,69 +76,31 @@ export function PersonaAi() {
   ];
 
   return (
-    <div
-      className="
-        mx-auto
-        max-w-4xl
-        overflow-hidden
-        rounded-3xl
-        border
-        bg-background/70
-        backdrop-blur-xl
-        shadow-[0_8px_40px_rgba(0,0,0,0.08)]
-      "
-    >
-      {/* Header */}
-      {/* <div className="border-b px-6 py-5">
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="h-3 w-3 rounded-full bg-emerald-500" />
-
-            <div className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-30" />
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              AI Assistant - Persona
-            </h3>
-
-            <p className="text-xs text-muted-foreground">
-              Ask about Earl Jan Do's Projects, Architecture, Blogs and Experience
-            </p>
-          </div>
-        </div>
-      </div> */}
+    <div className="relative flex flex-col h-full overflow-hidden">
+      {/* Left accent bar — now safely contained by the relative flex parent */}
+      <div
+        className={clsx(
+          "absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl",
+          "bg-gradient-to-b",
+          theme.gradient
+        )}
+      />
 
       {/* Messages */}
-      <div
-        className="
-          flex
-          min-h-[500px]
-          max-h-[600px]
-          flex-col
-          gap-4
-          overflow-y-auto
-          p-6
-        "
-      >
+      <div className="flex-1 flex flex-col gap-4 overflow-y-auto p-6 pl-8 min-h-0">
         {messages.length === 0 && (
           <div className="flex flex-1 flex-col items-center justify-center">
             <div
-              className="
-                mb-6
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                bg-gradient-to-br
-                from-violet-500
-                to-blue-500
-                text-white
-              "
+              className={clsx(
+                "mb-6",
+                "flex h-14 w-14 items-center justify-center",
+                "rounded-2xl",
+                "border border-slate-500/10",
+                "bg-white/50 dark:bg-slate-900/40",
+                "backdrop-blur-md"
+              )}
             >
-              <Sparkles className="h-6 w-6" />
+              <Sparkles className="h-6 w-6 text-slate-700 dark:text-slate-300" />
             </div>
 
             <h3 className="mb-2 text-lg font-semibold">
@@ -117,7 +108,7 @@ export function PersonaAi() {
             </h3>
 
             <p className="mb-6 text-center text-sm text-muted-foreground">
-              Ask me about Earl's projects, experience,
+              Hi I'm Persona ask me about Earl's projects, experience,
               technologies, blogs or system design content.
             </p>
 
@@ -126,15 +117,17 @@ export function PersonaAi() {
                 <button
                   key={suggestion}
                   onClick={() => setInput(suggestion)}
-                  className="
-                    rounded-full
-                    border
-                    px-4
-                    py-2
-                    text-sm
-                    transition
-                    hover:bg-muted
-                  "
+                  className={clsx(
+                    "rounded-2xl",
+                    "border border-slate-500/10",
+                    "bg-slate-500/[0.03]",
+                    "dark:bg-white/[0.02]",
+                    "px-4 py-3",
+                    "text-sm",
+                    "transition-all duration-300",
+                    "hover:-translate-y-1",
+                    "hover:border-slate-400/20"
+                  )}
                 >
                   {suggestion}
                 </button>
@@ -154,55 +147,22 @@ export function PersonaAi() {
           return (
             <div
               key={message.id}
-              className={
-                isUser
-                  ? "flex justify-end"
-                  : "flex items-start gap-3"
-              }
+              className={isUser ? "flex justify-end" : "flex items-start gap-3"}
             >
               {!isUser && (
                 <div
                   className="
-                    flex
-                    h-9
-                    w-9
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-gradient-to-br
-                    from-blue-500
-                    to-violet-500
-                    text-white
+                    flex h-9 w-9 shrink-0 items-center justify-center
+                    rounded-xl border border-slate-500/10
+                    bg-white/50 dark:bg-slate-900/40
+                    backdrop-blur-md
                   "
                 >
-                  <Sparkles className="h-4 w-4" />
+                  <Sparkles className="h-4 w-4 text-slate-700 dark:text-slate-300" />
                 </div>
               )}
 
-              <div
-                className={
-                  isUser
-                    ? `
-                      max-w-[80%]
-                      rounded-2xl
-                      rounded-br-md
-                      bg-primary
-                      px-4
-                      py-3
-                      text-primary-foreground
-                    `
-                    : `
-                      max-w-[85%]
-                      rounded-2xl
-                      rounded-tl-md
-                      border
-                      bg-muted/40
-                      px-4
-                      py-3
-                    `
-                }
-              >
+              <div className={isUser ? userBubbleClass : aiBubbleClass}>
                 <p className="whitespace-pre-wrap text-sm leading-relaxed">
                   {text}
                 </p>
@@ -220,63 +180,27 @@ export function PersonaAi() {
           </div>
         )}
       </div>
-
-      {/* Input */}
-      <form
-        onSubmit={handleSubmit}
-        className="
-          border-t
-          bg-background/60
-          p-4
-        "
-      >
-        <div
-          className="
-            flex
-            items-center
-            gap-2
-            rounded-2xl
-            border
-            bg-background
-            px-3
-            py-2
-          "
+      {/* Form — OUTSIDE the scrollable div, sibling to it */}
+        <form
+            onSubmit={handleSubmit}
+            className="shrink-0 border-t bg-background/60 p-4 "
         >
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about Earl's projects..."
-            className="
-              flex-1
-              border-none
-              bg-transparent
-              text-sm
-              outline-none
-            "
-          />
-
-          <button
-            type="submit"
-            disabled={!input.trim() || status === "streaming"}
-            className="
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-              rounded-xl
-              bg-primary
-              text-white
-              transition
-              hover:opacity-90
-              disabled:cursor-not-allowed
-              disabled:opacity-50
-            "
-          >
+        <div className={"flex items-center gap-2 rounded-2xl border bg-background px-3 py-2"}>
+            <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask about Earl's projects..."
+                className="flex-1 border-none bg-transparent text-sm outline-none"
+            />
+            <button
+                type="submit"
+                disabled={!input.trim() || status === "streaming"}
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-900 text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            >
             <ArrowUp className="h-4 w-4" />
-          </button>
+            </button>
         </div>
-      </form>
+        </form>
     </div>
   );
 }
