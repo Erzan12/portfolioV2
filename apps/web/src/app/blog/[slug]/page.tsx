@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import { TableOfContents } from "@/components/core/blog/blog-cms/table-of-contents"
 import Image from "next/image"
 import RecentPostsSidebar from "@/components/core/blog/blog-cms/recent-posts-sidebar"
+import { EyeIcon } from "lucide-react"
+import { ViewTracker } from "@/components/core/blog/blog-cms/viewTracker"
 
 export default async function BlogPostPage({ 
   params,
@@ -47,6 +49,11 @@ export default async function BlogPostPage({
                 <div className="text-sm">
                   <p className="font-bold text-foreground">{post.author.name}</p>
                   <p>{new Date(post.createdAt).toLocaleDateString()} · 5 min read</p>
+                  <p className="flex items-center gap-1">
+                    <EyeIcon className="h-4 w-4" />
+                    <span>{post.views}</span>
+                  </p>
+                  <ViewTracker slug={post.slug} />
                 </div>
               </div>
             </header>
