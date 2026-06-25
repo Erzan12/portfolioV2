@@ -49,7 +49,7 @@ export function PersonaChat() {
   return (
     <div
       ref={containerRef}
-      className="fixed bottom-8 right-8 z-[999]"
+      className="fixed bottom-4 right-4 z-[999]"
     >
       {/* CHAT WINDOW */}
 
@@ -80,10 +80,14 @@ export function PersonaChat() {
               "overflow-hidden",
               "flex flex-col",
 
-              "w-[390px]",
-              "h-[700px]",
+               // ← responsive width and height
+              "w-[calc(100vw-2rem)]",   // full viewport minus margins on mobile
+              "max-w-[390px]",          // caps at 390px on larger screens
 
-              "rounded-[2.5rem]",
+              "h-[80vh]",               // relative height on mobile
+              "max-h-[650px]",          // caps at 650px on larger screens
+
+              "rounded-[2rem]",         // slightly smaller radius on mobile
 
               "border",
               "border-slate-500/10",
