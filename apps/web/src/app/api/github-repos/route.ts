@@ -17,12 +17,15 @@ export async function GET() {
       id: repo.id,
       name: repo.name,
       description: repo.description,
+      topics: repo.topics,
       stars: repo.stargazers_count,
       forks: repo.forks_count,
       language: repo.language,
       pushed_at: repo.pushed_at,
       html_url: repo.html_url,
     }));
+
+  // console.log(repos);
 
   return NextResponse.json({ repos });
 }
