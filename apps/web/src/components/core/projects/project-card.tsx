@@ -8,6 +8,7 @@ type Props = {
   title: string;
   description: string;
   stack: string[];
+  topic: string[];
   github: string;
   repo: string;
 };
@@ -22,7 +23,7 @@ const item = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function ProjectCard({ title, description, stack, repo, github }: Props) {
+export default function ProjectCard({ title, description, stack, topic, repo, github }: Props) {
   const { repos } = useGithubRepos();
 
   const currentRepo = repos?.find((r) => r.name === repo);
@@ -70,7 +71,7 @@ export default function ProjectCard({ title, description, stack, repo, github }:
         viewport={{ once: true, amount: 0.2 }}
         variants={container}
       >
-        {stack.map((tech) => (
+        {topic.map((tech) => (
           <motion.span
             key={tech}
             variants={item}
@@ -94,8 +95,8 @@ export default function ProjectCard({ title, description, stack, repo, github }:
         View Repository
         {currentRepo && (
           <>
-            <span>⭐ {currentRepo.stargazers_count}</span>
-            <span>🍴 {currentRepo.forks_count}</span>
+            <span>⭐ {currentRepo.stars}</span>
+            <span>🍴 {currentRepo.forks}</span>
           </>
         )}
       </a>
