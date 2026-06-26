@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const res = await fetch("https://api.github.com/users/Erzan12/repos", {
-    cache: "no-store",
+    // cache: "no-store",
+    // add 1 hour cache for github projects
+    next: {
+      revalidate: 3600, 
+    }
   });
 
   const data = await res.json();
