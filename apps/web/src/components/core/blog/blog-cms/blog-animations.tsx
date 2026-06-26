@@ -1,10 +1,8 @@
 "use client"
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, EyeIcon } from "lucide-react";
 import { getReadingTime } from "@/lib/helper/get-reading-time.helper"; 
-import { Post } from "@/lib/types/posts";
-import { AuthorCard } from "./author-card";
 import { BlogListAnimationProps } from "@/lib/types/blog-list-animation";
 
 export function BlogListAnimation({ posts }: BlogListAnimationProps) {
@@ -24,6 +22,10 @@ export function BlogListAnimation({ posts }: BlogListAnimationProps) {
                 <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                 <span className="w-1 h-1 rounded-full bg-primary/40" />
                 <span className="flex items-center gap-1"><Clock className="w-3 h-3"/> {getReadingTime(post.content)}</span>
+                <p className="flex items-center gap-1">
+                  <EyeIcon className="h-4 w-4" />
+                  <span>{post.views} views</span>
+                </p>
               </div>
               {/* <AuthorCard
                 name={post.author.name ?? "Unknown"}
