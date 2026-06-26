@@ -19,9 +19,20 @@ export default function ProjectsPage() {
   //search handler
   const [ searchQuery, setSearchQuery ] = useState(""); // search state
   //for category
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory ] = useState("All");
+  //for topic
+  // const [activeTopic, setActiveTopic] = useState("All");
   //define category for sort
   const CATEGORIES = ["All", "React", "NextJS", "TypeScript", "PHP", "Laravel", "HTML"];
+  
+  // const TOPICS = [
+  //   "All",
+  //   ...Array.from(
+  //     new Set(
+  //       repos.flatMap((repo) => repo.topics || [])
+  //     )
+  //   ).sort(),
+  // ];
 
   const techColors: Record<string, string> = {
       React: "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100",
@@ -53,6 +64,12 @@ export default function ProjectsPage() {
           activeCategory === "All" || 
           repo.language === activeCategory || 
           repo.name.toLowerCase().includes(activeCategory.toLowerCase());
+
+        //topic filter
+        // const topicMatch = 
+        //   activeTopic === "All" || 
+        //   repo.language === activeTopic || 
+        //   repo.name.toLowerCase().includes(activeTopic.toLowerCase());
 
         //search Filter
         const searchTerm = searchQuery.toLowerCase();
@@ -157,6 +174,33 @@ export default function ProjectsPage() {
           ))}
         </div>
 
+        {/* Topic base */}
+        {/* <div className="flex flex-wrap gap-2 mb-8">
+          {TOPICS.map((topic) => (
+            <button
+              key={topic}
+              onClick={() => {
+                setActiveTopic(topic);
+                setCurrentPage(1);
+              }}
+              className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                activeTopic === topic
+                  ? "text-white"
+                  : "text-muted-foreground hover:text-foreground bg-secondary/50"
+              }`}
+            >
+              {activeTopic === topic && (
+                <motion.div
+                  layoutId="activeTopic"
+                  className="absolute inset-0 bg-primary rounded-full -z-10"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {topic}
+            </button>
+          ))}
+        </div> */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[400px]">
           {loading ? (
             Array.from({ length: 9 }).map((_, i) => (
@@ -174,9 +218,10 @@ export default function ProjectsPage() {
                 <SystemCard
                   title={repo.name}
                   description={repo.description ?? "No description provided"}
-                  stars={repo.stargazers_count}
-                  forks={repo.forks_count}
+                  stars={repo.stars}
+                  forks={repo.forks}
                   language={repo.language}
+                  topics={repo.topics}
                   last_update={repo.pushed_at}
                   link={repo.html_url}
                   showArchitectureLink={false}

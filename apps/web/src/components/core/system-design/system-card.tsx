@@ -40,7 +40,7 @@ export default function SystemCard({
   title,
   description,
   stack,
-  // topics,
+  topics,
   language,
   stars,
   forks,
@@ -87,7 +87,7 @@ export default function SystemCard({
             initial="hidden" 
             animate="visible"
           >
-            {stack?.map((tech, i) => (
+            {topics?.map((tech, i) => (
               <motion.div 
                 key={tech} 
                 variants={item}
