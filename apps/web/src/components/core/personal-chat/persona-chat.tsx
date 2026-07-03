@@ -15,12 +15,40 @@ import { useRouteTheme } from "@/hooks/useRouteTheme";
 
 export function PersonaChat() {
   const [open, setOpen] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(false);
 
   const theme = useRouteTheme();
 
   const pathname = usePathname();
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // greeting
+  useEffect(() => {
+    let showTimeout: NodeJS.Timeout;
+    let hideTimeout: NodeJS.Timeout;
+    let interval: NodeJS.Timeout;
+
+    const showBubble = () => {
+      if (open) return;
+
+      setShowGreeting(true);
+
+      hideTimeout = setTimeout(() => {
+        setShowGreeting(false);
+      }, 15000);
+    };
+
+    showTimeout = setTimeout(showBubble, 3000);
+
+    interval = setInterval(showBubble, 40000);
+
+    return () => {
+      clearTimeout(showTimeout);
+      clearTimeout(hideTimeout);
+      clearInterval(interval);
+    };
+  }, [open]);
 
   useEffect(() => {
     setOpen(false);
@@ -176,8 +204,71 @@ export function PersonaChat() {
             theme.gradient
           )}
         />
+        <AnimatePresence>
+          {showGreeting && !open && (
+            <motion.div
+              initial={{ opacity: 0, x: 20, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 10, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="
+                absolute
+                right-20
+                top-1/2
+                -translate-y-1/2
+
+                whitespace-nowrap
+
+                rounded-2xl
+                bg-white/90
+                dark:bg-slate-900/90
+
+                backdrop-blur-xl
+
+                border border-slate-500/10
+
+                shadow-xl
+
+                px-4
+                py-3
+              "
+            >
+              <p className="text-sm font-medium">
+                👋 Hey there!
+              </p>
+
+              <p className="text-xs text-muted-foreground mt-1">
+                Want to know more about Earl?
+              </p>
+
+              {/* small arrow */}
+              <div
+                className="
+                  absolute
+                  right-[-6px]
+                  top-1/2
+                  -translate-y-1/2
+
+                  h-3
+                  w-3
+                  rotate-45
+
+                  bg-white
+                  dark:bg-slate-900
+
+                  border-r
+                  border-b
+                  border-slate-500/10
+                "
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <motion.button
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            setOpen(!open);
+            setShowGreeting(false)
+          }}
           className="
             relative
             h-16
