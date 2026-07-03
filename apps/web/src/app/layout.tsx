@@ -3,7 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { PersonaChat } from "@/components/core/personal_chat/persona-chat";
- 
+import { Analytics } from '@vercel/analytics/react'; 
+
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
  
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
         <ClientLayout>{children}</ClientLayout>
         {/* Global floating assistant */}
         <PersonaChat />
+        <Analytics />
       </body>
     </html>
   );
