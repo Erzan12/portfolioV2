@@ -23,6 +23,17 @@ export function PersonaChat() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const GREETINGS = [
+    "👋 Hey there! Want to know more about Earl?",
+    "✨ Ask me anything about Earl's projects.",
+    "🚀 Curious about his tech stack?",
+    "💼 Looking for a frontend/backend developer? or Fullstack dev?",
+    "☕ Let's chat!",
+    "😉 Looking great today! Let's chat!"
+  ]
+
+  const [greeting, setGreeting] = useState(GREETINGS[0]);
+
   // greeting
   useEffect(() => {
     let showTimeout: NodeJS.Timeout;
@@ -31,6 +42,15 @@ export function PersonaChat() {
 
     const showBubble = () => {
       if (open) return;
+
+      const alreadyOpened =
+        sessionStorage.getItem("persona-chat-opened");
+
+      if (alreadyOpened) return;
+
+      setGreeting(
+        GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
+      );
 
       setShowGreeting(true);
 
@@ -205,7 +225,7 @@ export function PersonaChat() {
           )}
         />
         <AnimatePresence>
-          {showGreeting && !open && (
+          {showGreeting  && !open && (
             <motion.div
               initial={{ opacity: 0, x: 20, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -217,8 +237,6 @@ export function PersonaChat() {
                 top-1/2
                 -translate-y-1/2
 
-                whitespace-nowrap
-
                 rounded-2xl
                 bg-white/90
                 dark:bg-slate-900/90
@@ -229,16 +247,14 @@ export function PersonaChat() {
 
                 shadow-xl
 
-                px-4
-                py-3
+                px-4 py-3
+
+                w-max
+                max-w-[18rem]
               "
             >
-              <p className="text-sm font-medium">
-                👋 Hey there!
-              </p>
-
-              <p className="text-xs text-muted-foreground mt-1">
-                Want to know more about Earl?
+              <p className="text-sm font-medium leading-relaxed">
+                {greeting}
               </p>
 
               {/* small arrow */}
@@ -267,7 +283,9 @@ export function PersonaChat() {
         <motion.button
           onClick={() => {
             setOpen(!open);
-            setShowGreeting(false)
+            setShowGreeting(false);
+
+            sessionStorage.setItem("persona-chat-opened", "true");
           }}
           className="
             relative
