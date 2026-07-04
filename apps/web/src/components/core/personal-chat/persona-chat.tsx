@@ -100,15 +100,9 @@ export function PersonaChat() {
       className="fixed bottom-4 right-4 z-[999]"
     >
       {/* CHAT WINDOW */}
-
       <AnimatePresence>
-        {open && (
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-              scale: 0.95,
-            }}
+            initial={false}
             animate={{
               opacity: 1,
               y: 0,
@@ -121,6 +115,10 @@ export function PersonaChat() {
             }}
             transition={{
               duration: 0.2,
+            }}
+            style={{
+              pointerEvents: open ? "auto" : "none",
+              visibility: open ? "visible" : "hidden",
             }}
             className={clsx(
               "absolute bottom-20 right-0",
@@ -205,11 +203,13 @@ export function PersonaChat() {
                 <X size={18} />
               </button>
             </div>
-            <div className="relative z-10 flex-1 min-h-0">
+            <div className={clsx(
+              "relative z-10 flex-1 min-h-0",
+              )}
+            >
               <PersonaAi theme={theme} />
             </div>
           </motion.div>
-        )}
       </AnimatePresence>
 
       {/* Route Theme Glow */}
