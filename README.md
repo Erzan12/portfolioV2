@@ -187,6 +187,8 @@ GITHUB_TOKEN=your_github_token_here
 - Platform analytics
 - Schedule call/interview
 - More quality of life changes UI/UX and content
+- Random welcome messages for visitors to encourage chatting with Persona
+- Persistent convo's after closing the chat bubble and opened again
 
 ### 📦 Releases
 ```bash
