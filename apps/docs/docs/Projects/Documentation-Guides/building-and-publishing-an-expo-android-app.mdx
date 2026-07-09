@@ -1,0 +1,259 @@
+---
+title: 📲 Building and Publishing an Expo Android App
+description: A step-by-step guide for building APKs and Android App Bundles (AAB) using Expo Application Services (EAS).
+---
+
+# 📲 Building and Publishing an Expo Android App
+
+> **Note**
+>
+> The legacy `expo build:android` command has been retired. The recommended way to build Android applications is by using **Expo Application Services (EAS Build)**.
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- Node.js installed
+- An Expo project
+- An Expo account
+- A Google Play Developer account (for publishing)
+
+---
+
+## 1. Install the EAS CLI
+
+Install the EAS CLI globally:
+
+```bash
+npm install -g eas-cli
+```
+
+Or use it without installing globally:
+
+```bash
+npx eas-cli --version
+```
+
+---
+
+## 2. Log in to Your Expo Account
+
+Authenticate with your Expo account:
+
+```bash
+eas login
+```
+
+If you don't have an account yet:
+
+```bash
+eas register
+```
+
+---
+
+## 3. Configure Your Project
+
+From your project root, initialize EAS Build:
+
+```bash
+eas build:configure
+```
+
+This command creates an `eas.json` configuration file.
+
+---
+
+## 4. Configure `eas.json`
+
+A typical configuration looks like this:
+
+```json
+{
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  }
+}
+```
+
+### Build Profiles
+
+| Profile | Purpose | Output |
+|---------|---------|--------|
+| `preview` | Internal testing | APK |
+| `production` | Google Play release | AAB |
+
+---
+
+## 5. Build an APK (Testing)
+
+Generate an APK for internal testing:
+
+```bash
+eas build --platform android --profile preview
+```
+
+### What happens?
+
+- The build runs on Expo's cloud servers.
+- Once completed, Expo provides a download link for your APK.
+- Install the APK directly on Android devices for testing.
+
+---
+
+## 6. Build an Android App Bundle (Play Store)
+
+Google Play requires an **Android App Bundle (`.aab`)** for app submissions.
+
+Build the production bundle:
+
+```bash
+eas build --platform android --profile production
+```
+
+After the build finishes, you'll receive a download link for the generated `.aab` file.
+
+---
+
+# Publishing to Google Play
+
+To publish your application:
+
+1. Sign in to the **Google Play Console**.
+2. Create a new application.
+3. Complete all required app information.
+4. Upload the generated `.aab` file.
+5. Submit the release for review.
+
+> **Note**
+>
+> A Google Play Developer account requires a one-time registration fee.
+
+---
+
+# Development vs Distribution
+
+| Command / File | Purpose |
+|---------------|---------|
+| `npx expo start` | Runs the app locally using Expo Go or a Development Build |
+| APK | Installable Android package for testing |
+| AAB | Android App Bundle used for publishing to Google Play |
+
+---
+
+# Verify Your Expo SDK Version
+
+Before creating production builds, verify your Expo SDK version.
+
+For example:
+
+```json
+{
+  "expo": "~57.0.4"
+}
+```
+
+If your SDK version is outdated or unsupported, EAS Build may fail or produce unexpected issues.
+
+You can check your Expo SDK with:
+
+```bash
+npx expo --version
+```
+
+Or inspect your project's `package.json`.
+
+---
+
+# Recommended Workflow
+
+```text
+Develop App
+      │
+      ▼
+npx expo start
+      │
+      ▼
+Test Features
+      │
+      ▼
+eas build --platform android --profile preview
+      │
+      ▼
+Install APK on Device
+      │
+      ▼
+eas build --platform android --profile production
+      │
+      ▼
+Download .aab
+      │
+      ▼
+Upload to Google Play Console
+      │
+      ▼
+Publish 🎉
+```
+
+---
+
+# Common Commands
+
+### Install EAS CLI
+
+```bash
+npm install -g eas-cli
+```
+
+### Log in
+
+```bash
+eas login
+```
+
+### Configure EAS
+
+```bash
+eas build:configure
+```
+
+### Build APK
+
+```bash
+eas build --platform android --profile preview
+```
+
+### Build AAB
+
+```bash
+eas build --platform android --profile production
+```
+
+### Start Development Server
+
+```bash
+npx expo start
+```
+
+---
+
+# Summary
+
+- Use **EAS Build** for all Android builds.
+- Use the **preview** profile to generate APKs for testing.
+- Use the **production** profile to generate an AAB for Google Play.
+- Configure your project with `eas build:configure`.
+- Verify your Expo SDK is supported before creating production builds.
+- Publish the generated `.aab` through the Google Play Console.
+
+Following this workflow ensures your Expo application is built using the current recommended approach for Android development and distribution.

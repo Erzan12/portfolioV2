@@ -105,6 +105,7 @@ const sidebars = {
           label: '📝 Documentation Guides',
           items: [
             'Projects/Documentation-Guides/user-management-access-control-flow',
+            'Projects/Documentation-Guides/building-and-publishing-an-expo-android-app',
             'Projects/Documentation-Guides/understanding-typescript-errors-in-ai-sdk'
           ]
         }
