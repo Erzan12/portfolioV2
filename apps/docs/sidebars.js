@@ -106,7 +106,8 @@ const sidebars = {
           items: [
             'Projects/Documentation-Guides/user-management-access-control-flow',
             'Projects/Documentation-Guides/building-and-publishing-an-expo-android-app',
-            'Projects/Documentation-Guides/understanding-typescript-errors-in-ai-sdk'
+            'Projects/Documentation-Guides/understanding-typescript-errors-in-ai-sdk',
+            'Projects/Documentation-Guides/laravel-models-controllers-namespaces-imports-and-eloquent-relationships'
           ]
         }
       ],
