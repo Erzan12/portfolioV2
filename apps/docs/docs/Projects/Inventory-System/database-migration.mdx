@@ -1,32 +1,32 @@
 ---
 id: database-migration
 title: Database Migration
-sidebar_label: ✈️ Database Migration
+sidebar_label: Database Migration
 ---
 
-# 🔄 Database Migration Plan (Prisma → Drizzle / Supabase)
+# Database Migration Plan (Prisma → Drizzle / Supabase)
 
-## 🎯 Goal
+## Goal
 
 Enable a **non-breaking migration** from Prisma ORM to a more flexible stack such as **Drizzle ORM** or **Supabase**, without rewriting your API layer.
 
 ---
 
-## 🧩 Migration Strategy
+## Migration Strategy
 
 ### 1. Introduce Repository Abstraction Layer
 
 Instead of calling Prisma directly:
 
 ```ts
-// ❌ avoid
+// avoid
 this.prisma.product.findMany()
 ```
 
 Use a repository pattern:
 
 ```ts
-// ✅ abstraction
+// abstraction
 this.productRepository.findAll()
 ```
 
@@ -34,7 +34,7 @@ this.productRepository.findAll()
 
 ---
 
-### 2. 📐 Architecture Flow
+### 2. Architecture Flow
 
 ```mermaid
 flowchart LR
@@ -53,7 +53,7 @@ flowchart LR
 
 ---
 
-### 3. 🔀 Dual-ORM Transition Phase
+### 3. Dual-ORM Transition Phase
 During migration:
 
 ```mermaid
@@ -81,7 +81,7 @@ sequenceDiagram
 
 ---
 
-### 4. ✈️ Migration Steps
+### 4. Migration Steps
 
 1. Add repository interfaces  
 2. Wrap all Prisma queries  
@@ -99,7 +99,7 @@ DB_PROVIDER=drizzle
 
 ---
 
-## ⚠️ Key Considerations
+## Key Considerations
 - Keep DTOs stable (no API breaking changes)
 - Avoid Prisma-specific types leaking into services
 - Ensure migrations are replicated in both systems
@@ -107,14 +107,14 @@ DB_PROVIDER=drizzle
 
 ---
 
-## 🔐 Authentication Architecture (Cookie-Based Sessions)
+## Authentication Architecture (Cookie-Based Sessions)
 
-### 🎯 Goal
+### Goal
 Implement secure, scalable authentication using **HTTP-only cookies + session storage**
 
 ---
 
-### 🧩 Auth Flow
+### Auth Flow
 
 ```mermaid
 sequenceDiagram
@@ -144,7 +144,7 @@ sequenceDiagram
 
 ---
 
-## 🧩 Architecture Overview
+## Architecture Overview
 
 ```mermaid
 flowchart LR
@@ -162,7 +162,7 @@ flowchart LR
 
 ---
 
-## 🔑 Key Decisions
+## Key Decisions
 Why Cookies over JWT?
 - ✅ Automatic browser handling
 - ✅ Safer against XSS (httpOnly)
@@ -182,9 +182,9 @@ Why Cookies over JWT?
 
 ---
 
-## 🧩 Session Store Options
+## Session Store Options
 - Redis (recommended for scaling)
 - Database (simpler, slower)
 - In-memory (dev only)
 
-🏷️ Semantic Versioning Strategy (Per Phase)
+ Semantic Versioning Strategy (Per Phase)

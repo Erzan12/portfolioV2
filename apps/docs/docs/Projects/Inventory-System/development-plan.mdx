@@ -1,19 +1,19 @@
 ---
 id: development-plan
 title: Inventory Management System Architecture
-sidebar_label: 🛒 Marketplace Management and Inventory System
+sidebar_label: Marketplace Management and Inventory System
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# 🧱 Marketplace Management and Inventory System — Architecture & Development Plan
+# Marketplace Management and Inventory System — Architecture & Development Plan
 
-## 📌 Overview
+## Overview
 
 This project transitions a frontend built on a Shopify template into a fully custom, multi-tenant **Marketplace Management and Inventory System**, startup name will be ShopStack.
 
-### 🎯 Goals
+### Goals
 
 - Own the **data layer**
 - Control **business logic**
@@ -24,7 +24,7 @@ This project transitions a frontend built on a Shopify template into a fully cus
 
 # API STRUCTURE (FOR DOCS)
 
-🔐 Auth Module
+ Auth Module
 ```bash
 POST   /api/auth/register
 POST   /api/auth/login
@@ -33,7 +33,7 @@ GET    /api/auth/me
 POST   /api/auth/refresh
 ```
 
-👤 User Module
+ User Module
 ```bash
 GET    /api/users/me
 PATCH  /api/users/me
@@ -44,7 +44,7 @@ PATCH  /api/users/:id       (admin)
 DELETE /api/users/:id       (admin)
 ```
 
-🛠️ Admin Module
+ Admin Module
 ```bash
 GET    /api/admin/dashboard
 
@@ -61,7 +61,7 @@ GET    /api/admin/analytics/overview
 GET    /api/admin/logs
 ```
 
-🏪 Store Module (important)
+ Store Module (important)
 ```bash
 POST   /api/stores
 GET    /api/stores
@@ -76,7 +76,7 @@ PATCH  /api/stores/:id/members/:userId
 DELETE /api/stores/:id/members/:userId
 ```
 
-📦 Product Module (Scoped to Store)
+ Product Module (Scoped to Store)
 ```bash
 POST   /api/stores/:storeId/products
 GET    /api/stores/:storeId/products
@@ -87,7 +87,7 @@ DELETE /api/products/:id
 GET    /api/products/reorder-recommendations
 ```
 
-🗂️ Category Module
+ Category Module
 ```bash
 POST   /api/categories
 GET    /api/categories
@@ -96,7 +96,7 @@ PATCH  /api/categories/:id
 DELETE /api/categories/:id
 ```
 
-📊 Inventory Module (NEW)
+ Inventory Module (NEW)
 ```bash
 GET    /api/stores/:storeId/inventory
 PATCH  /api/stores/:storeId/inventory/:productId
@@ -105,20 +105,20 @@ POST   /api/inventory/adjust
 GET    /api/inventory/history
 ```
 
-🛒 Cart Module (FIXED STRUCTURE)
+ Cart Module (FIXED STRUCTURE)
 ```bash
 GET    /api/cart
 POST   /api/cart
 PATCH  /api/cart/:itemId
 DELETE /api/cart/:itemId
 
-👉 Remove:
+ Remove:
 PATCH /api/orders
 DELETE /api/orders
 POST  /api/orders/cart
 ```
 
-🧾 Order Module
+ Order Module
 ```bash
 POST   /api/orders/checkout
 GET    /api/orders
@@ -131,16 +131,16 @@ GET    /api/orders/product/:productId/history
 GET    /api/orders/sales-trends
 ```
 
-🧾 Invoice Module
+ Invoice Module
 ```bash
 GET    /api/invoice/:orderId
-📊 Analytics Module (FIX PATH)
+ Analytics Module (FIX PATH)
 GET    /api/analytics/admin-inventory
 GET    /api/analytics/top-products
 GET    /api/analytics/sales
 ```
 
-🌐 Public Storefront (NEW 🔥)
+ Public Storefront (NEW)
 ```bash
 GET /api/public/stores
 GET /api/public/stores/:id
@@ -149,7 +149,7 @@ GET /api/public/products
 GET /api/public/products/:id
 ```
 
-⭐ Optional (Advanced Features)
+ Optional (Advanced Features)
 ```bash
 POST /api/products/:id/reviews
 GET  /api/products/:id/reviews
@@ -157,7 +157,7 @@ GET  /api/products/:id/reviews
 GET  /api/search/products?q=shoes
 ```
 
-🧱 FINAL CLEANUP NOTES
+ FINAL CLEANUP NOTES
 ```bash
 🚨 Rename / Fix
 ❌ /api/api/analytics/... → /api/analytics/...
@@ -167,18 +167,18 @@ GET  /api/search/products?q=shoes
 
 ---
 
-# 🗺️ Development Phases
+# Development Phases
 
 ---
 
-## Phase 1 — 👷‍♂️ Infrastructure & Backend Core
+## Phase 1 — Infrastructure & Backend Core
 
-### 🎯 Goal
+### Goal
 Establish backend as the **source of truth**
 
 ---
 
-### 🧩 Database Schema (Prisma)
+### Database Schema (Prisma)
 
 ```mermaid
 erDiagram
@@ -222,7 +222,7 @@ erDiagram
 
 ---
 
-### 🔄 Sequence Flow
+### Sequence Flow
 
 ```mermaid
 sequenceDiagram
@@ -241,7 +241,7 @@ sequenceDiagram
 
 ---
 
-### 🧱 Architecture Flow
+### Architecture Flow
 
 ```mermaid
 
@@ -252,12 +252,12 @@ flowchart LR
 
 ---
 
-## Phase 2 — ⛓️‍💥 Frontend Decoupling
+## Phase 2 — Frontend Decoupling
 
-### 🎯 Goal
+### Goal
 Replace Shopify dependencies with internal API
 
-### 🔄 Data Fetching Flow
+### Data Fetching Flow
 
 ```mermaid
 sequenceDiagram
@@ -276,7 +276,7 @@ sequenceDiagram
 
 ---
 
-### 🔧 Key Changes
+### Key Changes
 
 - Replace use-shopify → **custom hooks**
 - Use React Query
@@ -286,15 +286,15 @@ sequenceDiagram
 NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
-## Phase 3 — 🤝 Multi-Tenancy & Store System
+## Phase 3 — Multi-Tenancy & Store System
 
-### 🎯 Goal
+### Goal
 
 Support **multiple** independent stores
 
 ---
 
-### 🧩 Store Routing
+### Store Routing
 
 ```mermaid
 flowchart TD
@@ -309,7 +309,7 @@ flowchart TD
 
 ---
 
-### 🔄 Auth + Store Flow
+### Auth + Store Flow
 
 ```mermaid
 sequenceDiagram
@@ -333,7 +333,7 @@ sequenceDiagram
 
 ---
 
-## Phase 4 — 👨‍💻 DevOps & Scalability
+## Phase 4 — DevOps & Scalability
 
 ```mermaid
 flowchart TD
@@ -346,7 +346,7 @@ flowchart TD
 
 ---
 
-### 🧩 Migration Strategy in the future
+### Migration Strategy in the future
 
 - Abstract service layer
 - Replace ORM without breaking API:
@@ -354,7 +354,7 @@ flowchart TD
 
 ---
 
-### 🧱 Monorepo Architecture (Turborepo)
+### Monorepo Architecture (Turborepo)
 
 ```mermaid
 flowchart TD
@@ -382,7 +382,7 @@ flowchart TD
 
 ---
 
-## 📁 Suggested Structure
+## Suggested Structure
 
 ```bash
 apps/
@@ -397,7 +397,7 @@ packages/
 
 ---
 
-## 🔁 System-Wide Data Flow
+## System-Wide Data Flow
 
 ```mermaid
 sequenceDiagram
@@ -416,7 +416,7 @@ sequenceDiagram
 
 ---
 
-## 🆚 Shopify vs Custom System
+## Shopify vs Custom System
 
 | Feature         | Shopify Template     | Custom System   |
 |-----------------|----------------------|-----------------|
@@ -428,7 +428,7 @@ sequenceDiagram
 
 ---
 
-## 🧠 Design Principles
+## Design Principles
 - Decoupled Architecture
 - Interface Stability
 - Scalability-first mindset
@@ -436,13 +436,13 @@ sequenceDiagram
 
 ---
 
-## 🚀 Future Enhancements
+## Future Enhancements
 - Role-based access control
 - Order management system
 - Analytics dashboard
 - Redis caching
 - Event-driven architecture (webhooks)
-### 🛍️ Missing marketplace-level features (future)
+### Missing marketplace-level features (future)
 Not required now, but needed in future:
 - Order per store split (important for multi-vendor)
 - Payment table
