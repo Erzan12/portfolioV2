@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Erzan Engineering Docs',
-  tagline: 'Architecture, systems, and engineering behind my projects',
+  title: 'Erzan Documentation Platform',
+  tagline: 'A collective documentation platform about my developments and projects with added guides that intended to hem',
   favicon: 'img/favicon-light.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -99,7 +99,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: '📖 Documentation',
+            label: 'Docs',
           },
           // {
           //   type: 'docSideBar',
@@ -109,7 +109,7 @@ const config = {
           // },
           {
             to: '/blog', 
-            label: '📝 Blog', 
+            label: 'Blog', 
             position: 'left'
           },
           {
