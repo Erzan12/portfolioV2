@@ -2,7 +2,7 @@
 
 All notable changes to **PortfolioV2** are documented in this file.
 
-## [2.0.0] – 2026-07-xx
+## [2.0.0] – 2026-10-05
 
 > **Agentic AI Ecosystem, Analytics & Platform Enhancements**
 
@@ -75,6 +75,10 @@ All notable changes to **PortfolioV2** are documented in this file.
 
 - Added one-hour GitHub Projects API caching (#248, #249)
 - Reduced unnecessary GitHub API queries through project data caching
+
+### Upcoming 2.5.0 update
+
+- Redesign and Update Portfolio Platform to Neo Brutalism Style
 
 ---
 
