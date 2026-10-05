@@ -1,11 +1,11 @@
-import ClientLayout from "@/components/core/client-layout";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import { PersonaChat } from "@/components/core/personal-chat/persona-chat";
-import { Analytics } from '@vercel/analytics/react'; 
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+import { Analytics } from '@vercel/analytics/react';
+import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import "../app/globals.css";
+import { Nav } from "@/components/nav";
+// import Navbar from "@/components/core/navbar/navbar";
  
 export const metadata: Metadata = {
   title: "Erzan | Full Stack Developer",
@@ -14,17 +14,20 @@ export const metadata: Metadata = {
     icon: "/favicon-light.ico",
   },
 };
+
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
  
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const themeInit = `try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`font-sans ${geist.variable}`} suppressHydrationWarning>
-      <body className="bg-white dark:bg-black text-black dark:text-white">
-        <ClientLayout>{children}</ClientLayout>
-        {/* Global floating assistant */}
+    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${jetbrains.variable}`}>
+      <head><script dangerouslySetInnerHTML={{ __html: themeInit }} /></head>
+      <body>
+        {/* <Navbar /> */}
+        <Nav />
+        {children}
         <PersonaChat />
         <Analytics />
       </body>
