@@ -1,9 +1,9 @@
 // Temporary route (/styleguide) to check every token and component in both themes. Delete before launch.
 
-import { Button } from "@/components/button";
-import { LedgerRow } from "@/components/ledgerrow";
-import { Panel } from "@/components/panel";
-import { Stamp, Tag } from "@/components/stamp";
+import { Button } from "@/components/brut/button";
+import { LedgerRow } from "@/components/brut/ledgerrow";
+import { Panel } from "@/components/brut/panel";
+import { Stamp, Tag } from "@/components/brut/stamp";
 
 const swatches = ["paper", "surface", "ink", "accent", "spark"];
 
