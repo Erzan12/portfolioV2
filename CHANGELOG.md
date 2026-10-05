@@ -2,7 +2,7 @@
 
 All notable changes to **PortfolioV2** are documented in this file.
 
-## [2.0.0] – 2026-07-xx
+## [2.0.0] – 2026-10-05
 
 > **Agentic AI Ecosystem, Analytics & Platform Enhancements**
 
