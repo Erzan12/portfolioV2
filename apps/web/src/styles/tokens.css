@@ -1,4 +1,4 @@
-/* Tailwind v4. On v3, delete the @import and @theme block and use tailwind.config.ts instead. */
+/* Design tokens. Imported by globals.css, which owns the Tailwind import. */
 
 :root {
   --paper: #F3EEDF;     /* cream page */
