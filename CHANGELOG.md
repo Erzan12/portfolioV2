@@ -1,3 +1,94 @@
+# 🧾 Changelog
+
+All notable changes to **PortfolioV2** are documented in this file.
+
+## [2.0.0] – 2026-07-xx
+
+> **Agentic AI Ecosystem, Analytics & Platform Enhancements**
+
+### 🤖 Added / Enhanced
+
+#### Agentic AI Ecosystem
+
+- Integrated an **AI Persona / AI Assistant** into the Portfolio CMS (#232, #233, #235)
+- Added visitor **conversation memory** and recall capabilities (#236)
+- Added visitor-specific **conversation tokens** with extended expiration (#236)
+- Added new **randomized AI persona greetings** (#254)
+- Enhanced persona chat component styling and layout (#237)
+- Added responsive/mobile-compatible chatbox support (#238, #239)
+- Added conversation scrolling support for long conversations (#234)
+
+#### Blog View Tracking
+
+- Added API endpoint for tracking blog post views per visitor session (#240)
+- Added reusable **Blog View Tracker** component (#241)
+- Added view counter to blog post pages (#242, #243)
+- Added eye icon and view statistics to blog posts (#242)
+- Added view counts to featured and regular blog post statistics (#244)
+- Added **Most Viewed Post** query and section (#245)
+
+#### GitHub Projects
+
+- Added GitHub repository **Topics** attribute to project queries (#246, #247)
+- Added repository topics to Project Cards below project descriptions (#247)
+
+#### Performance
+
+- Added **1-hour caching** for GitHub Projects API queries (#248, #249)
+
+#### Analytics
+
+- Added **Vercel Analytics** integration to the application layout (#250, #251)
+
+### 🐛 Fixed
+
+#### AI Persona & Chat
+
+- Fixed chat conversations being lost after closing the chat bubble (#255, #256)
+- Fixed chatbox issues with long messages and conversations not being scrollable (#234)
+- Fixed mobile chatbox layout and compatibility issues (#238, #239)
+- Fixed persona chat component layout/className issues (#237)
+
+#### Documentation
+
+- Fixed NestJS documentation not appearing in Projects/Documentation Guides (#259)
+- Fixed missing NestJS documentation icon (#261)
+- Added/fixed NestJS documentation icon configuration (#260)
+- Removed unwanted and unused emojis/icons from MDX documentation files (#262, #263)
+
+### 📝 Documentation
+
+- Added **AI Agents** setup and usage documentation guide (#230)
+- Enhanced and updated existing documentation guides (#231)
+- Added **Mobile App Development** documentation guide (#257)
+- Added **Laravel Development** documentation guide (#258)
+- Added **NestJS Development** documentation guide (#259–#261)
+- Improved documentation organization, naming, and visual consistency (#260–#263)
+
+### 📊 Monitoring & Insights
+
+- Added visitor/session-based blog view tracking (#240–#245)
+- Added Most Viewed Post functionality (#245)
+- Added Vercel Analytics integration for visitor tracking (#250, #251)
+
+### ⚙️ Performance
+
+- Added one-hour GitHub Projects API caching (#248, #249)
+- Reduced unnecessary GitHub API queries through project data caching
+
+---
+
+## 🚀 Highlights
+
+PortfolioV2 v2.0.0 marks a major transition from a CMS-driven portfolio into a more interactive and intelligent platform.
+
+The release introduces an integrated **agentic AI ecosystem**, including a visitor-facing AI persona with conversation memory, alongside a new blog analytics system for tracking content views and identifying the most viewed posts.
+
+The release also improves GitHub project data through repository topics, introduces API caching for better performance, expands visitor analytics through Vercel Analytics, and significantly grows the platform's technical documentation with guides for AI agents, mobile development, Laravel, and NestJS.
+
+Overall, v2.0.0 establishes the foundation for PortfolioV2 as an **AI-enhanced, analytics-aware, and continuously expanding developer portfolio platform**.
+
+
 # 🧾 CHANGELOG
 
 ### 📓 Changelog for PortfolioV2
