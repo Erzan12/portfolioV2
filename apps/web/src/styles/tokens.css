@@ -1,0 +1,58 @@
+/* Tailwind v4. On v3, delete the @import and @theme block and use tailwind.config.ts instead. */
+
+:root {
+  --paper: #F3EEDF;     /* cream page */
+  --surface: #FFFBEF;   /* panels sitting on the page */
+  --ink: #000000;       /* text, borders, shadows */
+  --cobalt: #2340FF;
+  --acid: #D9FF1F;
+  --accent: var(--cobalt);
+  --on-accent: #FFFFFF;
+  --spark: var(--acid);
+  --on-spark: #000000;
+  --shadow: var(--ink);
+}
+
+/* Dark brutalist: black paper, cream ink, yellow becomes the main accent */
+[data-theme="dark"] {
+  --paper: #000000;
+  --surface: #121212;
+  --ink: #F3EEDF;
+  --accent: var(--acid);
+  --on-accent: #000000;
+  --spark: #6B7FFF;     /* cobalt, lifted so it reads on black */
+  --on-spark: #000000;
+  --shadow: var(--acid);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-spark: var(--spark);
+  --color-on-spark: var(--on-spark);
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+::selection { background: var(--spark); color: var(--on-spark); }
+:focus-visible { outline: 3px dashed var(--ink); outline-offset: 4px; }
+
+/* Hard shadows: no blur, ever */
+.shadow-hard    { box-shadow: 6px 6px 0 0 var(--shadow); }
+.shadow-hard-sm { box-shadow: 3px 3px 0 0 var(--shadow); }
+
+/* Physical-key feel: lifts on hover, sinks into its shadow when pressed */
+.press { transition: transform 80ms linear, box-shadow 80ms linear; }
+.press:hover  { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 0 var(--shadow); }
+.press:active { transform: translate(4px, 4px);   box-shadow: 2px 2px 0 0 var(--shadow); }
+@media (prefers-reduced-motion: reduce) {
+  .press, .press:hover, .press:active { transition: none; transform: none; }
+}
