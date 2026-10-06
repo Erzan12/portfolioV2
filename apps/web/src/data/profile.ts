@@ -2,10 +2,10 @@
 export const profile = {
   name: "Earl Jan Do",
   handle: "Erzan",
-  role: "Full-stack developer",
+  role: "Full-stack Systems Developer",
   location: "Philippines",
   photo: "/images/earl.jpg", // TODO: point this at your photo in /public
-  bio: "Backend-focused full-stack developer. I care about scalability, performance, and clean architecture.",
+  bio: "I design & build backend systems that scale, along with modern web applications.",
   available: true,
   now: "Avega Bros. Shipping Integrated Corp",
   experience: "4 years",

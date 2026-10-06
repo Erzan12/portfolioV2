@@ -88,12 +88,11 @@ export default function Hero({ token }: { token?: string }) {
           </motion.div>
 
           <motion.h1 variants={rise} className="mt-12 max-w-5xl text-5xl font-extrabold leading-[0.95] sm:text-6xl xl:text-7xl">
-            I build scalable backend systems &amp; modern web platforms.
+            Crafting fast backend systems &amp; modern web apps.
           </motion.h1>
 
           <motion.p variants={rise} className="mt-6 max-w-[60ch] text-xl">
-            Full-stack developer specializing in ERP systems, APIs, and developer platforms.
-            Focused on performance, clean architecture, and real-world scalability.
+            Full-stack developer with a focus on ERP software, API design, &amp; dev platforms. I prioritize clear architecture, solid performance, &amp; real-world scalability.
           </motion.p>
 
           <motion.div variants={rise} className="mt-8 flex flex-wrap gap-4">
