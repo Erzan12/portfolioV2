@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, MotionConfig, useReducedMotion, type Variants } from "framer-motion";
+import { emailHref } from "@/data/profile";
 import { Button } from "../brut/button";
 
 // The terminal is always dark, so its colors are fixed on purpose (not theme tokens).
@@ -86,7 +87,7 @@ export default function Hero({ token }: { token?: string }) {
             </div>
           </motion.div>
 
-          <motion.h1 variants={rise} className="mt-12 max-w-5xl text-5xl font-extrabold leading-[0.95] sm:text-7xl lg:text-8xl">
+          <motion.h1 variants={rise} className="mt-12 max-w-5xl text-5xl font-extrabold leading-[0.95] sm:text-6xl xl:text-7xl">
             I build scalable backend systems &amp; modern web platforms.
           </motion.h1>
 
@@ -96,25 +97,11 @@ export default function Hero({ token }: { token?: string }) {
           </motion.p>
 
           <motion.div variants={rise} className="mt-8 flex flex-wrap gap-4">
-            <Button href="/about#connect" variant="accent" size="lg">Hire me</Button>
+            <Button href={emailHref} variant="accent" size="lg">Hire me</Button>
             <Button href="/projects" variant="ink" size="lg">View projects</Button>
             <Button href="https://erzan-docs.vercel.app/docs/architecture" variant="plain" size="lg">Engineering docs</Button>
           </motion.div>
 
-          <motion.dl variants={rise} className="mt-12 grid border-[3px] border-ink bg-surface sm:grid-cols-3">
-            <div className="border-b-[3px] border-ink bg-spark px-5 py-4 text-on-spark sm:border-b-0 sm:border-r-[3px]">
-              <dt className="font-mono text-sm">Status</dt>
-              <dd className="text-xl font-extrabold">Open to new work</dd>
-            </div>
-            <div className="border-b-[3px] border-ink px-5 py-4 sm:border-b-0 sm:border-r-[3px]">
-              <dt className="font-mono text-sm">Experience</dt>
-              <dd className="text-xl font-extrabold">4 years, backend and frontend</dd>
-            </div>
-            <div className="px-5 py-4">
-              <dt className="font-mono text-sm">Shipped</dt>
-              <dd className="text-xl font-extrabold">10+ projects</dd>
-            </div>
-          </motion.dl>
         </motion.div>
 
         {showInvite && (
