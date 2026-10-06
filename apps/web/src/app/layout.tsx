@@ -6,6 +6,7 @@ import { PersonaChat } from "@/components/core/personal-chat/persona-chat";
 import { Nav } from "@/components/nav";
 import Sidebar from "@/components/sidebar";
 import { SiteShell } from "@/components/siteshell";
+import Providers from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "Erzan | Full Stack Developer",
@@ -24,10 +25,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${jetbrains.variable}`}>
       <head><script dangerouslySetInnerHTML={{ __html: themeInit }} /></head>
       <body>
-        <Nav />
-        <SiteShell sidebar={<Sidebar />}>{children}</SiteShell>
-        <PersonaChat />
-        <Analytics />
+        <Providers>
+          <Nav />
+          <SiteShell sidebar={<Sidebar />}>{children}</SiteShell>
+          <PersonaChat />
+          <Analytics />
+        </Providers>
       </body>
     </html>
   );
