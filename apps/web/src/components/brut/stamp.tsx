@@ -4,6 +4,10 @@ const status = {
   ongoing: "bg-spark text-on-spark -rotate-3",
   live: "bg-accent text-on-accent rotate-2",
   queue: "bg-paper text-ink border-dashed -rotate-1",
+  onhold: "bg-muted text-muted-foreground rotate-1",
+  hobby: "bg-purple-200 text-purple-900 -rotate-2",
+  onbreak: "bg-orange-200 text-orange-900 rotate-1",
+  onstreak: "bg-green-200 text-green-900 -rotate-2",
 };
 
 /** Rubber-stamp status marker. Caps are intentional here: it's a stamp. */
