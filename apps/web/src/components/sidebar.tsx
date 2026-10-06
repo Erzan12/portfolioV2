@@ -1,8 +1,10 @@
+import { getSiteProfile } from "@/app/api/github/profile/route";
 import { profile } from "@/data/profile";
 import Image from "next/image";
 
-export default function Sidebar() {
+export default async function Sidebar() {
   const contacts = profile.contacts.filter((c) => c.href);
+  const siteOwner = await getSiteProfile();
   return (
     <aside
       id="contact"
@@ -11,7 +13,7 @@ export default function Sidebar() {
       <div className="flex flex-col gap-6 p-5 lg:p-6">
         <div className="flex items-end gap-4 lg:block">
           <Image
-            src={profile.photo}
+            src={siteOwner.photo}
             alt={`Portrait of ${profile.name}`}
             width={512}
             height={512}
