@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/projects", label: "Projects" },
-  { href: "/system-design", label: "System Design" },
+  // { href: "/system-design", label: "System Design" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Mission Log" },
 ];
@@ -47,7 +47,6 @@ export function Nav() {
           ))}
         </nav>
         <div className="ml-auto flex items-stretch">
-          <a href="https://github.com/" className={cn(cell, "hidden border-l-[3px] border-r-0 sm:flex")}>GitHub</a>
           <ThemeToggle />
           <button onClick={() => setOpen(!open)} aria-expanded={open}
             className="border-l-[3px] border-ink px-5 font-semibold md:hidden">
