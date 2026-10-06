@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { PersonaChat } from "@/components/core/personal-chat/persona-chat";
 import { Nav } from "@/components/nav";
+import Sidebar from "@/components/sidebar";
+import { SiteShell } from "@/components/siteshell";
 
 export const metadata: Metadata = {
   title: "Erzan | Full Stack Developer",
@@ -23,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head><script dangerouslySetInnerHTML={{ __html: themeInit }} /></head>
       <body>
         <Nav />
-        {children}
+        <SiteShell sidebar={<Sidebar />}>{children}</SiteShell>
         <PersonaChat />
         <Analytics />
       </body>
