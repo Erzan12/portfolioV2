@@ -10,8 +10,6 @@ import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { SiGithub } from "react-icons/si";
-import { useRouteTheme } from "@/hooks/useRouteTheme";
-import { accentStyles } from "@/lib/constants/themes";
 import { getRouteTheme } from "@/lib/helper/get-route-theme";
 
 export default function Navbar() {

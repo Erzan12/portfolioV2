@@ -1,23 +1,25 @@
-import typography from "@tailwindcss/typography";
+// Only needed on Tailwind v3. Tailwind v4 reads styles/tokens.css directly.
+import type { Config } from "tailwindcss";
 
-module.exports = {
-  darkMode: "class",
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+export default {
+  darkMode: ["selector", '[data-theme="dark"]'],
+  content: ["./app/**/*.{ts,tsx,mdx}", "./components/**/*.{ts,tsx}"],
   theme: {
+    borderRadius: { none: "0", sm: "2px", DEFAULT: "0" },
     extend: {
       colors: {
-        cream: {
-          DEFAULT: '#faedcd',
-          dark: '#5f553d',
-        },
+        paper: "var(--paper)",
+        surface: "var(--surface)",
+        ink: "var(--ink)",
+        accent: "var(--accent)",
+        "on-accent": "var(--on-accent)",
+        spark: "var(--spark)",
+        "on-spark": "var(--on-spark)",
       },
-      animation: {
-        'spin-slow': 'spin 3s linear infinite',
-      }
+      fontFamily: {
+        display: ["var(--font-bricolage)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
+      },
     },
   },
-  plugins: [typography],
-}
+} satisfies Config;

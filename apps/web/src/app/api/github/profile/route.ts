@@ -1,3 +1,4 @@
+import { profile } from "@/data/profile";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -12,4 +13,25 @@ export async function GET() {
     name: data.name,
     bio: data.bio,
   });
+}
+
+export async function getGithubProfile() {
+  const res = await fetch("https://api.github.com/users/Erzan12", {
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    return null;
+  }
+
+  return res.json();
+}
+
+export async function getSiteProfile() {
+  const github = await getGithubProfile();
+
+  return {
+    ...profile,
+    photo: github?.avatar_url ?? "/images/earl.jpg",
+  };
 }

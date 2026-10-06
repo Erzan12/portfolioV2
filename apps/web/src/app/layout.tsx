@@ -1,32 +1,36 @@
-import ClientLayout from "@/components/core/client-layout";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { PersonaChat } from "@/components/core/personal-chat/persona-chat";
-import { Analytics } from '@vercel/analytics/react'; 
+import { Nav } from "@/components/nav";
+import Sidebar from "@/components/sidebar";
+import { SiteShell } from "@/components/siteshell";
+import Providers from "@/components/providers";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
- 
 export const metadata: Metadata = {
   title: "Erzan | Full Stack Developer",
   description: "Backend-focused developer building scalable systems",
-  icons: {
-    icon: "/favicon-light.ico",
-  },
+  icons: { icon: "/favicon-light.ico" },
 };
- 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
+
+// Sets the theme before first paint so there is no light/dark flash.
+const themeInit = `try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`font-sans ${geist.variable}`} suppressHydrationWarning>
-      <body className="bg-white dark:bg-black text-black dark:text-white">
-        <ClientLayout>{children}</ClientLayout>
-        {/* Global floating assistant */}
-        <PersonaChat />
-        <Analytics />
+    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${jetbrains.variable}`}>
+      <head><script dangerouslySetInnerHTML={{ __html: themeInit }} /></head>
+      <body>
+        <Providers>
+          <Nav />
+          <SiteShell sidebar={<Sidebar />}>{children}</SiteShell>
+          <PersonaChat />
+          <Analytics />
+        </Providers>
       </body>
     </html>
   );
