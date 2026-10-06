@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 
 // Routes that render without the sidebar. Edit to match your admin/auth routes.
-const NO_SIDEBAR = ["/admin", "/login", "/dashboard", "/styleguide"];
+const NO_SIDEBAR = ["/admin", "/login", "/dashboard", "/styleguide", "/about"];
 
 export function SiteShell({ sidebar, children }: { sidebar: React.ReactNode; children: React.ReactNode }) {
   const path = usePathname();
