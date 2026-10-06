@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Fragment, Suspense } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/prisma/prisma";
@@ -10,6 +10,10 @@ import GuestLoginButton from "@/components/login/guest-login";
 import NowBoard from "@/components/now-board";
 import FeaturedProjects from "@/components/featured-projects";
 import { Panel } from "@/components/brut/panel";
+import Pager from "@/components/pager";
+
+// "scroll" = one long page, "paged" = one section at a time with arrows
+const MODE: "scroll" | "paged" = "scroll";
 
 // Not rebuilt yet (still in git, restore when we port them):
 // Skills, CaseStudy, HowIThink, ProjectsCarousel
@@ -38,18 +42,25 @@ export default async function Home({
       ? token
       : undefined;
 
-  return (
-    <main className="overflow-x-hidden">
-      <Hero token={validToken} />
-      <NowBoard />
-      <FeaturedProjects projects={projects.filter((p) => p.featured).slice(0, 6)} />
-
+  const sections = [
+    { id: "intro", title: "Intro", node: <Hero token={validToken} /> },
+    { id: "now", title: "Now", node: <NowBoard /> },
+    { id: "work", title: "Selected work", node: <FeaturedProjects projects={projects.filter((p) => p.featured).slice(0, 6)} /> },
+    {
+      id: "testimonials",
+      title: "Testimonials",
+      node: (
       <section id="testimonials" className="scroll-mt-24">
         <Suspense fallback={null}>
           <Testimonials items={approvedTestimonials} token={token} />
         </Suspense>
       </section>
-
+      ),
+    },
+    {
+      id: "leave-note",
+      title: "Leave a note",
+      node: (
       <section id="leave-note" className="mx-auto max-w-3xl scroll-mt-24 px-5 py-16 md:px-8">
         <Panel label="leave-a-note ~">
           <h2 className="text-3xl">Leave a note</h2>
@@ -65,7 +76,7 @@ export default async function Home({
             ) : (
               <div className="border-[3px] border-dashed border-ink p-6">
                 <p className="text-lg font-semibold">You were invited to leave a testimonial.</p>
-                <p className="mb-4 mt-1">Sign in first so I can verify it's you.</p>
+                <p className="mb-4 mt-1">Sign in first so I can verify it&apos;s you.</p>
                 <GuestLoginButton />
               </div>
             )
@@ -77,6 +88,17 @@ export default async function Home({
           )}
         </Panel>
       </section>
+      ),
+    },
+  ];
+
+  return (
+    <main className="overflow-x-clip">
+      {MODE === "paged" ? (
+        <Pager pages={sections} startId={validToken ? "leave-note" : undefined} />
+      ) : (
+        sections.map((s) => <Fragment key={s.id}>{s.node}</Fragment>)
+      )}
     </main>
   );
 }
