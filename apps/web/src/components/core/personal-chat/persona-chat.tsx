@@ -1,68 +1,41 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  MessageCircle,
-  X,
-  Sparkles,
-} from "lucide-react";
-
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
 import { PersonaAi } from "./persona-ai";
-import { useRouteTheme } from "@/hooks/useRouteTheme";
+
+const GREETINGS = [
+  "Hey there! Want to know more about Earl?",
+  "Ask me anything about Earl's projects.",
+  "Curious about his tech stack?",
+  "Looking for a frontend, backend, or full-stack dev?",
+  "Let's chat.",
+  "Looking great today. Let's chat.",
+];
 
 export function PersonaChat() {
   const [open, setOpen] = useState(false);
   const [showGreeting, setShowGreeting] = useState(false);
-
-  const theme = useRouteTheme();
-
+  const [greeting, setGreeting] = useState(GREETINGS[0]);
+  const reduce = !!useReducedMotion();
   const pathname = usePathname();
-
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const GREETINGS = [
-    "👋 Hey there! Want to know more about Earl?",
-    "✨ Ask me anything about Earl's projects.",
-    "🚀 Curious about his tech stack?",
-    "💼 Looking for a frontend/backend developer? or Fullstack dev?",
-    "☕ Let's chat!",
-    "😉 Looking great today! Let's chat!"
-  ]
-
-  const [greeting, setGreeting] = useState(GREETINGS[0]);
-
-  // greeting
+  // Greeting bubble: first after 3s, then every 40s, until the chat has been opened once
   useEffect(() => {
-    let showTimeout: NodeJS.Timeout;
-    let hideTimeout: NodeJS.Timeout;
-    let interval: NodeJS.Timeout;
+    let hideTimeout: ReturnType<typeof setTimeout>;
 
     const showBubble = () => {
       if (open) return;
-
-      const alreadyOpened =
-        sessionStorage.getItem("persona-chat-opened");
-
-      if (alreadyOpened) return;
-
-      setGreeting(
-        GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
-      );
-
+      if (sessionStorage.getItem("persona-chat-opened")) return;
+      setGreeting(GREETINGS[Math.floor(Math.random() * GREETINGS.length)]);
       setShowGreeting(true);
-
-      hideTimeout = setTimeout(() => {
-        setShowGreeting(false);
-      }, 15000);
+      hideTimeout = setTimeout(() => setShowGreeting(false), 15000);
     };
 
-    showTimeout = setTimeout(showBubble, 3000);
-
-    interval = setInterval(showBubble, 40000);
-
+    const showTimeout = setTimeout(showBubble, 3000);
+    const interval = setInterval(showBubble, 40000);
     return () => {
       clearTimeout(showTimeout);
       clearTimeout(hideTimeout);
@@ -70,250 +43,80 @@ export function PersonaChat() {
     };
   }, [open]);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => setOpen(false), [pathname]);
 
+  // Click outside or Escape closes
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
+    const onDown = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) setOpen(false);
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
     };
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="fixed bottom-4 right-4 z-[999]"
-    >
-      {/* CHAT WINDOW */}
-      <AnimatePresence>
-          <motion.div
-            initial={false}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              y: 20,
-              scale: 0.95,
-            }}
-            transition={{
-              duration: 0.2,
-            }}
-            style={{
-              pointerEvents: open ? "auto" : "none",
-              visibility: open ? "visible" : "hidden",
-            }}
-            className={clsx(
-              "absolute bottom-20 right-0",
-
-              "overflow-hidden",
-              "flex flex-col",
-
-               // ← responsive width and height
-              "w-[calc(100vw-2rem)]",   // full viewport minus margins on mobile
-              "max-w-[390px]",          // caps at 390px on larger screens
-
-              "h-[80vh]",               // relative height on mobile
-              "max-h-[650px]",          // caps at 650px on larger screens
-
-              "rounded-[2rem]",         // slightly smaller radius on mobile
-
-              "border",
-              "border-slate-500/10",
-
-              "bg-white/50",
-              "dark:bg-slate-900/40",
-
-              "backdrop-blur-md",
-
-              "shadow-[0_20px_80px_rgba(0,0,0,0.12)]"
-            )}
+    <div ref={containerRef} className="fixed bottom-4 right-4 z-[999]">
+      {/* Window stays mounted (hidden) so the conversation survives closing */}
+      <motion.div
+        id="persona-chat-window"
+        role="dialog"
+        aria-label="Chat with Persona"
+        aria-hidden={!open}
+        initial={false}
+        animate={{ opacity: open ? 1 : 0, y: open ? 0 : 12 }}
+        transition={{ duration: reduce ? 0 : 0.15 }}
+        style={{ pointerEvents: open ? "auto" : "none", visibility: open ? "visible" : "hidden" }}
+        className="shadow-hard absolute bottom-20 right-0 flex h-[min(80dvh,650px)] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden border-[3px] border-ink bg-surface"
+      >
+        <div className="flex shrink-0 items-center justify-between border-b-[3px] border-ink bg-ink px-4 py-2 text-paper">
+          <p className="flex items-center gap-2 font-mono text-sm">
+            <span className="inline-block size-2 bg-spark" aria-hidden />
+            persona ~ Earl&apos;s AI assistant
+          </p>
+          <button
+            onClick={() => setOpen(false)}
+            className="border-2 border-paper px-2 font-mono text-sm hover:bg-spark hover:text-on-spark"
           >
-            <div
-              className={clsx(
-                "absolute -top-20 right-0",
-                "w-72 h-72",
-                "rounded-full",
-                "blur-3xl",
-                "opacity-60",
-                "bg-gradient-to-br",
-                theme.gradient
-              )}
-            />
-            {/* <div className="relative z-10 flex items-center justify-between px-5 py-4 border-b border-slate-200/20"> */}
-            <div className="relative z-10 shrink-0 flex items-center justify-between px-5 py-4 border-b border-slate-200/20">
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  {/* <div className="h-10 w-10 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center text-white">
-                    <Sparkles size={18} />
-                  </div> */}
+            close
+          </button>
+        </div>
+        <div className="min-h-0 flex-1">
+          <PersonaAi />
+        </div>
+      </motion.div>
 
-                  <div
-                    className="
-                    h-12 w-12
-
-                    rounded-2xl
-
-                    flex items-center justify-center
-
-                    bg-slate-900/5
-                    dark:bg-white/5
-
-                    border border-slate-500/10
-                  "
-                  >
-                    <Sparkles />
-                  </div>
-
-                  <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-white" />
-                </div>
-
-                <div>
-                  <p className="font-semibold">
-                    Chat with Earl
-                  </p>
-
-                  <p className="text-xs text-muted-foreground">
-                    Usually replies instantly
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setOpen(false)}
-                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-              >
-                <X size={18} />
-              </button>
-            </div>
-            <div className={clsx(
-              "relative z-10 flex-1 min-h-0",
-              )}
-            >
-              <PersonaAi theme={theme} />
-            </div>
-          </motion.div>
+      <AnimatePresence>
+        {showGreeting && !open && (
+          <motion.button
+            onClick={() => { setOpen(true); setShowGreeting(false); sessionStorage.setItem("persona-chat-opened", "true"); }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduce ? 0 : 0.2 }}
+            className="shadow-hard-sm absolute bottom-full right-0 mb-4 w-max max-w-[16rem] border-[3px] border-ink bg-spark px-3 py-2 text-left text-sm font-semibold text-on-spark"
+          >
+            {greeting}
+          </motion.button>
+        )}
       </AnimatePresence>
 
-      {/* Route Theme Glow */}
-      <div className="relative">
-        <div
-          className={clsx(
-            "absolute inset-0",
-            "rounded-[1.75rem]",
-            "blur-2xl",
-            "opacity-60",
-            "bg-gradient-to-br",
-            theme.gradient
-          )}
-        />
-        <AnimatePresence>
-          {showGreeting  && !open && (
-            <motion.div
-              initial={{ opacity: 0, x: 20, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: 10, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="
-                absolute
-                right-20
-                top-1/2
-                -translate-y-1/2
-
-                rounded-2xl
-                bg-white/90
-                dark:bg-slate-900/90
-
-                backdrop-blur-xl
-
-                border border-slate-500/10
-
-                shadow-xl
-
-                px-4 py-3
-
-                w-max
-                max-w-[18rem]
-              "
-            >
-              <p className="text-sm font-medium leading-relaxed">
-                {greeting}
-              </p>
-
-              {/* small arrow */}
-              <div
-                className="
-                  absolute
-                  right-[-6px]
-                  top-1/2
-                  -translate-y-1/2
-
-                  h-3
-                  w-3
-                  rotate-45
-
-                  bg-white
-                  dark:bg-slate-900
-
-                  border-r
-                  border-b
-                  border-slate-500/10
-                "
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <motion.button
-          onClick={() => {
-            setOpen(!open);
-            setShowGreeting(false);
-
-            sessionStorage.setItem("persona-chat-opened", "true");
-          }}
-          className="
-            relative
-            h-16
-            w-16
-            rounded-[1.75rem]
-
-            border border-slate-500/10
-
-            bg-white/70
-            dark:bg-slate-900/70
-
-            backdrop-blur-xl
-
-            shadow-[0_10px_50px_rgba(0,0,0,0.08)]
-
-            flex items-center justify-center
-          "
-        >
-          <MessageCircle
-            className="
-              h-6 w-6
-              text-slate-700
-              dark:text-slate-300
-            "
-          />
-        </motion.button>
-      </div>
+      <button
+        onClick={() => {
+          setOpen(!open);
+          setShowGreeting(false);
+          sessionStorage.setItem("persona-chat-opened", "true");
+        }}
+        aria-expanded={open}
+        aria-controls="persona-chat-window"
+        className="press shadow-hard-sm border-[3px] border-ink bg-accent px-5 py-3 text-lg font-extrabold text-on-accent"
+      >
+        {open ? "Close chat" : "Ask Persona"}
+      </button>
     </div>
   );
 }
