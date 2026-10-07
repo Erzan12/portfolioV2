@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma/prisma";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/brut/card";
+import { Badge } from "@/components/brut/badge";
 import { EyeIcon, Tag } from "lucide-react";
 import Link from "next/link";
 import { BlogListAnimation } from "@/components/core/blog/blog-cms/blog-animations";

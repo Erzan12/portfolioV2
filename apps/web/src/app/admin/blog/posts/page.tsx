@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; // Assuming shadcn/ui or similar
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/brut/tabs"; // Assuming shadcn/ui or similar
 import BlogModerationList from "@/components/core/blog/blog-cms/blog-moderation-list";
 
 export const dynamic = "force-dynamic";

@@ -13,7 +13,7 @@ import {
 
 import { formatDistanceToNow, isPast } from "date-fns";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/brut/button";
 
 interface InvitationCardProps {
   item: {
@@ -154,10 +154,7 @@ export function InvitationCard({
           {/* ACTIONS */}
           <div className="flex items-center gap-2">
             <Button
-              variant="outline"
-              size="sm"
               onClick={copyLink}
-              className="rounded-xl"
             >
               <Copy className="w-4 h-4 mr-2" />
 

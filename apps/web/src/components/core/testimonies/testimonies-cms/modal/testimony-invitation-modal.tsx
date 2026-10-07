@@ -6,10 +6,10 @@ import {
   DialogTrigger,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
+} from "@/components/brut/dialog";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/brut/button";
+import { Input } from "@/components/brut/input";
 import { inviteUserAction } from "@/lib/actions/inviteUserAction";
 import { useActionState } from "react";
 

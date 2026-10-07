@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/brut/button";
+import { Input } from "@/components/brut/input";
+import { Textarea } from "@/components/brut/textarea";
 import Editor from "@/components/core/blog/blog-cms/editor"; // We will build this next
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { createPost } from "@/lib/actions/blog-cms";
 
@@ -94,7 +94,6 @@ export default function NewPostPage() {
           {status === "DRAFT" ? (
             <Button
               type="submit"
-              variant="outline"
               disabled={loading}
               onClick={() => setStatus("DRAFT")}
             >

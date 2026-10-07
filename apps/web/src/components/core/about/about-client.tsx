@@ -1,8 +1,8 @@
 "use client";
 
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Card } from "@/components/brut/card"
+import { Badge } from "@/components/brut/badge"
+import { Button } from "@/components/brut/button"
 import { motion, Variants } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Facebook, ArrowLeft, FileText } from "lucide-react"
 import Link from "next/link";
@@ -232,11 +232,7 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
                       </div>
                     </div>
                     <a href="https://github.com/Erzan12/slsu-clinic-appointment-system" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="font-sans bg-transparent hover:bg-primary/10 hover:scale-105 transition-all duration-200 rounded-full shrink-0"
-                      >
+                      <Button>
                         <ExternalLink className="w-4 h-4" />
                       </Button>
                     </a>
@@ -255,11 +251,7 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
                       </div>
                     </div>
                     <a href="https://github.com/Erzan12/qr-code-attendance-management-system" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="font-sans bg-transparent hover:bg-primary/10 hover:scale-105 transition-all duration-200 rounded-full shrink-0"
-                      >
+                      <Button>
                         <ExternalLink className="w-4 h-4" />
                       </Button>
                     </a>
