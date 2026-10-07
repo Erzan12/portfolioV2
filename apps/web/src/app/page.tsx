@@ -11,6 +11,7 @@ import NowBoard from "@/components/now-board";
 import FeaturedProjects from "@/components/featured-projects";
 import { Panel } from "@/components/brut/panel";
 import Pager from "@/components/pager";
+import GithubActivity from "@/components/github-activity";
 
 // "scroll" = one long page, "paged" = one section at a time with arrows
 const MODE: "scroll" | "paged" = "scroll";
@@ -46,6 +47,7 @@ export default async function Home({
     { id: "intro", title: "Intro", node: <Hero token={validToken} /> },
     { id: "now", title: "Now", node: <NowBoard /> },
     { id: "work", title: "Selected work", node: <FeaturedProjects projects={projects.filter((p) => p.featured).slice(0, 6)} /> },
+    { id: "activity", title: "GitHub activity", node: <GithubActivity /> },
     {
       id: "testimonials",
       title: "Testimonials",
