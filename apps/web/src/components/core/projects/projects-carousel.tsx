@@ -8,10 +8,10 @@ import {
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from "@/components/brut/carousel";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/brut/card";
+import { Badge } from "@/components/brut/badge";
+import { Button } from "@/components/brut/button";
 import { Github, ExternalLink, ArrowRight, ArrowLeft } from "lucide-react";
 import { Project } from "@/lib/types/project";
 import Image from "next/image";
@@ -126,29 +126,20 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
                   </CardContent>
 
                   <CardFooter className="p-8 pt-0 flex gap-3">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="flex-1 rounded-2xl gap-2 border-slate-500/20 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-all duration-300" 
-                      asChild
-                    >
+                    <Button>
                       <a href={`https://github.com/${project.github}`} target="_blank" rel="noreferrer">
                         <Github className="w-4 h-4" /> Code
                       </a>
                     </Button>
                     
                     {project.demoLink ? (
-                      <Button 
-                        size="sm" 
-                        className="flex-1 rounded-2xl gap-2 bg-slate-900 dark:bg-white dark:hover:bg-slate-500/50 text-white dark:text-slate-900 dark:hover:text-white hover:bg-slate-500/70 hover:opacity-90 transition-all" 
-                        asChild
-                      >
+                      <Button>
                         <a href={project.demoLink} target="_blank" rel="noreferrer">
                           <ExternalLink className="w-4 h-4" /> Demo
                         </a>
                       </Button>
                     ) : (
-                      <Button size="sm" variant="ghost" className="flex-1 rounded-2xl gap-2 opacity-40 cursor-not-allowed" disabled>
+                      <Button disabled>
                         Coming Soon
                       </Button>
                     )}
@@ -190,17 +181,11 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
           {/* Arrows */}
           <div className="flex gap-4">
             <Button 
-              variant="outline" 
-              size="icon" 
-              className="rounded-full w-12 h-12 border-slate-500/20 bg-white/50 dark:bg-slate-900/40 backdrop-blur-sm hover:scale-110 transition-all" 
               onClick={() => api?.scrollPrev()}
             >
               <ArrowLeft className="w-5 h-5 text-slate-700 dark:text-slate-300" />
             </Button>
             <Button 
-              variant="outline" 
-              size="icon" 
-              className="rounded-full w-12 h-12 border-slate-500/20 bg-white/50 dark:bg-slate-900/40 backdrop-blur-sm hover:scale-110 transition-all" 
               onClick={() => api?.scrollNext()}
             >
               <ArrowRight className="w-5 h-5 text-slate-700 dark:text-slate-300" />

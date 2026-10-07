@@ -4,9 +4,9 @@ import { useState, useMemo } from "react"; //added useMemo for performance
 import { motion } from "framer-motion";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 import { ArrowLeft, Search, X } from "lucide-react"; // for search bar icons
-import { SystemCardSkeleton } from "@/components/core/system-design/system-card-skeleton";
-import SystemCard from "@/components/core/system-design/system-card";
 import Link from "next/link";
+import SystemCard from "@/components/brut/systemcard";
+import { SystemCardSkeleton } from "@/components/brut/systemcardskeleton";
 
 //define how many items per page (3 columns x 3 rows = 9)
 const ITEMS_PER_PAGE = 9;

@@ -5,7 +5,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/ui/tabs";
+} from "@/components/brut/tabs";
 import Link from "next/link";
 import InvitationsList from "@/components/core/testimonies/testimonies-cms/testimony-invitation";
 import { InvitationStatus } from "@prisma/client";

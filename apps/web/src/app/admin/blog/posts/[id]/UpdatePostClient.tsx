@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/brut/button";
+import { Input } from "@/components/brut/input";
+import { Textarea } from "@/components/brut/textarea";
 import Editor from "@/components/core/blog/blog-cms/editor";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { updatePost } from "@/lib/actions/blog-cms";
 
