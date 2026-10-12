@@ -1,4 +1,4 @@
-# 🚀 Portfolio Platform v2 -> Portfolio CMS -> Agentic AI Integration (Persona)
+# 🚀 CMS Portfolio Platform with AI Assistant(Persona) -> Neo Brutalism theme
 
 A modern, data-driven **developer portfolio platform** built with a focus on **scalable systems, clean architecture, and real-world engineering practices**.
 
