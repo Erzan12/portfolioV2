@@ -1,107 +1,59 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
-type Heading = {
-  id: string
-  text: string
-  level: number
-}
+type Heading = { id: string; text: string; level: number };
 
-export function TableOfContents({ content }: { content: string }) {
-  // const [headings, setHeadings] = useState<Heading[]>([])
-  const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
-  const [activeId, setActiveId] = useState("")
+// Reads the headings straight from the rendered article and gives each one an id,
+// so the links always match what is actually on the page.
+export function TableOfContents(_props: { content?: string }) {
+  const [headings, setHeadings] = useState<Heading[]>([]);
+  const [activeId, setActiveId] = useState("");
 
-  // useEffect(() => {
-  //   const parser = new DOMParser()
-  //   const doc = parser.parseFromString(content, "text/html")
-  //   const elements = Array.from(doc.querySelectorAll("h2, h3"))
-
-  //   const extracted = elements.map((el, index) => {
-  //     const text = el.textContent || ""
-  //     const id = text.toLowerCase().replace(/\s+/g, "-") + `-${index}`
-
-  //     return {
-  //       id,
-  //       text,
-  //       level: Number(el.tagName.replace("H", "")),
-  //     }
-  //   })
-
-  //   setHeadings(extracted)
-  // }, [content])
   useEffect(() => {
-    const doc = new DOMParser().parseFromString(content, 'text/html');
-    const elements = Array.from(doc.querySelectorAll("h2, h3"));
-    const items = elements.map((el) => ({
-      id: el.textContent?.toLowerCase().replace(/\s+/g, "-") || "",
-      text: el.textContent || "",
-      level: parseInt(el.tagName.replace("H", ""))
-    }));
+    const els = Array.from(document.querySelectorAll<HTMLElement>("article h2, article h3"));
+    const used = new Set<string>();
+    const items = els.map((el) => {
+      const text = el.textContent?.trim() ?? "";
+      const base = el.id || text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "section";
+      let id = base;
+      for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
+      used.add(id);
+      el.id = id;
+      return { id, text, level: el.tagName === "H3" ? 3 : 2 };
+    });
     setHeadings(items);
-  }, [content]);
 
-  // intersection observer (unchanged)
-  useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: "0% 0% -80% 0%" }
-    )
+      (entries) => entries.forEach((e) => e.isIntersecting && setActiveId(e.target.id)),
+      { rootMargin: "0% 0% -80% 0%" },
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
-    const contentHeadings = document.querySelectorAll("article h2, article h3")
-    contentHeadings.forEach((h) => observer.observe(h))
+  if (headings.length === 0) return null;
 
-    return () => observer.disconnect()
-  }, [headings])
-
-  if (headings.length === 0) return null
-
-  // return (
-  //   <nav className="space-y-4">
-  //     <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-  //       On this page
-  //     </h4>
-
-  //     <ul className="space-y-2 border-l border-border/50">
-  //       {headings.map((heading) => (
-  //         <li key={heading.id}>
-  //           <a
-  //             href={`#${heading.id}`}
-  //             className={cn(
-  //               "block text-sm transition-all pl-4 py-1",
-  //               activeId === heading.id
-  //                 ? "text-primary font-medium border-l-2 border-primary -ml-[1px]"
-  //                 : "text-muted-foreground hover:text-foreground"
-  //             )}
-  //             style={{ paddingLeft: `${(heading.level - 1) * 1}rem` }}
-  //           >
-  //             {heading.text}
-  //           </a>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </nav>
-  // )
   return (
-    <nav className="space-y-2">
-      <p className="font-bold uppercase text-xs text-muted-foreground mb-4">On this page</p>
-      {headings.map((heading) => (
-        <a 
-          key={heading.id} 
-          href={`#${heading.id}`}
-          className={`block text-sm transition-colors hover:text-primary ${heading.level === 3 ? "pl-4" : ""}`}
-        >
-          {heading.text}
-        </a>
-      ))}
+    <nav aria-label="On this page">
+      <p className="font-mono text-sm">On this page</p>
+      <ul className="mt-3 space-y-1">
+        {headings.map((h) => (
+          <li key={h.id}>
+            <a
+              href={`#${h.id}`}
+              className={cn(
+                "block border-l-[3px] border-transparent py-1 pl-3 text-sm leading-snug hover:border-ink",
+                h.level === 3 && "ml-4",
+                activeId === h.id && "border-ink bg-spark font-bold text-on-spark",
+              )}
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

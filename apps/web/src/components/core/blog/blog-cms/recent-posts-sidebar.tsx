@@ -1,64 +1,48 @@
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import { prisma } from "@/lib/prisma/prisma";
 import { cn } from "@/lib/utils";
 import { RecentPostsSidebarProps } from "@/lib/interface/global.interface";
 import { unstable_cache } from "next/cache";
 
 const getRecentPosts = unstable_cache(
-  async () => {
-    return prisma.post.findMany({
+  async () =>
+    prisma.post.findMany({
       where: { status: "PUBLISHED" },
       orderBy: { createdAt: "desc" },
       take: 5,
       select: { id: true, title: true, slug: true },
-    })
-  },
+    }),
   ["recent-posts"],
-  { revalidate: 60 }
-)
+  { revalidate: 60 },
+);
 
-export default async function RecentPostsSidebar({
-  currentSlug,
-  showBackButton = false,
-}: RecentPostsSidebarProps) {
-  const getPosts = await getRecentPosts();
+export default async function RecentPostsSidebar({ currentSlug, showBackButton = false }: RecentPostsSidebarProps) {
+  const posts = await getRecentPosts();
 
   return (
-    <nav className="flex flex-col gap-8">
-      
+    <nav className="flex flex-col gap-6">
       {showBackButton && (
-        <Link href="/blog" className="flex items-center gap-2 text-sm">
-          <ChevronLeft className="w-4 h-4" />
-          Back to Mission Log
+        <Link href="/blog" className="press shadow-hard-sm inline-flex w-fit border-[3px] border-ink bg-paper px-3 py-2 font-bold">
+          ← Mission Log
         </Link>
       )}
-
-      <div className="space-y-4">
-        <h4 className="text-xs font-bold uppercase text-muted-foreground">
-          Recent Logs
-        </h4>
-
-        <ul className="flex flex-col gap-1">
-          {getPosts.map((post) => {
-            const isActive = currentSlug === post.slug;
-
-            return (
-              <li key={post.slug}>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className={cn(
-                    "block px-3 py-2 text-sm rounded-lg",
-                    isActive
-                      ? "bg-primary/10 text-primary font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {post.title}
-                </Link>
-              </li>
-            );
-          })}
+      <div>
+        <h4 className="font-mono text-sm">Recent logs</h4>
+        <ul className="mt-3 border-[3px] border-ink bg-surface">
+          {posts.map((post) => (
+            <li key={post.slug} className="border-b-[3px] border-ink last:border-b-0">
+              <Link
+                href={`/blog/${post.slug}`}
+                aria-current={currentSlug === post.slug ? "page" : undefined}
+                className={cn(
+                  "block px-3 py-3 font-semibold leading-snug",
+                  currentSlug === post.slug ? "bg-spark text-on-spark" : "hover:bg-accent hover:text-on-accent",
+                )}
+              >
+                {post.title}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

@@ -1,146 +1,69 @@
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma/prisma";
-import { Card } from "@/components/brut/card";
-import { Badge } from "@/components/brut/badge";
-import { EyeIcon, Tag } from "lucide-react";
-import Link from "next/link";
-import { BlogListAnimation } from "@/components/core/blog/blog-cms/blog-animations";
-import { AuthorCard } from "@/components/core/blog/blog-cms/author-card";
-import RecentPostsSidebar from "@/components/core/blog/blog-cms/recent-posts-sidebar";
 import { BlogClientProps } from "@/lib/interface/global.interface";
-import { unstable_cache } from "next/cache"
+import { formatDate, readMinutes } from "@/lib/blog";
+import { Panel } from "@/components/brut/panel";
+import { AuthorCard } from "./blog-cms/author-card";
+import BlogFeed, { LogPost } from "./blog-feed";
 
-export default async function BlogPage({ avatar, profile }: BlogClientProps) {
-  
-  const getPosts = unstable_cache(
-    async () => {
-      return prisma.post.findMany({
-        where: { status: "PUBLISHED" },
-        orderBy: { createdAt: "desc" },
-        include: { author: true, tags: true }
-      })
-    },
-    ["blog-posts"], // cache key
-    { revalidate: 60 } // seconds — revalidate every 60s
-  )
+// Defined once at module level, not on every render
+const getPosts = unstable_cache(
+  async () =>
+    prisma.post.findMany({
+      where: { status: "PUBLISHED" },
+      orderBy: { createdAt: "desc" },
+      select: {
+        slug: true,
+        title: true,
+        excerpt: true,
+        content: true,
+        createdAt: true,
+        views: true,
+        tags: { select: { name: true } }, // change `name` if your Tag model uses another field
+      },
+    }),
+  ["blog-posts-v2"],
+  { revalidate: 60 },
+);
 
-  const posts = await getPosts()
+export default async function BlogPage({ avatar }: BlogClientProps) {
+  const posts = await getPosts();
 
-  const enrichedPosts = posts.map(post => ({
-    ...post,
-    author: {
-      ...post.author,
-      avatar: avatar, 
-    },
+  const logs: LogPost[] = posts.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt ?? "",
+    dateLabel: formatDate(p.createdAt),
+    views: p.views,
+    minutes: readMinutes(p.content),
+    tags: p.tags.map((t) => t.name),
   }));
 
-  const featuredPost = enrichedPosts[0];
-  const regularPosts = enrichedPosts.slice(1);
-
   return (
-    <main className="min-h-screen pt-32 pb-20">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
-        
-        {/* Header Section: Minimalist & Clean */}
-        <div className="max-w-3xl mb-16">
-          <h1 className="text-5xl font-bold tracking-tight mb-4">
-            Mission <span className="text-primary italic">Log</span>
-          </h1>
-          <p className="text-lg text-muted-foreground font-medium border-l-2 border-primary/30 pl-6 py-1">
-            Documentation of my journey through my day to day task, learning's, new idea's, new implemenations, projects and integrations. I pursue continious growth with different architecture, performance optimizations, caching,   
-            and the variations of full-stack development. There's a lot I want to learn, different kind's of obstacles, bugs, errors and navigations through different kind of patterns and exploitations on how to deal with challenges easily.
-          </p>
-        </div>
+    <main className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+      <h1 className="text-5xl md:text-7xl">Mission Log</h1>
+      <p className="mt-4 max-w-[62ch] border-l-[3px] border-ink pl-5 text-lg">
+        Documentation of my journey through day-to-day tasks, learnings, new ideas, implementations,
+        projects, and integrations. I pursue continuous growth across architectures, performance
+        optimization, caching, and the variations of full-stack development. There&apos;s a lot I want
+        to learn: different kinds of obstacles, bugs, and errors, and the patterns for dealing with
+        them.
+      </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-12">
-
-          <aside className="lg:col-span-2">
-            <div className="sticky top-32">
-              <RecentPostsSidebar 
-                currentSlug={featuredPost?.slug ?? ""}
-              />
-            </div>
-          </aside>
-          
-          {/* --- MAIN FEED (8 columns) --- */}
-          <div className="lg:col-span-5 space-y-12">
-            
-            {/* Featured Post: Big, Bold, and Interactive */}
-            {featuredPost && (
-              <Link href={`/blog/${featuredPost.slug}`} className="group block">
-                <Card className="relative overflow-hidden p-0 border-none bg-transparent shadow-none">
-                  <div className="relative aspect-[50/] w-full rounded-3xl overflow-hidden mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-                    {/* <AuthorCard
-                      name={featuredPost.author.name ?? "Unknown"}
-                      role="Full-Stack Developer"
-                      avatar={featuredPost.author.avatar}
-                    /> */}
-                    
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4 text-xs font-mono text-primary uppercase tracking-widest">
-                      <Badge className="bg-primary/10 text-primary border-primary/20">Featured Entry</Badge>
-                      <span>{new Date(featuredPost.createdAt).toLocaleDateString()}</span>
-                      <p className="flex items-center gap-1">
-                        <EyeIcon className="h-4 w-4" />
-                        <span>{featuredPost.views} views</span>
-                      </p>
-                    </div>
-                    <h2 className="text-4xl font-bold group-hover:text-primary transition-colors leading-tight">
-                      {featuredPost.title}
-                    </h2>
-                    <p className="text-muted-foreground text-lg line-clamp-2 max-w-2xl">
-                      {featuredPost.excerpt}
-                    </p>
-                  </div>
-                </Card>
-              </Link>
-            )}
-
-            {/* Regular Post Feed: The "Mission Log" View */}
-            <div className="space-y-8 pt-12 border-t border-border/50">
-              <BlogListAnimation posts={regularPosts} />
-            </div>
-          </div>
-
-          {/* --- SIDEBAR (4 columns) --- */}
-          <aside className="lg:col-span-3 space-y-10">
-            <div className="sticky top-32 space-y-10">
-              
-              {/* Category Explorer */}
-              <section className="bg-olive-about-card/30 dark:bg-olive-dark-about-card/40 p-8 rounded-3xl border border-border/50">
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
-                  <Tag className="w-4 h-4 text-primary" /> Systems Explorer
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Next.js", "NestJS", "PostgreSQL", "Supabase", "Architecture"].map(tag => (
-                    <button key={tag} className="px-4 py-2 text-sm rounded-full border border-border hover:border-primary/50 hover:text-primary transition-all">
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </section>
-
-              {/* Quick Connect / About Me Mini-Widget */}
-              <section className="p-8 rounded-3xl border border-dashed border-primary/30">
-                <div className="flex items-center gap-4 mb-4">
-                  {/* <Image src="/avatar.png" width={48} height={48} className="rounded-full grayscale hover:grayscale-0 transition-all" alt="Earl" /> */}
-                  <AuthorCard
-                    name="Earl Jan Do"
-                    role="Full-Stack Developer"
-                    avatar={avatar}
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Building high-performance applications in the Philippines. Currently scaling personal projects like
-                  ShopStack, my Portfolio version 2 transitioning to CMS type with plans to integrate chatbot and 
-                  maintaining existing ERP system ABAS for my current employer, and currently developing the backend, 
-                  JWT, cookies, swagger API, services, versioning etc. for the upcoming new version of ABAS v3. 
-                </p>
-              </section>
-            </div>
-          </aside>
-        </div>
+      <div className="mt-12">
+        <BlogFeed
+          posts={logs}
+          aside={
+            <Panel label="author ~">
+              <AuthorCard name="Earl Jan Do" role="Full-Stack Developer" avatar={avatar} />
+              <p className="mt-4 text-base leading-snug">
+                Building high-performance applications in the Philippines. Currently scaling ShopStack,
+                maintaining the ABAS ERP system at my current employer, and building the backend for ABAS
+                v3: JWT, cookies, Swagger API, services, and versioning.
+              </p>
+            </Panel>
+          }
+        />
       </div>
     </main>
   );
