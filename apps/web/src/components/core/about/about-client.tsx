@@ -34,8 +34,17 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
               long-term growth and opens opportunities for innovation.
             </p>
             <p>
-              Outside of coding, I explore new web technologies, dig into open-source projects, and
-              keep learning and giving back to the developer community.
+              Outside of coding, I enjoy exploring new web technologies, diving into open-source projects,
+              and giving back to the developer community. I have a{" "}
+              <a
+                href="https://github.com/facebook/docusaurus/pulls?q=is%3Apr+author%3AErzan12"
+                target="_blank"
+                rel="noreferrer"
+                className="font-bold underline decoration-[3px] underline-offset-4 hover:bg-spark hover:text-on-spark"
+              >
+                pull request
+              </a>{" "}
+              merged on Docusaurus, the framework behind my docs site.
             </p>
           </div>
         </div>
