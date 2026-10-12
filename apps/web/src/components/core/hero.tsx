@@ -98,7 +98,7 @@ export default function Hero({ token }: { token?: string }) {
           <motion.div variants={rise} className="mt-8 flex flex-wrap gap-4">
             <Button href={emailHref} variant="accent" size="lg">Hire me</Button>
             <Button href="/projects" variant="ink" size="lg">View projects</Button>
-            <Button href="https://erzan-docs.vercel.app/docs/architecture" variant="plain" size="lg">Engineering docs</Button>
+            <Button href="https://erzan-docs.vercel.app/docs" variant="plain" size="lg">Documentation Platform</Button>
           </motion.div>
 
         </motion.div>
