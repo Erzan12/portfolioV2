@@ -180,8 +180,6 @@ GITHUB_TOKEN=your_github_token_here
 - Successfully integrated my first Agentic AI Personal Assistant (Project Persona) with my Portfolio
 - Persona answers are quick, reliable and will explained, it can even recall past conversations from visitors
 - Several bugs I have encountered though implementing Persona, but it will be taken action in no time
-
-## Upcoming
 ### v2.0.0 - Agentic AI integration - Project Persona
 - Agentic AI Integration - Project Persona - Personal AI assistant
 - Platform analytics
@@ -189,6 +187,16 @@ GITHUB_TOKEN=your_github_token_here
 - More quality of life changes UI/UX and content
 - Random welcome messages for visitors to encourage chatting with Persona
 - Persistent convo's after closing the chat bubble and opened again
+
+## Upcoming
+### v2.5.0 - UI/UX Overhaul and update with Neo Brutalism
+- Overall user experience is updated and enhanced
+- New design tokens e.g buttons, sidebar, new nav etc. added.
+- Added new section Personal Github Activity
+- Remove unnecessary and redundant contents and sections
+- Simplified and interactive experience
+
+### v3.0.0 - Schedule call/interview and moving to Turbo Monorepo setup
 
 ### 📦 Releases
 ```bash
@@ -200,6 +208,7 @@ v1.5.0 - Transition to CMS Type Portfolio,
        - Major update with new features and updates 
        - Minor update in the blog page in Portfolio to make CMS to easily control and manage my data (Upcoming)
        - Added blog and testimonial section, admin moderated
+v2.0.0 - Agentic AI Assistant integrated
 ```
 
 ### 📄 License
