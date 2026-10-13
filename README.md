@@ -196,6 +196,7 @@ GITHUB_TOKEN=your_github_token_here
 
 ## Upcoming
 ### v2.6.0 - Schedule call/interview and moving to Turbo Monorepo setup
+- For a minor release update v2.6.0 will be adding a contact page with interactive scheduler and mailer to my personal mail. using Cal.com and Resend for mailer
 
 ### 📦 Releases
 ```bash
