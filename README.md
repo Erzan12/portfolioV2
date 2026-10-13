@@ -202,13 +202,14 @@ GITHUB_TOKEN=your_github_token_here
 v0.7.0 – Documentation & UI Interaction Update
 v0.8.0 – Dynamic Projects & GitHub Integration
 v1.0.0 – Public Portfolio Platform Release 🎉
-v1.0.1 - Patch bug fixes and typo errors (Upcoming)
+v1.0.1 - Patch bug fixes and typo errors
 v1.5.0 - Transition to CMS Type Portfolio,
        - Major update with new features and updates 
        - Minor update in the blog page in Portfolio to make CMS to easily control and manage my data (Upcoming)
        - Added blog and testimonial section, admin moderated
 v2.0.0 - Agentic AI Assistant integrated
 v2.5.0 - UI/UX Overhaul and update with Neo Brutalism
+v2.6.0 - Schedule call/interview and moving to Turbo Monorepo setup (Upcoming)
 ```
 
 ### 📄 License
