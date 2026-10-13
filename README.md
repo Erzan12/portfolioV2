@@ -187,8 +187,6 @@ GITHUB_TOKEN=your_github_token_here
 - More quality of life changes UI/UX and content
 - Random welcome messages for visitors to encourage chatting with Persona
 - Persistent convo's after closing the chat bubble and opened again
-
-## Upcoming
 ### v2.5.0 - UI/UX Overhaul and update with Neo Brutalism
 - Overall user experience is updated and enhanced
 - New design tokens e.g buttons, sidebar, new nav etc. added.
@@ -196,6 +194,7 @@ GITHUB_TOKEN=your_github_token_here
 - Remove unnecessary and redundant contents and sections
 - Simplified and interactive experience
 
+## Upcoming
 ### v3.0.0 - Schedule call/interview and moving to Turbo Monorepo setup
 
 ### 📦 Releases
