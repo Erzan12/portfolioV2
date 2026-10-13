@@ -2,6 +2,41 @@
 
 All notable changes to **PortfolioV2** are documented in this file.
 
+## [2.6.0] – 2026-10-13
+### Contact Page, Interactive Scheduler & Mailer
+
+### 🎨 Added / Enhanced
+
+**Contact Page**
+* Added new navbar page, the Contact page, with an interactive scheduler, Get in Touch, Book a Call, and Send a Message (#321)
+* Added new contact form component (#322)
+* Added new library for send message actions (#325)
+
+**Scheduler**
+* Added new scheduler component using Cal.com React dependencies (#324)
+* Added new Cal.com dependencies for React (#327)
+
+**Navigation**
+* Added new nav link for the Contact page (#323)
+
+**Profile**
+* Updated profile data and hardcoded the professional email (#326)
+
+### 🧹 Changed / Removed
+
+* Removed the System Design nav link (#323)
+
+### 📝 Planning
+
+* Defined v2.6.0 scope: contact page with interactive scheduler and mailer to a personal inbox, using Cal.com and Resend (#320)
+
+### 🚀 Highlights
+PortfolioV2 v2.6.0 adds a dedicated Contact page to the portfolio.
+Visitors can book a call through an interactive Cal.com scheduler or send a message through a new contact form, with delivery handled by Resend.
+The navigation is updated with a Contact link, and profile data now includes the professional email.
+
+---
+
 ## [2.5.0] – 2026-10-13
 ### Neo-Brutalist Redesign, Homepage Overhaul & GitHub Activity
 
