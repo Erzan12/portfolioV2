@@ -2,6 +2,88 @@
 
 All notable changes to **PortfolioV2** are documented in this file.
 
+## [2.5.0] – 2026-10-13
+### Neo-Brutalist Redesign, Homepage Overhaul & GitHub Activity
+
+### 🎨 Added / Enhanced
+
+**Neo-Brutalist Design System**
+* Added Style Guide component with design tokens (#264)
+* Added `tokens.css` style tokens for the Neo-Brutalist style (#265)
+* Added new components for the Neo-Brutalist layout (#266)
+* Updated theme provider configuration to match the new design (#267, #268, #269)
+* Replaced the existing palette in `globals.css` with the Neo-Brutalist palette (#270)
+* Updated the hero component with Neo-Brutalist styled sections (#271)
+* Added `brut` badge and card components, replacing existing shadcn button and card (#302)
+* Added `brut` system card and skeleton components (#303)
+* Added experimental pager component (#286)
+
+**Homepage & Layout**
+* Added Site Shell component to exclude pages from the sidebar (#281)
+* Implemented Site Shell in the App Router layout (#282)
+* Added sidebar component to overhaul the homepage layout (#283)
+* Added new personal profile data and information (#284)
+* Added Now Board component (#274)
+* Added Featured Projects component (#273)
+* Added new tabs data, including learning and intro details (#272, #278)
+* Updated the App Router page with constant sections and an updated leave-a-note section (#285)
+* Updated the main page file (#275)
+* Simplified the hero component by removing redundant code (#288)
+
+**Blog**
+* Added new `blog.ts` library (#317)
+* Added new `blog-feed.tsx` component (#316)
+* Updated blog components to match the Neo-Brutalist theme (#315)
+* Added new prose hue colors for the blog page (#314)
+* Updated the blog slug `page.tsx` to the Neo-Brutalist style and removed the existing theme (#313)
+
+**GitHub Integration**
+* Added GitHub API integration for rendering the GitHub profile (#292)
+* Sidebar now shows the GitHub profile image (#293)
+* Added GitHub contributions graph and data (#295, #296)
+* Added GitHub graph, data, and activity component with commit contribution counter (#298)
+* Enhanced the Projects page to fit the Neo-Brutalist theme (#310)
+
+**About Page**
+* Added open-source contributions section to the About page (#312)
+* Enhanced the About client component to match the Neo-Brutalist theme (#313)
+
+**Personal Chat & Testimonials**
+* Updated the personal chat component to the Neo-Brutalist style (#299)
+* Updated the testimonial component to the Neo-Brutalist style (#298)
+
+### 🐛 Fixed
+
+**Projects**
+* Fixed projects not loading on the Projects page, suspected expired or outdated GitHub token (#319)
+
+**Personal AI Chat**
+* Fixed personal chat not responding and showing "something went wrong" (#301)
+
+**Layout**
+* Fixed App Router layout by moving providers inside `<body>` (#292)
+* Added About page to Site Shell exclusions (#291)
+
+**UI**
+* Fixed status color and format, added format for new status in the tabs section (#280)
+
+### 🧹 Changed / Removed
+
+* Removed homepage sections How I Think, Project Case, Experimental Lab, and Current Learning, plus the System Design navbar option (#295)
+* Temporarily removed the System Design section from the navbar (#289)
+* Removed unused components (system card, skeleton, project card, carousel) to resolve design conflicts (#308)
+* Removed `on-tabs` in the App Router and `components/core/tabs.tsx` (#279)
+* Moved new components to the `brut` directory (#277)
+* Updated Style Guide page imports (#276)
+
+### 🚀 Highlights
+PortfolioV2 v2.5.0 transitions the platform to a Neo-Brutalist design system, with a redesigned homepage built around a new sidebar, Site Shell, Now Board, and Featured Projects.
+The release adds GitHub profile and contribution activity, a restyled blog with new supporting utilities, a refreshed About page, and updated personal chat and testimonial components.
+It also fixes the Projects page loading issue and the personal chat error.
+Overall, v2.5.0 gives PortfolioV2 a distinctive, consistent visual identity and a more maintainable component structure.
+
+---
+
 ## [2.0.0] – 2026-10-05
 
 > **Agentic AI Ecosystem, Analytics & Platform Enhancements**
