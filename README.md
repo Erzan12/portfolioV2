@@ -195,7 +195,7 @@ GITHUB_TOKEN=your_github_token_here
 - Simplified and interactive experience
 
 ## Upcoming
-### v3.0.0 - Schedule call/interview and moving to Turbo Monorepo setup
+### v2.6.0 - Schedule call/interview and moving to Turbo Monorepo setup
 
 ### 📦 Releases
 ```bash
