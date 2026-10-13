@@ -1,5 +1,5 @@
 import AboutClient from "@/components/core/about/about-client";
-import { getGithubProfile } from "@/components/github-profile/getProfile";
+import { getGithubProfile } from "../api/github/profile/route";
 
 export default async function About() {
   const profile = await getGithubProfile();

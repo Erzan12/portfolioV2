@@ -1,6 +1,7 @@
 import BlogClient from "@/components/core/blog/blog-client";
-import { getGithubProfile } from "@/components/github-profile/getProfile";
+
 import { prisma } from "@/lib/prisma/prisma";
+import { getGithubProfile } from "../api/github/profile/route";
 
 export default async function BlogPage() {
   // const session = await getServerSession(authOptions); // make a page accessible to other users regardless if admin or ordinary users, ordinary users can only view posts while admin can view and create posts
