@@ -193,10 +193,11 @@ GITHUB_TOKEN=your_github_token_here
 - Added new section Personal Github Activity
 - Remove unnecessary and redundant contents and sections
 - Simplified and interactive experience
-
-## Upcoming
 ### v2.6.0 - Schedule call/interview and moving to Turbo Monorepo setup
 - For a minor release update v2.6.0 will be adding a contact page with interactive scheduler and mailer to my personal mail. using Cal.com and Resend for mailer
+
+## Upcoming
+### v2.7.0 - Changing to Turbo Monorepo (Upcoming)
 
 ### 📦 Releases
 ```bash
@@ -210,7 +211,8 @@ v1.5.0 - Transition to CMS Type Portfolio,
        - Added blog and testimonial section, admin moderated
 v2.0.0 - Agentic AI Assistant integrated
 v2.5.0 - UI/UX Overhaul and update with Neo Brutalism
-v2.6.0 - Schedule call/interview and moving to Turbo Monorepo setup (Upcoming)
+v2.6.0 - Schedule call/interview and moving to Turbo Monorepo setup
+v2.7.0 - Changing to Turbo Monorepo (Upcoming)
 ```
 
 ### 📄 License
