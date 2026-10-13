@@ -10,7 +10,7 @@ export const profile = {
   now: "Avega Bros. Shipping Integrated Corp",
   experience: "4 years",
   contacts: [
-    { label: "Email", handle: "", href: "" }, // TODO: "mailto:you@example.com" + a visible handle
+    { label: "Email", handle: "do.earljan@gmail.com", href: "mailto:do.earljan@gmail.com" }, // TODO: "mailto:you@example.com" + a visible handle
     { label: "Resume", handle: "PDF", href: "https://orgfmizyhreotvshajda.supabase.co/storage/v1/object/public/my_documents/Earl-Jan-Do-CV.pdf" },
     { label: "GitHub", handle: "Erzan12", href: "https://github.com/Erzan12" },
     { label: "LinkedIn", handle: "ej-do", href: "https://www.linkedin.com/in/ej-do/" },
@@ -21,5 +21,5 @@ export const profile = {
 
 const find = (label: string) => profile.contacts.find((c) => c.label === label)?.href;
 export const hasEmail = !!find("Email");
-export const emailHref = find("Email") || "/about#contact";
+export const emailHref = "/contact";
 export const resumeHref = find("Resume") || "";
