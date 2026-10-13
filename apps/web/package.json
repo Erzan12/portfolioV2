@@ -14,6 +14,7 @@
     "@ai-sdk/openai": "^3.0.74",
     "@ai-sdk/react": "^3.0.210",
     "@auth/prisma-adapter": "^1.0.0",
+    "@calcom/embed-react": "^1.5.3",
     "@getbrevo/brevo": "^5.0.4",
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
