@@ -44,7 +44,17 @@ export default function AboutClient({ avatar }: { avatar?: string | null }) {
               >
                 pull request
               </a>{" "}
-              merged on Docusaurus, the framework behind my docs site.
+              merged on Docusaurus, the framework behind my documentation platform. 
+              {/* You can also {" "}
+              <a
+                href="https://docusaurus.io/community/support"
+                target="_blank"
+                rel="noreferrer"
+                className="font-bold underline decoration-[3px] underline-offset-4 hover:bg-spark hover:text-on-spark"
+              >
+                view here 
+              </a>{" "}
+              in the official Docusaurus documentation. */}
             </p>
           </div>
         </div>
