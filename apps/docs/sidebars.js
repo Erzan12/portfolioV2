@@ -91,6 +91,7 @@ const sidebars = {
             'Projects/Documentation-Guides/understanding-typescript-errors-in-ai-sdk',
             'Projects/Documentation-Guides/laravel-models-controllers-namespaces-imports-and-eloquent-relationships',
             'Projects/Documentation-Guides/nestjs-drizzle-orm-postgresql',
+            'Projects/Documentation-Guides/windows-dev-environment-setup',
           ]
         }
       ],

@@ -1,0 +1,806 @@
+---
+title: "Windows Development Environment Setup: WSL2, Ubuntu, Docker, Git, Python, and Claude Code"
+description: "A step-by-step guide to setting up a Windows development environment for bash-based task repositories using WSL2 Ubuntu, Docker Desktop, and Claude Code."
+---
+
+# Windows Development Environment Setup
+
+## 1. Purpose
+
+This guide explains how to prepare a Windows computer for a development task that uses Bash scripts and requires:
+
+- Windows Subsystem for Linux 2 (WSL2)
+- Ubuntu Linux
+- Docker Desktop
+- Python 3
+- Git
+- Claude Code
+- Askable Labs MCP server
+
+The goal is to create a reliable development environment where repository scripts run in Linux rather than Windows PowerShell.
+
+---
+
+## 2. Current situation
+
+The following command was successfully executed in PowerShell:
+
+```powershell
+claude mcp add --transport http askable-labs https://spark.platform.askable.com/mcp/participant
+```
+
+Claude Code saved the server configuration to:
+
+```text
+C:\Users\doear\.claude.json
+```
+
+However, running `wsl` opened this distribution:
+
+```text
+docker-desktop:/tmp/docker-desktop-root/run/desktop/mnt/host/c/Users/doear#
+```
+
+This is Docker Desktop's internal Linux distribution, **not Ubuntu**.
+
+An attempt to install Ubuntu produced:
+
+```text
+The certificate authority is invalid or incorrect
+Error code: Wsl/InstallDistro/0x80072f0d
+```
+
+This guide starts by addressing that installation error.
+
+---
+
+## 3. Understand the different terminals
+
+Windows provides several terminals, but they are not interchangeable.
+
+| Terminal | Typical prompt | Primary purpose |
+| --- | --- | --- |
+| PowerShell | `PS C:\Users\doear>` | Windows commands and WSL management |
+| Command Prompt | `C:\Users\doear>` | Windows commands |
+| Ubuntu / WSL | `user@computer:~$` | Linux commands and Bash scripts |
+| Docker Desktop WSL distribution | `docker-desktop:...#` | Internal Docker Desktop environment |
+
+> **Important:** Do not use the `docker-desktop` distribution as your normal development environment. Use Ubuntu instead.
+
+### Which terminal should run each command?
+
+| Command | Where to run it |
+| --- | --- |
+| `wsl --install -d Ubuntu` | PowerShell as Administrator |
+| `wsl --list --verbose` | PowerShell |
+| `wsl -d Ubuntu` | PowerShell |
+| `docker --version` | Ubuntu, after integration is enabled |
+| `python3 --version` | Ubuntu |
+| `git --version` | Ubuntu |
+| `sudo apt install ...` | Ubuntu |
+| `claude` | The terminal where Claude Code is installed and configured |
+| `/mcp` | Inside the Claude Code interactive session |
+
+---
+
+## 4. Step 1 — Check Windows and WSL
+
+Open PowerShell. You can open it through the Start menu by searching for **PowerShell**.
+
+Run:
+
+```powershell
+wsl --list --verbose
+```
+
+This lists the installed Linux distributions.
+
+Example output:
+
+```text
+  NAME              STATE           VERSION
+* docker-desktop    Running         2
+```
+
+If Ubuntu is **not** listed, continue to [Step 2](#5-step-2--fix-the-ubuntu-installation-certificate-error).
+
+If Ubuntu is already listed, skip ahead and launch it directly:
+
+```powershell
+wsl -d Ubuntu
+```
+
+If Ubuntu is listed but reports WSL version 1, you can convert it later using:
+
+```powershell
+wsl --set-version Ubuntu 2
+```
+
+WSL2 must be available and properly configured for the recommended environment.
+
+---
+
+## 5. Step 2 — Fix the Ubuntu installation certificate error
+
+The current error is:
+
+```text
+Wsl/InstallDistro/0x80072f0d
+The certificate authority is invalid or incorrect
+```
+
+This indicates a certificate trust or secure-download problem. Possible causes include incorrect Windows time, a proxy, HTTPS inspection, missing trusted certificates, or a network issue.
+
+### 5.1 Check Windows date and time
+
+Open **Settings → Time & language → Date & time**, then check the following:
+
+- **Set time automatically** is enabled.
+- **Set time zone automatically** is enabled, if appropriate.
+- The displayed date and time are correct.
+- Click **Sync now** if the option is available.
+
+Return to PowerShell and try:
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+If the installation still fails, continue.
+
+### 5.2 Try the web-download installation method
+
+Open PowerShell **as Administrator**, then run:
+
+```powershell
+wsl --install --web-download -d Ubuntu
+```
+
+This uses an alternative WSL distribution download method. It may help if the usual download route is the problem, but it will not necessarily fix a system-wide certificate trust failure.
+
+- If the installation succeeds, proceed to [Step 3](#6-step-3--complete-ubuntu-installation).
+- If the same certificate error occurs, continue troubleshooting.
+
+### 5.3 Check WSL update status
+
+Run these commands in PowerShell:
+
+```powershell
+wsl --version
+wsl --status
+wsl --update
+```
+
+If `wsl --update` also fails with a certificate error, investigate the Windows or network configuration before retrying the Ubuntu download repeatedly.
+
+### 5.4 Check VPN, proxy, and network restrictions
+
+If the computer is connected to a work or school network:
+
+1. Check whether a VPN is active.
+2. Check whether a proxy is configured.
+3. Ask IT whether HTTPS inspection is being used.
+4. Ask whether a corporate certificate must be installed through an approved process.
+5. If permitted, try a trusted home network or mobile hotspot.
+
+> **Warning:** Do not bypass company security controls.
+
+### 5.5 Inspect the Windows proxy configuration
+
+Run in PowerShell:
+
+```powershell
+netsh winhttp show proxy
+```
+
+This displays the WinHTTP proxy configuration. It does not necessarily show every proxy configuration used by Windows or individual applications.
+
+If the computer is managed by an organization, do not change proxy settings without understanding their purpose.
+
+### 5.6 Important certificate safety note
+
+- Do **not** disable TLS or certificate validation to force the download to work.
+- Do **not** download certificates from random websites or install an unknown root certificate.
+
+If the certificate error persists on a personal computer, check Windows Update and the trusted root certificate configuration. If it is a managed work computer, contact IT.
+
+### 5.7 Alternative installation route
+
+If the standard WSL installation process remains blocked, you can investigate installing Ubuntu through the Microsoft Store, provided the Store is available and trusted on your computer.
+
+Official references:
+
+- [WSL installation](https://learn.microsoft.com/windows/wsl/install)
+- [WSL troubleshooting](https://learn.microsoft.com/windows/wsl/troubleshooting)
+- [WSL basic commands](https://learn.microsoft.com/windows/wsl/basic-commands)
+
+---
+
+## 6. Step 3 — Complete Ubuntu installation
+
+Once the Ubuntu installation succeeds, open **Ubuntu** from the Windows Start menu. On first launch, Ubuntu will initialize its Linux filesystem.
+
+You may be asked to create:
+
+- A Linux username
+- A Linux password
+
+These are separate from your Windows account credentials.
+
+> **Note:** When entering the password in the Linux terminal, characters may not appear. This is normal. Type the password and press Enter.
+
+After setup, the terminal should show a prompt similar to:
+
+```text
+yourusername@computername:~$
+```
+
+This indicates that you are in Ubuntu.
+
+### Launch Ubuntu from PowerShell
+
+You can also launch it using:
+
+```powershell
+wsl -d Ubuntu
+```
+
+To list distributions again:
+
+```powershell
+wsl --list --verbose
+```
+
+Confirm Ubuntu uses version 2. If it does not, run:
+
+```powershell
+wsl --set-version Ubuntu 2
+```
+
+### Update Ubuntu
+
+Inside Ubuntu, run:
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+These commands update the package lists and install available package upgrades.
+
+---
+
+## 7. Step 4 — Install Git and Python
+
+Run the following commands **inside Ubuntu**, not PowerShell.
+
+```bash
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv git curl ca-certificates
+```
+
+This installs Python 3, pip, virtual-environment support, Git, curl, and CA certificates.
+
+Verify the installations:
+
+```bash
+python3 --version
+git --version
+curl --version
+```
+
+Expected output will resemble:
+
+```text
+Python 3.x.x
+git version 2.x.x
+curl ...
+```
+
+The exact versions will vary.
+
+### Recommended Python virtual environment
+
+When working on a Python repository, create a virtual environment rather than installing every dependency globally.
+
+From the repository directory:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+If the repository contains a `requirements.txt` file, install its dependencies with:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Only run the dependency installation step when appropriate for the repository.
+
+To exit the virtual environment:
+
+```bash
+deactivate
+```
+
+---
+
+## 8. Step 5 — Install Docker Desktop on Windows
+
+Docker Desktop runs on Windows and can provide Docker access to Ubuntu through WSL2 integration.
+
+### 8.1 Download Docker Desktop
+
+Use the official Docker website: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+1. Download and install Docker Desktop for Windows.
+2. Follow the installer instructions and use the WSL2 backend when available and appropriate.
+3. Restart Windows if requested.
+
+### 8.2 Start Docker Desktop
+
+Open Docker Desktop from the Windows Start menu. Wait until it reports that the Docker engine is running.
+
+Docker Desktop must be running when you want to run containers through its engine.
+
+### 8.3 Enable Ubuntu integration
+
+In Docker Desktop:
+
+1. Open **Settings**.
+2. Go to **General** and confirm that the WSL2-based engine is enabled, if that option is available.
+3. Open **Resources → WSL Integration**.
+4. Enable integration for **Ubuntu**.
+5. Select **Apply & restart** if prompted.
+
+The Ubuntu distribution must be installed before you can enable its integration.
+
+Official documentation: [Docker Desktop WSL 2 backend](https://docs.docker.com/desktop/features/wsl/)
+
+### 8.4 Verify Docker from Ubuntu
+
+Open Ubuntu and run:
+
+```bash
+docker --version
+```
+
+Then test the Docker engine:
+
+```bash
+docker run hello-world
+```
+
+The first command checks whether the Docker CLI is available. The second checks whether Docker can pull and run a test container.
+
+If Docker is not found or cannot connect:
+
+1. Confirm Docker Desktop is running.
+2. Confirm Ubuntu integration is enabled.
+3. Check that Ubuntu uses WSL2.
+4. Restart Docker Desktop.
+5. Close and reopen Ubuntu.
+
+You can restart the Ubuntu session from **PowerShell**:
+
+```powershell
+wsl --terminate Ubuntu
+wsl -d Ubuntu
+```
+
+> **Note:** Do not run these PowerShell commands inside Ubuntu.
+
+### Why not run Docker inside `docker-desktop`?
+
+The `docker-desktop` distribution is an internal Docker Desktop environment. It is not intended to be your general-purpose Linux development shell.
+
+Use Ubuntu for repository work and access Docker through the integration.
+
+---
+
+## 9. Step 6 — Choose where to store the repository
+
+For Bash-based projects, keep the working copy **inside the Ubuntu filesystem** whenever possible.
+
+For example:
+
+```bash
+mkdir -p ~/projects
+cd ~/projects
+```
+
+This creates a `projects` directory in your Linux home directory.
+
+If the repository is hosted on GitHub, clone it using its actual repository URL:
+
+```bash
+git clone <REPOSITORY_URL>
+cd <REPOSITORY_DIRECTORY>
+```
+
+Replace the placeholders with the real repository URL and directory name.
+
+> **Note:** Do not type the angle-bracket placeholders literally.
+
+### Why keep the repository inside Ubuntu?
+
+A Linux-native path such as:
+
+```text
+/home/yourusername/projects/
+```
+
+usually provides a better experience for Linux permissions, file watchers, and Bash-based tooling than working directly from a Windows-mounted path such as:
+
+```text
+/mnt/c/Users/doear/
+```
+
+You can still access Windows files through `/mnt/c/`, but Linux-native storage is generally preferable for Linux development workloads.
+
+### Check the repository instructions
+
+Once inside the repository, run:
+
+```bash
+pwd
+ls -la
+```
+
+Look for project documentation such as:
+
+```text
+README.md
+AGENTS.md
+CLAUDE.md
+package.json
+pyproject.toml
+requirements.txt
+Makefile
+```
+
+The actual files depend on the project. Read the README and any agent-specific instructions before executing scripts or changing files.
+
+---
+
+## 10. Step 7 — Install and configure Claude Code
+
+Claude Code is an interactive coding assistant. It is separate from Ubuntu and Docker Desktop.
+
+Official installation documentation: [Claude Code setup](https://code.claude.com/docs/en/setup)
+
+### 10.1 Check whether Claude Code is installed in Ubuntu
+
+Inside Ubuntu:
+
+```bash
+claude --version
+```
+
+If the command is not found, install Claude Code using the current official Linux installation instructions.
+
+> **Important:** Do not assume that a Windows installation automatically makes the Linux version available inside Ubuntu. Windows and Linux have different executable environments. Follow the official instructions for the environment where you intend to run Claude Code.
+
+### 10.2 Open Claude Code in your repository
+
+From Ubuntu:
+
+```bash
+cd ~/projects/<REPOSITORY_DIRECTORY>
+claude
+```
+
+Replace the repository directory placeholder with the actual name.
+
+Claude Code should open an interactive session. If authentication is required, follow its prompts.
+
+### 10.3 Understand the `/mcp` command
+
+The `/mcp` command is a **Claude Code slash command**. It is not a PowerShell or Bash command.
+
+**Correct workflow:**
+
+1. Open PowerShell or Ubuntu.
+2. Run `claude`.
+3. Wait for the interactive Claude Code session.
+4. Type `/mcp` into that session.
+5. Inspect the configured MCP servers and complete any required authentication.
+
+**Incorrect workflow:**
+
+```powershell
+PS C:\Users\doear> /mcp
+```
+
+PowerShell interprets `/mcp` as an attempted command and returns an error because it is not a PowerShell command.
+
+---
+
+## 11. Step 8 — Configure the Askable Labs MCP server
+
+The MCP server command previously used was:
+
+```powershell
+claude mcp add --transport http askable-labs https://spark.platform.askable.com/mcp/participant
+```
+
+The command returned a successful configuration message and saved the settings to:
+
+```text
+C:\Users\doear\.claude.json
+```
+
+This confirms that the **Windows** Claude Code configuration was modified. It does not prove that the server has authenticated successfully or that it is reachable.
+
+### 11.1 Decide which Claude Code environment to use
+
+There are two possible setups.
+
+#### Option A: Windows Claude Code
+
+Continue using the existing Windows installation and configuration.
+
+In PowerShell:
+
+```powershell
+claude
+```
+
+Inside Claude Code:
+
+```text
+/mcp
+```
+
+This is the simplest route if your task does not require Claude Code to run inside Ubuntu.
+
+#### Option B: Linux Claude Code inside Ubuntu
+
+Install Claude Code in Ubuntu and configure the MCP server in that environment.
+
+Inside Ubuntu, run the documented `claude mcp add` command:
+
+```bash
+claude mcp add --transport http askable-labs https://spark.platform.askable.com/mcp/participant
+```
+
+Then launch Claude Code:
+
+```bash
+claude
+```
+
+Inside the interactive session:
+
+```text
+/mcp
+```
+
+Complete the authentication prompts if required.
+
+> **Note:** The Windows configuration file and Linux configuration are not necessarily shared. Configure the server in the environment where you will use Claude Code.
+
+### 11.2 Verify the MCP connection
+
+Inside Claude Code:
+
+1. Enter `/mcp`.
+2. Find `askable-labs`.
+3. Check its displayed connection or authentication status.
+4. Follow any browser authorization or login prompts.
+5. Retry the connection if necessary.
+
+If the server is not listed, exit the interactive session and check the configuration using the corresponding environment's CLI:
+
+```bash
+claude mcp list
+```
+
+Run this in Ubuntu if using Linux Claude Code, or in PowerShell if using Windows Claude Code.
+
+If the server requires organization-specific credentials or permissions, follow the instructions provided by Askable Labs.
+
+---
+
+## 12. Step 9 — Validate the complete environment
+
+Before running the task, open Ubuntu and run:
+
+```bash
+docker --version
+python3 --version
+git --version
+```
+
+Then test the Docker engine:
+
+```bash
+docker run hello-world
+```
+
+Check the current location:
+
+```bash
+pwd
+```
+
+Check the repository contents:
+
+```bash
+ls -la
+```
+
+If using Claude Code inside Ubuntu, check:
+
+```bash
+claude --version
+claude mcp list
+```
+
+Finally, launch Claude Code from the repository:
+
+```bash
+claude
+```
+
+Inside the interactive session:
+
+```text
+/mcp
+```
+
+Confirm the MCP server is available and that any required authentication has completed.
+
+### Final checklist
+
+- [ ] Ubuntu is installed.
+- [ ] Ubuntu runs on WSL2.
+- [ ] Ubuntu opens with a normal Linux prompt.
+- [ ] Python 3 is available.
+- [ ] Git is available.
+- [ ] Docker Desktop is installed and running.
+- [ ] Docker Desktop WSL integration is enabled for Ubuntu.
+- [ ] `docker run hello-world` succeeds.
+- [ ] The task repository is cloned or accessible inside Ubuntu.
+- [ ] Repository documentation has been reviewed.
+- [ ] Claude Code is installed in the intended environment.
+- [ ] The `askable-labs` MCP server is configured in that environment.
+- [ ] `/mcp` has been run inside Claude Code.
+- [ ] Required MCP authentication has completed.
+- [ ] The repository's own setup and test instructions have been followed.
+
+---
+
+## 13. Troubleshooting reference
+
+### Error: The certificate authority is invalid or incorrect
+
+**Possible causes:** Windows time is wrong, certificate trust is incomplete, or a proxy, VPN, firewall, or HTTPS inspection is interfering.
+
+**Recommended actions:**
+
+1. Synchronize Windows date and time.
+2. Try `wsl --install --web-download -d Ubuntu`.
+3. Check `wsl --update`.
+4. Check proxy and network restrictions.
+5. Use an approved network or contact IT if necessary.
+
+> **Warning:** Do not disable certificate validation.
+
+### Error: `docker --version` says Docker is not supported in the `docker-desktop` distribution
+
+**Cause:** You are using Docker Desktop's internal distribution.
+
+**Fix:** Exit that distribution, install Ubuntu if necessary, and open Ubuntu directly.
+
+### Error: `docker: command not found` inside Ubuntu
+
+**Possible causes:** Docker Desktop WSL integration is not enabled, or the Ubuntu session has not refreshed.
+
+**Fix:**
+
+1. Open Docker Desktop.
+2. Enable Ubuntu under **Settings → Resources → WSL Integration**.
+3. Apply changes and restart Docker Desktop.
+4. Reopen Ubuntu and retry.
+
+### Error: Docker cannot connect to the daemon
+
+**Possible causes:** Docker Desktop is not running or the engine is not ready.
+
+**Fix:**
+
+1. Open Docker Desktop.
+2. Wait until the engine is running.
+3. Retry `docker run hello-world`.
+
+### Error: `python3: command not found`
+
+Inside Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv
+```
+
+### Error: `git: command not found`
+
+Inside Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install -y git
+```
+
+### Error: `/mcp` is not recognized
+
+**Cause:** The slash command was entered in PowerShell, Command Prompt, or the Bash shell.
+
+**Fix:** Run `claude` first and then type `/mcp` into the interactive Claude Code session.
+
+### Error: `claude` is not found in Ubuntu
+
+The Linux environment may not have Claude Code installed, even if Windows does.
+
+Install Claude Code by following the official Linux setup instructions: [Claude Code setup](https://code.claude.com/docs/en/setup)
+
+### Error: MCP server is missing in Ubuntu Claude Code
+
+The server may be configured only in the Windows Claude Code environment.
+
+Configure it again in the environment where you need it, using the documented command:
+
+```bash
+claude mcp add --transport http askable-labs https://spark.platform.askable.com/mcp/participant
+```
+
+Then run `/mcp` inside the Linux Claude Code session.
+
+---
+
+## 14. Recommended order of operations
+
+Follow this order to avoid wasting time troubleshooting multiple things at once.
+
+1. Fix the Windows certificate error.
+2. Install and launch Ubuntu.
+3. Confirm Ubuntu uses WSL2.
+4. Install Python and Git.
+5. Install Docker Desktop and enable Ubuntu integration.
+6. Verify Docker by running `hello-world`.
+7. Clone the task repository inside Ubuntu.
+8. Read the repository instructions.
+9. Install Claude Code in the environment you intend to use.
+10. Configure and authenticate the Askable Labs MCP server in that environment.
+11. Run the repository's setup, validation, and test commands.
+
+> **Important:** Do not begin the repository task until the environment checks pass, unless the project documentation explicitly allows a different setup.
+
+---
+
+## 15. Official documentation
+
+- [WSL installation](https://learn.microsoft.com/windows/wsl/install)
+- [WSL troubleshooting](https://learn.microsoft.com/windows/wsl/troubleshooting)
+- [WSL basic commands](https://learn.microsoft.com/windows/wsl/basic-commands)
+- [Docker Desktop WSL integration](https://docs.docker.com/desktop/features/wsl/)
+- [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+- [Claude Code setup](https://code.claude.com/docs/en/setup)
+- [Claude Code MCP configuration](https://code.claude.com/docs/en/mcp)
+
+---
+
+## 16. Completion criteria
+
+The development environment is ready when:
+
+- Ubuntu opens successfully.
+- `docker --version` works inside Ubuntu.
+- `python3 --version` works inside Ubuntu.
+- `git --version` works inside Ubuntu.
+- Docker can run a test container.
+- The task repository is available in the Linux filesystem.
+- Claude Code opens in the intended environment.
+- The Askable Labs MCP server is listed and authenticated as required.
+- The repository's documented checks pass.
